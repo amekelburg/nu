@@ -2,7 +2,7 @@
 lock '3.2.1'
 
 set :application, 'deter'
-set :repo_url, 'git@github.com:alg/deter.git'
+set :repo_url, 'git@github.com:deter-project/nu.git'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
