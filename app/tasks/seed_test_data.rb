@@ -105,26 +105,27 @@ class SeedTestData
     @user_ids = {}
   end
 
-  def perform
+  def perform(&log_block)
+    @log_block = log_block
     unless login
-      raise "Invalid admin credentials. Set ADMIN_USERNAME and ADMIN_PASSWORD env variables."
+      raise "Invalid admin credentials"
     end
 
     ensure_project_profile_attributes
 
-    puts "Creating users and projects:"
+    log "Creating users and projects:"
     USERS.each { |u| create_user(u) }
 
-    puts "Joining projects:"
+    log "Joining projects:"
     PROJECT_USERS.each { |project_id, users| join_project(project_id, users) }
 
-    puts "Creating experiments:"
+    log "Creating experiments:"
     USER_EXPERIMENTS.each { |user_name, experiments| create_experiments(@user_ids[user_name], user_name.split(' ')[0], experiments) }
 
-    puts "Creating requests:"
+    log "Creating requests:"
     create_requests
 
-    puts "Creating libraries:"
+    log "Creating libraries:"
     create_libraries
 
     return {
@@ -133,7 +134,7 @@ class SeedTestData
   end
 
   def ensure_project_profile_attributes
-    puts "Checking project profile attributes"
+    log "Checking project profile attributes"
     attrs = DeterLab.get_project_profile_description
     present_attrs = attrs.map(&:name)
 
@@ -141,7 +142,7 @@ class SeedTestData
       next if present_attrs.include?(attr[:name])
 
       DeterLab.create_project_attribute(@admin_user, attr[:name], attr[:type], attr[:optional], attr[:access], attr[:description], attr[:sequence])
-      puts "  - New project attribute: #{attr.inspect}"
+      log "  - New project attribute: #{attr.inspect}"
     end
   end
 
@@ -149,13 +150,13 @@ class SeedTestData
 
   # attempts to login and returns true / false
   def login
-    puts "Logging in as #{@admin_user}"
+    log "Logging in as #{@admin_user}"
     DeterLab.valid_credentials?(@admin_user, @admin_pass)
   end
 
   def create_user(up)
     user_id = DeterLab.create_user_no_confirm(@admin_user, up[:password], USER_DEFAULTS.merge(name: up[:name], email: up[:email]))
-    puts "  - New user #{up[:name]} (#{user_id})"
+    log "  - New user #{up[:name]} (#{user_id})"
     @user_ids[up[:name]] = user_id
 
     ActivityLog.for_user(user_id).add(:create, @admin_user)
@@ -163,7 +164,7 @@ class SeedTestData
     up[:owns_projects].each do |project_id|
       ActivityLog.for_project(project_id).clear
       pp = PROJECTS[project_id] or raise("Project attributes for #{project_id} not found")
-      puts "  - New project #{project_id} for #{user_id}"
+      log "  - New project #{project_id} for #{user_id}"
       begin
         create_project(user_id, project_id, pp)
       rescue DeterLab::RequestError => e
@@ -187,7 +188,7 @@ class SeedTestData
   def join_project(project_id, users)
     uids = users.map { |name| @user_ids[name] }
     DeterLab.add_users_no_confirm(@admin_user, project_id, uids)
-    puts "  - Added users #{uids.inspect} to #{project_id}"
+    log "  - Added users #{uids.inspect} to #{project_id}"
 
     uids.each do |uid|
       ActivityLog.for_project(project_id).add(:user_joined, uid)
@@ -208,14 +209,14 @@ class SeedTestData
         DeterLab.remove_experiment(@admin_user, eid)
         DeterLab.create_experiment(user_id, e[:project], e[:name], { description: "Custom experiment" })
       end
-      puts " - New experiment #{eid} by #{user_id}"
+      log " - New experiment #{eid} by #{user_id}"
 
       if created
         log = ActivityLog.for_experiment(eid)
         log.add(:create, user_id)
 
         (e[:aspects] || []).each do |asp|
-          puts "    - Adding #{asp[:type]} aspect"
+          log "    - Adding #{asp[:type]} aspect"
           res = DeterLab.add_experiment_aspects(user_id, "#{e[:project]}:#{e[:name]}", [ { type: asp[:type], data: asp[:data] } ])
 
           log.add("new-aspect-#{asp[:type]}", user_id)
@@ -226,7 +227,7 @@ class SeedTestData
             asp.last_updated_by        = user_id
             asp.change_control_enabled = '1'
             asp.change_control_url     = cc_url
-            puts "      with CC URL: #{cc_url}"
+            log "      with CC URL: #{cc_url}"
           end
         end
       end
@@ -242,7 +243,7 @@ class SeedTestData
 
     # * New project request with owner uid being that returned from the Dirk Pitt create-user call; project name Delta-Blues summary "Get down, get funky", same attributes as above projects
     ensure_create_project(dirk, "Delta-Blues", "Get down, get funky")
-    puts "  - New project Delta-Blues request by Dirk Pitt (#{dirk})"
+    log "  - New project Delta-Blues request by Dirk Pitt (#{dirk})"
 
     # * New account request for Andreas Ackermann, aackermann@uso.edu, same other attributes as users above
     andreas = DeterLab.create_user(USER_DEFAULTS.merge(name: 'Andreas Ackermann', email: 'aackermann@uso.edu'))
@@ -251,13 +252,13 @@ class SeedTestData
 
     # * Join project request with owner uid being that returned from the Andreas Ackermann create-user call; request to join project Alfa-Romeo
     DeterLab.join_project(andreas, 'Alfa-Romeo')
-    puts "  - Project Alfa-Romeo join request by Andreas Ackermann (#{andreas})"
+    log "  - Project Alfa-Romeo join request by Andreas Ackermann (#{andreas})"
 
     # In addition, there should be a create-project request in a login session of Ambrose Bierce, to create a new project Devils-Dictionary "Compile a corpus of clever snark", same ofher project attributes as above.
     ambrose = @user_ids['Ambrose Bierce']
     DeterLab.valid_credentials?(ambrose, 'Ambrose')
     ensure_create_project(ambrose, "Devils-Dictionary", "Compile a corpus of clever snark")
-    puts "  - New project Devils-Dictionary request by Ambrose Bierce (#{ambrose})"
+    log "  - New project Devils-Dictionary request by Ambrose Bierce (#{ambrose})"
   end
 
   def create_libraries
@@ -268,7 +269,7 @@ class SeedTestData
 
   def create_library(l)
     owner_uid = @user_ids[l[:owner]]
-    puts "  - #{owner_uid}:#{l[:name]}"
+    log "  - #{owner_uid}:#{l[:name]}"
 
     password = l[:owner].split(' ')[0]
     experiment_ids = l[:experiments].map do |ename|
@@ -288,7 +289,7 @@ class SeedTestData
       eid
     end
 
-    puts "    - Experiment IDs: #{experiment_ids.inspect}"
+    log "    - Experiment IDs: #{experiment_ids.inspect}"
 
     lib_name = "#{owner_uid}:#{l[:name]}"
     DeterLab.create_library(@admin_user, lib_name, {
@@ -321,4 +322,11 @@ class SeedTestData
     ActivityLog.for_project(pid).add(:create, uid)
   end
 
+  def log(msg)
+    if @log_block
+      @log_block.call msg
+    else
+      puts msg
+    end
+  end
 end

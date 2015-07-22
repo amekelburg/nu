@@ -18,6 +18,7 @@
 //= require i18n
 //= require react
 //= require react_ujs
+//= require reflux.min
 //= require components
 //= require_tree ./i18n
 //= require_tree .

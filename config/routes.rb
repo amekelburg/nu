@@ -79,9 +79,14 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    # spi log
     get     '/spi_log'      => 'spi_log#index', as: 'spi_log'
     get     '/full_spi_log' => 'spi_log#full_index', as: 'full_spi_log'
     delete  '/spi_log'      => 'spi_log#clear'
+
+    # seeding
+    get     '/seed'         => 'seeding#show'
+    get     '/seed/perform' => 'seeding#perform'
   end
 
   get '/spi_log'      => redirect('/admin/spi_log')

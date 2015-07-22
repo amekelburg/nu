@@ -1,6 +1,6 @@
 class Admin::SpiLogController < Admin::BaseController
 
-  layout "spi_log"
+  layout "bare"
 
   def full_index
     index 10000
