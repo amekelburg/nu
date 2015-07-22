@@ -103,7 +103,12 @@ module DeterLab
         urlPrefix: url_prefix
       })
 
-      return response.to_hash[:join_project_response][:return]
+      res = response.to_hash[:join_project_response][:return]
+      if res
+        ProjectJoins.add_project(uid, project_id)
+      end
+
+      return res
     rescue Savon::SOAPFault => e
       process_error e
     end

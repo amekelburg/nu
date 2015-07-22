@@ -12,6 +12,18 @@
       %p= raw t ".unapproved_projects.info"
       = render partial: 'projects_table', object: @unapproved_new
 
+    - if @unapproved_joins.any?
+      %h3= t ".unapproved_joins.title"
+      %p= raw t ".unapproved_joins.info"
+      %table.table.table-striped
+        %thead
+          %tr
+            %th Project
+        %tbody
+          - @unapproved_joins.each do |pid|
+            %tr
+              %td #{pid}
+
 .row
   .col-sm-12
     = link_to t(".new_project"), :new_project, class: "btn btn-default"

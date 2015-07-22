@@ -111,6 +111,9 @@ class SeedTestData
       raise "Invalid admin credentials"
     end
 
+    # remove project join requests
+    ProjectJoins.reset
+
     ensure_project_profile_attributes
 
     log "Creating users and projects:"
