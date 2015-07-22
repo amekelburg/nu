@@ -44,8 +44,32 @@ Every request and response to SPI (except for those cached WSDL) are
 logged and can be examined. Below are the URLs for the last 10 and 10k
 records:
 
-    http://.../admin/spi_log
+    /admin/spi_log
 
-    http://.../admin/full_spi_log
+    /admin/full_spi_log
 
+Seeding
+-------
+
+After the database is reset you might want to seed it with data. Follow
+to:
+
+    /admin/seed
+
+You will be prompted to enter the `deterboss` user password. Upon
+submission you should see the log of the seeding script. Supported
+browsers:
+
+* Firefox 10+
+* Chrome 26+
+* Safari 7.0+
+* Opera 12+
+* iOS Safari 7.1+
+* Android Browser 4.4+
+* Chrome for Android 42+
+
+Upon completion you will see "FINISHED: ok" message. At this point, you
+may want to check the SPI log at:
+
+    /admin/full_spi_log
 
