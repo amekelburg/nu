@@ -6,7 +6,6 @@ class Admin::SeedingController < Admin::BaseController
 
   # seeding screen
   def show
-    gon.password = params[:pass]
   end
 
   # runs the seeding script

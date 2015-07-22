@@ -16,7 +16,7 @@ Log = Reflux.createStore
   getInitialState: -> @log
 
   onStartSeeding: (pass) ->
-    events = new EventSource("/admin/seed/perform?pass=#{pass}")
+    events = new EventSource("/admin/seed/perform?pass=#{encodeURIComponent(pass)}")
 
     events.addEventListener 'open', ->
       console.log 'open'
@@ -46,12 +46,31 @@ Log = Reflux.createStore
     Reflux.connect Log, 'log'
   ]
 
-  componentDidMount: ->
-    actStartSeeding(gon.password)
+  getInitialState: ->
+    return { password: null }
+
+  startSeeding: (pass) ->
+    @setState({ password: pass })
+    actStartSeeding(pass)
 
   render: ->
-    data = @state.log.join("\n")
+    console.log @state
+    if @state.password?
+      data = @state.log.join("\n")
+      `<pre>{data}</pre>`
+    else
+      `<PasswordBox onClick={this.startSeeding}/>`
 
-    `<pre>{data}</pre>`
+PasswordBox = React.createClass
+  handleSubmit: (e) ->
+    e.preventDefault()
+    @props.onClick($(React.findDOMNode(this.refs.password)).val())
 
-
+  render: ->
+    `<form action='#' className='form'>
+      <div className='form-group'>
+        <label className='control-label'>deterboss password:</label>
+        <input id='password' name='password' type='text' ref='password' className='form-control' />
+      </div>
+      <input type='submit' className='btn btn-default' value='Start Seeding' onClick={this.handleSubmit} />
+    </form>`
