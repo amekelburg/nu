@@ -1,4 +1,4 @@
-class SpiLogController < ApplicationController
+class Admin::SpiLogController < Admin::BaseController
 
   layout "spi_log"
 

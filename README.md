@@ -44,8 +44,8 @@ Every request and response to SPI (except for those cached WSDL) are
 logged and can be examined. Below are the URLs for the last 10 and 10k
 records:
 
-    http://.../spi_log
+    http://.../admin/spi_log
 
-    http://.../full_spi_log
+    http://.../admin/full_spi_log
 
 

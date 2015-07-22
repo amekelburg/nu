@@ -78,9 +78,14 @@ Rails.application.routes.draw do
   resources :join_project_requests, only: :show
 
 
-  get     '/spi_log'      => 'spi_log#index', as: 'spi_log'
-  get     '/full_spi_log' => 'spi_log#full_index', as: 'full_spi_log'
-  delete  '/spi_log'      => 'spi_log#clear'
+  namespace :admin do
+    get     '/spi_log'      => 'spi_log#index', as: 'spi_log'
+    get     '/full_spi_log' => 'spi_log#full_index', as: 'full_spi_log'
+    delete  '/spi_log'      => 'spi_log#clear'
+  end
+
+  get '/spi_log'      => redirect('/admin/spi_log')
+  get '/full_spi_log' => redirect('/admin/full_spi_log')
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

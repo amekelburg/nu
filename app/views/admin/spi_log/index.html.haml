@@ -14,11 +14,11 @@
   %p No records yet
 - else
   .row
-    %table.table.table-striped
+    %table.table.table-striped.table-with-code
       - @records.each do |json|
         - r = JSON.parse(json)
         %tr
-          %td.col-sm-2= Time.at(r["time"]).strftime("%B %d %Y %l:%m%P")
-          %td.col-sm-2= r["type"]
-          %td.col-sm-8
-            %pre= format_log_xml r["xml"]
+          %td.col-sm-1= Time.at(r["time"]).strftime("%B %d %H:%M:%S")
+          %td.col-sm-1= r["type"]
+          %td.col-sm-10
+            %pre.pre-scrollable= format_log_xml r["xml"]
