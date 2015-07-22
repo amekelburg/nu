@@ -240,7 +240,7 @@ class SeedTestData
   def create_requests
     # The following are unauthenticated requests (not made in the context of a user session)
     # * New account request for Dirk Pitt, dpitt@uso.edu, same other attributes as users above
-    dirk = DeterLab.create_user(USER_DEFAULTS.merge(name: 'Dirk Pitt', email: 'dpitt@uso.edu'))
+    dirk = DeterLab.create_user_no_confirm(@admin_user, 'Dirk', USER_DEFAULTS.merge(name: 'Dirk Pitt', email: 'dpitt@uso.edu'))
 
     ActivityLog.for_user(dirk).add(:create, nil)
 
@@ -249,7 +249,7 @@ class SeedTestData
     log "  - New project Delta-Blues request by Dirk Pitt (#{dirk})"
 
     # * New account request for Andreas Ackermann, aackermann@uso.edu, same other attributes as users above
-    andreas = DeterLab.create_user(USER_DEFAULTS.merge(name: 'Andreas Ackermann', email: 'aackermann@uso.edu'))
+    andreas = DeterLab.create_user_no_confirm(@admin_user, 'Andreas', USER_DEFAULTS.merge(name: 'Andreas Ackermann', email: 'aackermann@uso.edu'))
 
     ActivityLog.for_user(andreas).add(:create, nil)
 
