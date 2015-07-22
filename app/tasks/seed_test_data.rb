@@ -107,7 +107,7 @@ class SeedTestData
 
   def perform(&log_block)
     @log_block = log_block
-    unless login
+    unless login_admin
       raise "Invalid admin credentials"
     end
 
@@ -152,9 +152,13 @@ class SeedTestData
   private
 
   # attempts to login and returns true / false
-  def login
-    log "Logging in as #{@admin_user}"
-    DeterLab.valid_credentials?(@admin_user, @admin_pass)
+  def login_admin
+    login @admin_user, @admin_pass
+  end
+
+  def login(user, pass)
+    log "Logging in as #{user}"
+    DeterLab.valid_credentials?(user, pass)
   end
 
   def create_user(up)
@@ -244,6 +248,8 @@ class SeedTestData
 
     ActivityLog.for_user(dirk).add(:create, nil)
 
+    login dirk, 'Dirk'
+
     # * New project request with owner uid being that returned from the Dirk Pitt create-user call; project name Delta-Blues summary "Get down, get funky", same attributes as above projects
     ensure_create_project(dirk, "Delta-Blues", "Get down, get funky")
     log "  - New project Delta-Blues request by Dirk Pitt (#{dirk})"
@@ -253,13 +259,16 @@ class SeedTestData
 
     ActivityLog.for_user(andreas).add(:create, nil)
 
+    login andreas, 'Andreas'
+
     # * Join project request with owner uid being that returned from the Andreas Ackermann create-user call; request to join project Alfa-Romeo
     DeterLab.join_project(andreas, 'Alfa-Romeo')
     log "  - Project Alfa-Romeo join request by Andreas Ackermann (#{andreas})"
 
     # In addition, there should be a create-project request in a login session of Ambrose Bierce, to create a new project Devils-Dictionary "Compile a corpus of clever snark", same ofher project attributes as above.
     ambrose = @user_ids['Ambrose Bierce']
-    DeterLab.valid_credentials?(ambrose, 'Ambrose')
+    login  ambrose, 'Ambrose'
+
     ensure_create_project(ambrose, "Devils-Dictionary", "Compile a corpus of clever snark")
     log "  - New project Devils-Dictionary request by Ambrose Bierce (#{ambrose})"
   end
