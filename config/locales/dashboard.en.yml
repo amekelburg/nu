@@ -41,14 +41,13 @@ en:
         totals: "You have %{unread} %{total}"
 
         new_projects:
-          zero:  "no pending new project requests"
-          one:   "1 pending new project request"
-          other: "%{count} pending new project requests"
+          zero:  "You have no new-project requests that have not yet been approved"
+          one:   "You have 1 new-project request that has not yet been approved"
+          other: "You have %{count} new-project requests that have not yet been approved"
         join_projects:
-          zero:  "no pending join project requests"
-          one:   "1 pending join project request"
-          other: "%{count} pending join project requests"
-        projects: "You have %{new} and %{join}"
+          zero:  "You have no join-project requests that have not yet been approved"
+          one:   "You have 1 join-project request that has not yet been approved"
+          other: "You have %{count} join-project requests that have not yet been approved"
       
         unread_projects: "You have %{unread} of new project request. <a href='%{path}'>Click here to view them.</a>"
 

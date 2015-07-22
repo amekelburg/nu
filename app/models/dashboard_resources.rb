@@ -58,11 +58,11 @@ class DashboardResources
   end
 
   def new_project_notifications_count
-    notifications.count { |n| n.new_project_request? }
+    @d.get_projects.count { |p| !p[:approved] }
   end
 
   def join_project_notifications_count
-    notifications.count { |n| n.join_project_request? }
+    ProjectJoins.list_projects(@uid).size
   end
 
 end

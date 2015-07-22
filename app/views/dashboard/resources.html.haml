@@ -56,10 +56,10 @@
       = raw t '.notifications.totals', unread: unread, total: total
     %li
       - n = @resources.new_project_notifications_count
+      = raw(u == 0 ? t('.notifications.new_projects.zero') : t('.notifications.new_projects', count: n))
+    %li
       - j = @resources.join_project_notifications_count
-      - new_prj  = raw(u == 0 ? t('.notifications.new_projects.zero') : t('.notifications.new_projects', count: n))
-      - join_prj = raw(j == 0 ? t('.notifications.join_projects.zero') : t('.notifications.join_projects', count: j))
-      = raw t '.notifications.projects', new: new_prj, join: join_prj
+      = raw(j == 0 ? t('.notifications.join_projects.zero') : t('.notifications.join_projects', count: j))
 
 
 = section_row t('.activity.title'), 'activity-section'
