@@ -140,16 +140,6 @@ class DeterLab::ExperimentsTest < DeterLab::AbstractTest
     end
   end
 
-  test "run experiment" do
-    VCR.use_cassette "deterlab/experiments/run-experiment" do
-      login
-
-      assert_raise DeterLab::RequestError do
-        DeterLab.realize_experiment(@username, @username, "SPIdev:TestAspects4")
-      end
-    end
-  end
-
   test "change experiment ACL" do
     VCR.use_cassette "deterlab/experiments/change-experiment-acl" do
       login

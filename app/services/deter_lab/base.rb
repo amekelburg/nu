@@ -83,6 +83,7 @@ module DeterLab
       fault ||= detail.try(:[], :projects_deter_fault)
       fault ||= detail.try(:[], :experiments_deter_fault)
       fault ||= detail.try(:[], :circles_deter_fault)
+      fault ||= detail.try(:[], :realizations_deter_fault)
       fault.try(:[], :deter_fault)
     end
 
