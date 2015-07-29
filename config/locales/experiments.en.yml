@@ -79,26 +79,6 @@ en:
       success: Cloned the experiment successfully
       failure: "Failed to create the experiment:<br/>%{error}"
 
-    realize:
-      title: "Realization of experiment: %{id}"
-      info: >
-        <p>
-        </p>
-
-      started: "Realization started at %{time} by %{user}"
-      completed: "Realization completed at {{time}}"
-      status: Status
-      visualization: Visualization
-
-    new:
-      title: New experiment
-      info: >
-        <p>
-          Fill the new experiment form
-        </p>
-
-      submit: Create experiment
-
     new_experiment_fields:
       project: Project
       name: Name

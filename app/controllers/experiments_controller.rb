@@ -35,24 +35,9 @@ class ExperimentsController < ApplicationController
       @projects      = deter_lab.get_projects.select { |p| p[:approved] && p[:project_id].downcase != 'admin' }
     end
 
-    @realizations = []
+    @realizations = DeterLab.view_realizations(current_user_id)
 
     render :show
-  end
-
-  # shows the realization page
-  def realize
-    @experiment = deter_lab.get_experiment(params[:id])
-    if @experiment.nil?
-      redirect_to :experiments, alert: t(".not_found")
-      return
-    end
-
-    @visualizations = @experiment.aspects.select do |a|
-      a.type == 'visualization' && a.sub_type.blank?
-    end
-
-    ActivityLog.for_experiment(@experiment.id).add("realized", current_user_id)
   end
 
   # opens the management page

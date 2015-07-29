@@ -66,7 +66,7 @@
         %h4= t ".realizations"
       .col-sm-2.text-right
         - if belongs_to_project
-          = link_to t(".realize"), realize_experiment_path(@experiment.id), class: 'btn btn-xs btn-default'
+          = link_to t(".realize"), experiment_realizations_path(@experiment.id), method: 'post', class: 'btn btn-xs btn-default'
         - else
           %button.btn.btn-xs.btn-default{ type: 'button', data: { toggle: 'collapse', target: '#realization-section' }, "aria-expanded" => false, "aria-controls" => "realization-section" }= toggle_label
 
@@ -75,6 +75,26 @@
         - if belongs_to_project
           - if @realizations.blank?
             %p= t ".no_realizations"
+          - else
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Name
+                  %th Circle
+                  %th Status
+                  %th Cont / Map
+                  %th
+              - @realizations.each do |r|
+                %tr
+                  %td= link_to r.name, experiment_realization_path(@experiment.id, r.name)
+                  %td= r.circle
+                  %td= r.status
+                  %td.text-center
+                    #{r.containments.size} / #{r.mappings.size}
+                  %td.text-right.col-sm-2
+                    = link_to 'Release', release_experiment_realization_path(@experiment.id, r.name), method: 'post', data: { confirm: 'Sure to release this realization?' }, class: 'btn btn-xs btn-default'
+                    = link_to 'Remove', experiment_realization_path(@experiment.id, r.name), method: 'delete', data: { confirm: 'Sure to remove this realization?' }, class: 'btn btn-xs btn-danger'
+
         - else
           %p= raw t ".library.realization_unavailable"
           = form_tag clone_experiment_path(@experiment.id), { class: 'form-horizontal' } do

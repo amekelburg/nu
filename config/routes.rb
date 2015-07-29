@@ -44,9 +44,16 @@ Rails.application.routes.draw do
   resources :circles,     only: [ :index, :new, :create, :destroy ]
   resources :experiments, only: [ :index, :new, :create, :destroy, :show ] do
     member do
-      get   :realize
-      get   :manage
-      post  :clone
+      get     :realize
+      delete  :remove_realization
+      get     :manage
+      post    :clone
+    end
+
+    resources :realizations, controller: "experiment_realizations" do
+      member do
+        post :release
+      end
     end
 
     resources :members, controller: "experiment_members", only: [ :index, :create, :destroy ]

@@ -1,0 +1,2 @@
+var I18n = I18n || {};
+I18n.translations = {"en":{"experiment_realizations":{"show":{"title":"Realization of experiment: %{id}","info":"\u003cp\u003e \u003c/p\u003e\n","started":"Realization started at %{time} by %{user}","completed":"Realization completed at {{time}}","status":"Status","visualization":"Visualization"}}}};
