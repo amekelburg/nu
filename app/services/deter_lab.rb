@@ -24,5 +24,6 @@ module DeterLab
   extend DeterLab::Experiments
   extend DeterLab::Realizations
   extend DeterLab::Libraries
+  extend DeterLab::Resources
 
 end

@@ -1,8 +1,8 @@
 actStartPolling = Reflux.createAction()
 
-DescriptionStore = Reflux.createStore
+RealizationStore = Reflux.createStore
   init: ->
-    @data = gon.description
+    @data = gon.data
     @listenTo actStartPolling, @onStartPolling
 
   getInitialState: -> @data
@@ -18,17 +18,16 @@ DescriptionStore = Reflux.createStore
 
 @Realization = React.createClass
   mixins: [
-    Reflux.connect DescriptionStore, "description"
+    Reflux.connect RealizationStore, "realization"
   ]
 
   componentDidMount: ->
-    console.log "did mount"
     actStartPolling()
 
   render: ->
     `<div>
-      <Status status={this.state.description.status}/>
-      <Resources />
+      <Status status={this.state.realization.description.status}/>
+      <Resources resources={this.state.realization.resources} />
     </div>`
 
 Status = React.createClass
@@ -48,4 +47,52 @@ Status = React.createClass
     </div>`
 
 Resources = React.createClass
-  render: -> `<div/>`
+  getInitialState: ->
+    { closed: true }
+
+  toggle: ->
+    @setState closed: !@state.closed
+
+  render: ->
+    if @state.closed
+      title = 'Show'
+      panel = `<div/>`
+    else
+      title = 'Hide'
+      rows = this.props.resources.map (r) ->
+        `<ResourceRow key={r.name} resource={r} />`
+
+      panel = `<div className='row'>
+        <div className='col-sm-12'>
+          <table className='table table-striped'>
+            <tbody>
+              {rows}
+            </tbody>
+          </table>
+        </div>
+      </div>`
+
+    `<div>
+      <div className='row section-row'>
+        <div className='col-sm-11'>
+          <h4>{I18n.t('experiment_realizations.show.resource_usage')}</h4>
+        </div>
+        <div className='col-sm-1 text-right'>
+          <button className='btn btn-xs btn-default' onClick={this.toggle}>{title}</button>
+        </div>
+      </div>
+      {panel}
+    </div>`
+
+ResourceRow = React.createClass
+  render: ->
+    r = this.props.resource
+
+    tags = r.tags.map (t) ->
+      "#{t.name}=#{t.value}"
+
+    `<tr>
+      <td>{r.name}</td>
+      <td className='col-sm-2'>{r.type}</td>
+      <td className='col-sm-4'>{tags.join(' ')}</td>
+    </tr>`

@@ -9,5 +9,6 @@ en:
       started: "Realization started at %{time} by %{user}"
       completed: "Realization completed at {{time}}"
       status: Status
+      resource_usage: Resource Usage
       visualization: Visualization
 

@@ -16,13 +16,15 @@ class ExperimentRealizationsController < ApplicationController
   def show(description = nil)
 
     description ||= DeterLab.view_realizations(current_user_id, regex: "^#{params[:id]}$").first
+    resources     = DeterLab.view_resources(current_user_id, realization: params[:id], persist: false)
+    data          = { description: description, resources: resources }
 
     respond_to do |format|
       format.html do
         @visualizations = @experiment.aspects.select do |a|
           a.type == 'visualization' && a.sub_type.blank?
         end
-        gon.description  = description
+        gon.data         = data
         gon.user_name    = "#{current_user_id} (#{current_user_name})"
         gon.refresh_rate = AppConfig['realization_refresh_rate'] * 1000
         gon.view_url     = experiment_realization_path(@experiment.id, description.name)
@@ -30,7 +32,7 @@ class ExperimentRealizationsController < ApplicationController
       end
 
       format.js do
-        render json: description
+        render json: data
       end
     end
   end
