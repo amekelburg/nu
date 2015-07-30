@@ -9,7 +9,7 @@
 .row
   .col-sm-12
 
-    = section_row t('.project_profile'), 'profile-section', @managing ? :opened : :closed
+    = section_row t('.project_profile'), 'profile-section', state: @managing ? :opened : :closed
     .row#profile-section.section{ class: collapse_class }
       .col-sm-12
         - if @project.can_modify?(current_user_id)
@@ -23,7 +23,7 @@
               %td= t "page_project_info.project_leader.project_#{k}.label"
               %td= v
 
-    = section_row t('.project_team'), 'team-section', @managing ? :opened : :closed
+    = section_row t('.project_team'), 'team-section', state: @managing ? :opened : :closed
     .row.section#team-section{ class: collapse_class }
       .col-sm-12
         - if @project.can_modify_access?(current_user_id)
@@ -31,12 +31,12 @@
       .col-sm-12.body
         %span.spinner Loading. Please wait&hellip;
 
-    = section_row t('.experiments'), 'experiments-section', @managing ? :opened : :closed
+    = section_row t('.experiments'), 'experiments-section', state: @managing ? :opened : :closed
     .row.section#experiments-section{ class: collapse_class }
       .col-sm-12.body
         %span.spinner Loading. Please wait&hellip;
 
-    = section_row t('.recent_activity'), 'activity-section', @managing ? :opened : :closed
+    = section_row t('.recent_activity'), 'activity-section', state: @managing ? :opened : :closed
     .row.section#activity-section{ class: collapse_class }
       .col-sm-12
         - log = ActivityLog.for_project(@project.project_id)

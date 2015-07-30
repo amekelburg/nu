@@ -1,4 +1,4 @@
-= section_row t('.resources.title'), 'resources-section', :opened
+= section_row t('.resources.title'), 'resources-section', state: 'opened'
 .row#resources-section.section.in
   .col-sm-12
     %p= t '.resources.before'
@@ -40,7 +40,7 @@
     %p= t '.resources.after'
 
 
-= section_row t('.notifications.title'), 'notifications-section', :opened
+= section_row t('.notifications.title'), 'notifications-section', state: 'opened'
 .row#notifications-section.section.in
   %ul
     - u = @resources.unread_project_requests_count

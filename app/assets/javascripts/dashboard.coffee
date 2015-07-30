@@ -6,3 +6,4 @@ $ ->
     url: gon.resourcesUrl,
     success: (data) ->
       $(".resources").html(data)
+      bindShowHideButtons(".resources")

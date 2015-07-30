@@ -13,7 +13,7 @@
 .row
   .col-sm-12
 
-    = section_row t('.experiment_profile'), 'profile-section', @managing ? :opened : :closed
+    = section_row t('.experiment_profile'), 'profile-section', state: @managing ? :opened : :closed
     .row#profile-section.section{ class: collapse_class }
       .col-sm-12
         - if is_owner
@@ -28,7 +28,7 @@
               %td.col-sm-8= v
 
     - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
-    = section_row t('.access_control'), 'acl-section', @managing ? :opened : :closed
+    = section_row t('.access_control'), 'acl-section', state: @managing ? :opened : :closed
     .row#acl-section.section{ class: collapse_class }
       .col-sm-12
         - if @experiment.can_modify_experiment_access?
@@ -55,7 +55,7 @@
                 %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
                 %td.col-sm-8= acl.permissions.join(", ")
 
-    = section_row t('.recent_activity'), 'activity-section', @managing ? :opened : :closed
+    = section_row t('.recent_activity'), 'activity-section', state: @managing ? :opened : :closed
     .row.section#activity-section{ class: collapse_class }
       .col-sm-12
         - log = ActivityLog.for_experiment(@experiment.id)
