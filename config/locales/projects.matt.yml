@@ -1,0 +1,67 @@
+matt:
+  projects:
+    index:
+      title: Your projects
+      info: >
+        <p>
+          The list of your DeterLab projects.
+        </p>
+
+      project_id: Project ID
+      owner: Owner
+      members: Members
+      approved: Approved
+      actions: Actions
+      delete: Delete
+      confirm_delete: Are you sure to delete this project?
+
+      member: member
+      nothing: There are no projects yet
+
+      new_project: New project
+      more: More info
+      less: Less info
+      view: View
+      manage: Manage
+
+      unapproved_projects:
+        title: "Pending New Projects"
+        info: "Your DeterLab project requests that have not yet been approved"
+
+      unapproved_joins:
+        title: "Pending Join Project Requests"
+        info: "Your join-project requests that have not yet been approved"
+
+    show:
+      title: "Project: %{id}"
+      info: >
+        <p>
+          Project owner: %{owner}
+        </p>
+
+      field: Field
+      value: Value
+
+      not_found: Project is missing
+      delete: Delete
+      confirm_delete: Are you sure to delete this project?
+
+    manage:
+      title: "Manage Project %{id} TBD"
+
+    new:
+      title: Create project
+      info: >
+        <p>
+          Fill the new project form.
+        </p>
+      submit: Create project
+
+    create:
+      name_required: Project name is required
+      success: Created the project successfully
+      failure: "Failed to create the project:<br/>%{error}"
+
+    destroy:
+      success: Deleted the project successfully
+      failure: "Failed to delete the project:<br/>%{error}"

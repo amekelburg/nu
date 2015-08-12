@@ -1,0 +1,17 @@
+matt:
+  layouts:
+    sidebar:
+      logged_in:      Logged In
+      logged_in_as:  "User <strong>%{name}</strong>: %{dash_link}"
+
+      tech_support:
+        about:
+          label: "About Technical Support for DeterLab User"
+          link:  "http://info.deterlab.net/support"
+        before_ticket:
+          label: "Before Opening a Ticket &hellip;"
+          link:  "http://info.deterlab.net"
+        open_ticket:
+          label: "Open a Ticket for Technical Support"
+          link:  "http://info.deterlab.net"
+

@@ -1,0 +1,41 @@
+matt:
+  page_new_user:
+    title: "Start Using DeterLab: New Project Application Form"
+    back_button: Back
+    next_button: Continue Application
+
+    project_leader:
+      info: >
+        <h2>Project Leader Information</h2>
+
+        <p>
+          As a Principal Investigator (PI) or project leader, you’ll be responsible
+          for managing the shared workspace for your team. Please start by providing
+          some information about yourself, and then continue to the next step to
+          describe the project.
+        </p>
+    
+    sponsor:
+      info: >
+        <h2>Sponsor Information</h2>
+
+        <p>
+          As an academic or research advisor of a student, you will be
+          sponsoring the student’s work in DeterLab, and you will have shared access to
+          the student’s DeterLab workspace. Please start by providing some information
+          about yourself, and then continue to the next step to provide some information
+          about the student’s project.
+        </p>
+
+    educator:
+      info: >
+        <h2>Educator Information</h2>
+
+        <p>
+          As an educator using DeterLab, you will be providing your students
+          with access to purpose-built educational modules in DeterLab. To setup a
+          workspace for your class, please provide some information about your and your
+          educational institution, and then some information about the course you will be
+          teaching using DeterLab.
+        </p>
+      

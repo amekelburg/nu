@@ -1,0 +1,18 @@
+matt:
+  notifications:
+    new_notifications:
+      title: New Notifications
+      info: >
+        <p>
+          New notifications
+        </p>
+      none: You have no new notifications.
+
+    all_notifications:
+      title: All Notifications
+      info: >
+        <p>
+          All notifications
+        </p>
+      none: You have no notifications.
+

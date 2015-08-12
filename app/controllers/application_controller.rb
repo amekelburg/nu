@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :change_locale
+
   rescue_from DeterLab::NotLoggedIn do
     app_session.logged_out
     redirect_to :login
@@ -68,4 +70,15 @@ class ApplicationController < ActionController::Base
     @current_user_session ||= UserSession.new(current_user_id)
   end
   helper_method :current_user_session
+
+  private
+
+  def change_locale
+    if l = params[:locale]
+      session[:locale] = l
+    end
+
+    I18n.locale = session[:locale] || I18n.default_locale
+  end
+
 end

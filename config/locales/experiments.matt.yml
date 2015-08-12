@@ -1,0 +1,96 @@
+matt:
+  experiments:
+    index:
+      title: Your experiments
+      info: >
+        <p>
+          The list of your DeterLab experiments.
+        </p>
+
+      name: Experiment
+      owner: Owner
+      actions: Actions
+      delete: Delete
+      confirm_delete: Are you sure to delete this experiment?
+
+      nothing: There are no experiments yet
+      new_experiment: New experiment
+
+    experiments_table:
+      manage: Manage
+      view: View
+
+    manage:
+      title: "Manage experiment: %{id}"
+      info: >
+        <p>
+          Experiment owner: %{owner}
+        </p>
+
+    run:
+      success: Started the experiment successfully
+      failure: "Failed to start the experiment:<br/>%{error}"
+
+    show:
+      title: "Experiment: %{id}"
+      info: >
+        <p>
+          Experiment owner: %{owner}
+        </p>
+
+      acl: Access control list
+      circle: Circle
+      permissins: Permissions
+
+      not_found: Experiment is missing
+
+      experiment_profile: Experiment Profile
+      access_control: Access Control
+      recent_activity: Recent Activity
+      aspects: Aspects
+
+      field: Field
+      value: Value
+
+      name: Name
+      type: Type
+      date: Date
+
+      view: View
+      hide: Hide
+      modify: Modify
+      delete: Delete
+      edit: Edit
+
+      add_aspect: "Add %{type}"
+      
+      realizations: Realizations
+      no_realizations: "0 Realizations"
+      realize: Realize
+
+      library:
+        realization_unavailable: "
+          <p>Library experiments are not available for realization. If you'd like to run one of these experiments, clone it in one of your projects, and run that new experiment.</p>
+          <p>To clone this experiment, fill out the fields below:</p>"
+      submit: Clone
+
+
+    clone:
+      success: Cloned the experiment successfully
+      failure: "Failed to create the experiment:<br/>%{error}"
+
+    new_experiment_fields:
+      project: Project
+      name: Name
+
+    create:
+      success: Created the experiment successfully
+      failure: "Failed to create the experiment:<br/>%{error}"
+
+    destroy:
+      success: Deleted the experiment successfully
+      failure: "Failed to delete the experiment:<br/>%{error}"
+
+    errors:
+      project_id_required: Project is required
+      copying_aspecs: "Failed to copy aspects %{aspects}"

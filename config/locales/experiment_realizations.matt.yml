@@ -1,0 +1,14 @@
+matt:
+  experiment_realizations:
+    show:
+      title: "Realization of experiment: %{id}"
+      info: >
+        <p>
+        </p>
+
+      started: "Realization started at %{time} by %{user}"
+      completed: "Realization completed at {{time}}"
+      status: Status
+      resource_usage: Resource Usage
+      visualization: Visualization
+

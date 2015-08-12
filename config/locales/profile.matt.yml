@@ -1,0 +1,41 @@
+matt:
+  profile:
+    show:
+      title: Your Profile
+      info: >
+        <p>
+          This is your DeterLab user profile.
+        </p>
+      title_other: User Profile
+      info_other: >
+        <p>
+          This is the DeterLab user profile for user %{uid}
+        </p>
+
+    edit:
+      title: Edit your profile
+      info: >
+        <p>
+          This is your DeterLab user profile.
+        </p>
+      submit: Save Changes
+      cancel: Cancel
+
+    update:
+      success: Profile updated successfully
+      failure: Failed to update profile
+
+    fields:
+      name:     Name
+      title:    Title
+      address:  Address
+      city:     City
+      state:    State
+      zip:      Postal code
+      country:  Country
+      email:    E-mail
+      URL:      URL
+      phone:    Phone
+      affiliation: Affiliation
+      affiliation_abbrev: Affiliation (abbreviated)
+

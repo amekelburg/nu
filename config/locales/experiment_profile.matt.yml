@@ -1,0 +1,12 @@
+matt:
+  experiment_profile:
+    edit:
+      title: Edit Experiment Profile
+      info: ""
+
+      save: Save Changes
+      cancel: Cancel
+
+    update:
+      success: Updated experiment profile
+      failure: "Failed to update experiment profile:<br/>%{error}"
