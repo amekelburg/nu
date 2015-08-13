@@ -1,7 +1,7 @@
 matt:
   dashboard:
     show:
-      title: Dashboard
+      title: Nu DETERLab Dashboard
       info: >
         <p>
           You have <a href="%{notifications_link}">%{label}</a>
@@ -9,7 +9,7 @@ matt:
 
       welcome:
         first_time: >
-          <p>Welcome <strong>%{name}</strong>! For help getting started in DeterLab, see the <a href="%{guide_link}">DeterLab New Users Guide</a></p>
+          <p>Welcome <strong>%{name}</strong>! For help getting started in DeterLab, see <a href="%{guide_link}">Getting Started section in DETERLab Support</a></p>
         returning:
           no_logout: >
             <p>Welcome <strong>%{name}</strong>! Your last login was %{last_login}.</p>
