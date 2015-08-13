@@ -9,7 +9,7 @@ matt:
 
       welcome:
         first_time: >
-          <p>Welcome <strong>%{name}</strong>! For help getting started in DeterLab, see <a href="%{guide_link}">Getting Started section in DETERLab Support</a></p>
+          <p>Welcome <strong>%{name}</strong>! For DeterLab getting started help, see <a href="%{guide_link}">the Getting Started section at DETERLab Support</a></p>
         returning:
           no_logout: >
             <p>Welcome <strong>%{name}</strong>! Your last login was %{last_login}.</p>
