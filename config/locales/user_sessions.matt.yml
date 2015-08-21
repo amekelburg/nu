@@ -1,8 +1,15 @@
 matt:
   user_sessions:
     new:
-      title: Welcome to DeterLab
-      info: Login to access your DeterLab account
+      title: Welcome to DeterLab!
+      info: >
+      <p>
+            DeterLab is ...
+          </p>
+
+          <p>
+            Login ...
+          </p>
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
       password_reset_request: "Forgot password?<br/>Start reset recovery <a href='%{url}'>here</a>."
 
