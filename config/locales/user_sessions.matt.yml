@@ -9,7 +9,12 @@ matt:
         </p>
 
         <p>
-          Login ...
+          Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where over 
+          600 researchers have conducted network and cyber-security experimentation. DeterLab users have conducted 
+          hundreds of research projects and published more than 100 resulting scientific papers. More than 3800 students,
+          the crucial next cyber-security generation, have received hands-on training via DeterLab. At the same time, 
+          DeterLab has expanded in scale and power, as the DETER Project team has added both new computing resources, 
+          and a variety of new scientific capabilities as a result of DETER’s research efforts.
         </p>
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
       password_reset_request: "Forgot password?<br/>Start reset recovery <a href='%{url}'>here</a>."
