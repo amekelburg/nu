@@ -23,6 +23,16 @@ matt:
         </p>
 
         <p>
+          DeterLab supports:
+        </p>
+
+        <p>
+            - Sharing of testbed resources among multiple concurrent experiments.
+            - A growing library of tools, interfaces, and datasets for security experiments.
+            - Nascent community building to enhance the scientific value of the work.
+        </p>
+
+        <p>
           Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where hundreds of researchers 
           have conducted network and cyber-security experimentation. The DeterLab User Communtiy has hundreds of research 
           projects that have run myriad experiments, to include publishing scientific papers of their results. More than 3800 students,
