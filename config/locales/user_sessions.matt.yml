@@ -4,14 +4,18 @@ matt:
       title: Welcome to the DeterLab Nu Portal
       info: >
         <p>
-            DeterLab is one of the largest facilities devoted to providing experimental resources and scientific
-            expertise for the development, experimentation, and testing of innovative cyber-defense technology.
+          DeterLab (cyber DEfense Technology Experimental Research Laboratory) is a state-of-the-art scientific 
+          computing facility for cybersecurity researchers engaged in research, development, discovery, experimentation, 
+          and testing of innovative cybersecurity technology. DeterLab is a shared testbed providing a platform for 
+          research in cybersecurity and serving a broad user community, including academia, industry, and government. 
+          To date, DeterLab-based projects have included behavior analysis and defensive technologies including DDoS 
+          attacks, worm and botnet attacks, encryption, pattern detection, and intrusion-tolerant storage protocols.
         </p>
 
         <p>
-          Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where over 
-          600 researchers have conducted network and cyber-security experimentation. DeterLab users have conducted 
-          hundreds of research projects and published more than 100 resulting scientific papers. More than 3800 students,
+          Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where hundreds of researchers 
+          have conducted network and cyber-security experimentation. The DeterLab User Communtiy has hundreds of research 
+          projects that have run myriad experiments, to include publishing scientific papers of their results. More than 3800 students,
           the crucial next cyber-security generation, have received hands-on training via DeterLab. At the same time, 
           DeterLab has expanded in scale and power, as the DETER Project team has added both new computing resources, 
           and a variety of new scientific capabilities as a result of DETER’s research efforts.
