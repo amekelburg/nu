@@ -1,15 +1,16 @@
 matt:
   user_sessions:
     new:
-      title: Welcome to DeterLab!
+      title: Welcome to the DeterLab Nu Portal
       info: >
         <p>
-            DeterLab is ...
-          </p>
+            DeterLab is one of the largest facilities devoted to providing experimental resources and scientific
+            expertise for the development, experimentation, and testing of innovative cyber-defense technology.
+        </p>
 
-          <p>
-            Login ...
-          </p>
+        <p>
+          Login ...
+        </p>
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
       password_reset_request: "Forgot password?<br/>Start reset recovery <a href='%{url}'>here</a>."
 
