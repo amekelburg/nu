@@ -12,3 +12,5 @@ en:
       resource_usage: Resource Usage
       visualization: Visualization
 
+    create:
+      failure: "Failed to start realization:\n%{error}"

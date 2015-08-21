@@ -10,6 +10,8 @@ class ExperimentRealizationsController < ApplicationController
     ActivityLog.for_experiment(@experiment.id).add("realized", current_user_id)
 
     show(description.first)
+  rescue DeterLab::RequestError => e
+    redirect_to experiment_path(params[:experiment_id]), alert: t(".failure", error: e.message)
   end
 
   # realization info page
