@@ -93,10 +93,14 @@ matt:
           </p>
 
           <p>
-            Maecenas porttitor leo urna. Fusce sodales libero odio, eget efficitur turpis ullamcorper
-            in. In cursus imperdiet ipsum non pellentesque. Curabitur non venenatis elit. Donec
-            molestie dolor at ligula congue, non auctor ante hendrerit. Curabitur eget efficitur elit.
-            Suspendisse eget sem nisi. Vestibulum in nisl non dui pulvinar tempor consequat eget leo.
+            The DeterLab Core provides its users with capabilities that are crucial in experimentation emulation, that include:
+
+            - <b>Multi-Resolution Virtualization<b> of experiment resources.
+            - <b>Risky Experiment Management<b> to allow controlled experiment interaction with the real Internet.
+            - <b>Experiment Orchestration<b>, providing deterministic control over the various components in an experiment.
+            - <b>Federation<b> to connect heterogeneous resources from different owners with varying usage and access policies.
+            - <b>Multi-Party Experiments Technology<b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
+            - <b>Predictive Modeling of Human Behavior<b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
           </p>
         button: About
         link: http://google.com/about
