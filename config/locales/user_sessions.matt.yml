@@ -35,10 +35,6 @@ matt:
             In order to use DeterLab’s resources and tools you must first register. This is accomplished by an application 
             process. There are two distinct application forms; one for creating a new project and another for joining an 
             existing project, as a member. 
-
-
-
-If you have an adequate understanding of DeterLab and are now ready to be guided through the registration process, click the blue register button. If you still need additional information on DETER, click here.
           </p>
 
           <p>
@@ -47,6 +43,11 @@ If you have an adequate understanding of DeterLab and are now ready to be guided
             you will also need to provide your organization-affiliated email address for follow-up and general communication
             from DETER Staff, to include next steps once a project is approved. NOTE: Non organization-affiliated email 
             addresses from ISPs, such as gmail, are not accepted.
+          </p>
+
+          <p>
+            If you have an adequate understanding of DeterLab and are now ready to be guided through the registration process, 
+            click the blue register button. If you still need additional information on DETER, click here.
           </p>
 
         button: Register
