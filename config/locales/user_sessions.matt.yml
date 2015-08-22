@@ -93,14 +93,12 @@ matt:
         label: About
         body: >
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt lectus id arcu
-            pretium facilisis. Proin ligula ligula, dignissim eget nisl vitae, suscipit viverra quam.
-            Phasellus tincidunt, eros id venenatis efficitur, diam urna convallis tellus, sed congue
-            diam massa eget mauris. Aliquam lobortis tellus vitae mi vulputate, interdum tristique 
-            velit posuere. Integer magna arcu, porta convallis rutrum at, dignissim congue massa. 
-            Quisque varius erat sit amet nisl dignissim dictum. Praesent ac accumsan lectus. Nulla ut
-            augue libero. Suspendisse semper velit ante, sit amet tempus magna rhoncus et. In hac
-            habitasse platea dictumst. Donec scelerisque sed dolor at varius.
+           Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where hundreds of researchers 
+           have conducted network and cybersecurity experimentation. The DeterLab User Community has hundreds of research 
+           projects that have run myriad experiments, including published scientific papers of their results. The ability for 
+           hands-on training of the next cybersecurity generation is also a key benefit of DeterLab. Thousands of students from 
+           institutions across the globe have experienced firsthand the advantage of learning with DeterLab’s educational 
+           packaged materials and exercises.
           </p>
 
           <p>
