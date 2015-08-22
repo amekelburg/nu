@@ -50,21 +50,21 @@ matt:
         label: Register
         body: >
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis tincidunt lectus id arcu
-            pretium facilisis. Proin ligula ligula, dignissim eget nisl vitae, suscipit viverra quam.
-            Phasellus tincidunt, eros id venenatis efficitur, diam urna convallis tellus, sed congue
-            diam massa eget mauris. Aliquam lobortis tellus vitae mi vulputate, interdum tristique 
-            velit posuere. Integer magna arcu, porta convallis rutrum at, dignissim congue massa. 
-            Quisque varius erat sit amet nisl dignissim dictum. Praesent ac accumsan lectus. Nulla ut
-            augue libero. Suspendisse semper velit ante, sit amet tempus magna rhoncus et. In hac
-            habitasse platea dictumst. Donec scelerisque sed dolor at varius.
+            In order to use DeterLab’s resources and tools you must first register. This is accomplished by an application 
+            process. There are two distinct application forms; one for creating a new project and another for joining an 
+            existing project, as a member. 
+
+
+
+If you have an adequate understanding of DeterLab and are now ready to be guided through the registration process, click the blue register button. If you still need additional information on DETER, click here.
           </p>
 
           <p>
-            Maecenas porttitor leo urna. Fusce sodales libero odio, eget efficitur turpis ullamcorper
-            in. In cursus imperdiet ipsum non pellentesque. Curabitur non venenatis elit. Donec
-            molestie dolor at ligula congue, non auctor ante hendrerit. Curabitur eget efficitur elit.
-            Suspendisse eget sem nisi. Vestibulum in nisl non dui pulvinar tempor consequat eget leo.
+            There are several areas of information that need to be provided in the application in order to gain lab access. 
+            Part of the information that we ask for is a purpose narrative for your proposed project. As project lead, 
+            you will also need to provide your organization-affiliated email address for follow-up and general communication
+            from DETER Staff, to include next steps once a project is approved. NOTE: Non organization-affiliated email 
+            addresses from ISPs, such as gmail, are not accepted.
           </p>
 
         button: Register
