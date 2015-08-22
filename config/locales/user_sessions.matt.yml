@@ -12,24 +12,6 @@ matt:
           attacks, worm and botnet attacks, encryption, pattern detection, and intrusion-tolerant storage protocols.
         </p>
 
-        <p>
-          DeterLab supports:
-        </p>
-
-        <p>
-            - Sharing of testbed resources among multiple concurrent experiments.
-            - A growing library of tools, interfaces, and datasets for security experiments.
-            - Nascent community building to enhance the scientific value of the work.
-        </p>
-
-        <p>
-          Since 2003, with funding from NSF, DHS, and DARPA, DeterLab has grown into a facility where hundreds of researchers 
-          have conducted network and cyber-security experimentation. The DeterLab User Communtiy has hundreds of research 
-          projects that have run myriad experiments, to include publishing scientific papers of their results. More than 3800 students,
-          the crucial next cyber-security generation, have received hands-on training via DeterLab. At the same time, 
-          DeterLab has expanded in scale and power, as the DETER Project team has added both new computing resources, 
-          and a variety of new scientific capabilities as a result of DETER’s research efforts.
-        </p>
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
       password_reset_request: "Forgot password?<br/>Start reset recovery <a href='%{url}'>here</a>."
 
