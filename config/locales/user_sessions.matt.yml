@@ -22,13 +22,14 @@ matt:
         </p>
 
         <p>
-          DeterLab provides off-the-shelf tools to Innovations that work well in a predictable, controlled environment often turn out to be much less effective, 
-          reliable or manageable in a critical government or enterprise IT environment. Without realistic, large-scale 
-          resources and research environments, results are unpredictable. As a world-class facility used and shared by 
-          cyber security researchers from hundreds of institutions worldwide, our stress is on rigorous, repeatable testing 
-          in a realistic, large-scale test environment. We enable researchers to observe and interact with real malicious 
-          software, operating in realistic network environments at scales found in the real world. These experiments in turn 
-          lead to cyber-defense innovations and systems that are inherently more robust.
+          The DeterLab Core provides users with capabilities that are crucial in experimentation emulation, that includes:
+
+            - <b>Multi-Resolution Virtualization<b> of experiment resources.
+            - <b>Risky Experiment Management<b> to allow controlled experiment interaction with the real Internet.
+            - <b>Experiment Orchestration<b>, providing deterministic control over the various components in an experiment.
+            - <b>Federation<b> to connect heterogeneous resources from different owners with varying usage and access policies.
+            - <b>Multi-Party Experiments Technology<b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
+            - <b>Predictive Modeling of Human Behavior<b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
         </p>
 
         <p>
