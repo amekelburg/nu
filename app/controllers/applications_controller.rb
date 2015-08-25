@@ -13,7 +13,8 @@ class ApplicationsController < ApplicationController
   rescue DeterLab::RequestError => e
     show_form e.message
   rescue DeterLab::Error => e
-    show_form t(".unknown_failure")
+    # logger.error e.message
+    show_form e.message
   end
 
   private
