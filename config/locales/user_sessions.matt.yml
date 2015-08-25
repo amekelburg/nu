@@ -53,8 +53,13 @@ matt:
           </p>
 
           <p>
-            If you have an adequate understanding of DeterLab and are now ready to be guided through the registration process, 
-            click the blue register button. If you still need additional understanding on how DeterLab works, click here.
+            Before you register it is important that you have an adequate understanding of DeterLab basics, its usage policy,
+            and who can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out more.
+          </p>  
+            
+          <p>  
+            If you are now ready to be guided through the registration process, click the blue register button. 
+            Otherwise, <a href=http://www.deter-project.org/contact_deter>contact us</a> for assistance.
           </p>
 
         button: Register
