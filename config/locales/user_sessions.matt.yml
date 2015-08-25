@@ -36,11 +36,9 @@ matt:
             by an online application process. There are two types of application forms: 
             
             <ol>
-            1) New Project Application Form for project leaders to create a DeterLab project
-            </ol>
+            New Project Application Form for project leaders to create a DeterLab project
             
-            <ol>
-            2) Apply For Project Membership Form to join an existing DeterLab project as a member
+            Apply For Project Membership Form to join an existing DeterLab project as a member
             </ol>
           </p>
 
@@ -73,18 +71,22 @@ matt:
            projects that have run myriad experiments, including published scientific papers of their results. The ability for 
            hands-on training of the next cybersecurity generation is also a key benefit of DeterLab in Education. Thousands of 
            students from institutions across the globe have experienced firsthand the advantage of learning with DeterLab’s 
-           educational packaged materials and exercises, from their instructors.
+           educational packaged materials and exercises from their instructors.
           </p>
 
           <p>
-            DeterLab's set of core capabilities, DETER Core, provides the following advantages to its User Community:
-
-            - <b>Multi-Resolution Virtualization<b> of experiment resources.
-            - <b>Risky Experiment Management<b> to allow controlled experiment interaction with the real Internet.
-            - <b>Experiment Orchestration<b>, providing deterministic control over the various components in an experiment.
-            - <b>Federation<b> to connect heterogeneous resources from different owners with varying usage and access policies.
-            - <b>Multi-Party Experiments Technology<b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
-            - <b>Predictive Modeling of Human Behavior<b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
+            DeterLab's core of capabilities provides the following advantages to its users:
+          </p>
+          
+          <p>
+            <ol>
+                <b>Multi-Resolution Virtualization</b> of experiment resources
+                <b>Risky Experiment Management</b> to allow controlled experiment interaction with the real Internet
+                <b>Experiment Orchestration</b>, providing deterministic control over the various components in an experiment.
+                <b>Federation</b> to connect heterogeneous resources from different owners with varying usage and access policies.
+                <b>Multi-Party Experiments Technology</b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
+                <b>Predictive Modeling of Human Behavior</b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
+            </ol>    
           </p>
         button: About
         link: http://www.deter-project.org/about_deterlab
