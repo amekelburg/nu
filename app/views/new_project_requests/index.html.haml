@@ -1,4 +1,5 @@
 - @submenu = :project_requests
+- pending_count = 0
 .page-header
   %h1= raw t '.title'
-  = raw t '.info'
+  = raw t '.info', cnt: pluralize(pending_count, 'project request')

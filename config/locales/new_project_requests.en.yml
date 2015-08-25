@@ -1,8 +1,0 @@
-en:
-  new_project_requests:
-    index:
-      title: New Project Requests
-      info: >
-        <p>
-          Review and accept or reject the request
-        </p>

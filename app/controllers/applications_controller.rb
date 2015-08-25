@@ -13,7 +13,6 @@ class ApplicationsController < ApplicationController
   rescue DeterLab::RequestError => e
     show_form e.message
   rescue DeterLab::Error => e
-    # logger.error e.message
     show_form e.message
   end
 
