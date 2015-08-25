@@ -1,7 +1,7 @@
 <b>matt</b>:
   user_sessions:
     new:
-      title: Welcome to DeterLab's Nu Experimenter Portal
+      title: Welcome to DeterLab's <i>Nu Experimenter Portal</i>
       info: >
         <p>
           DeterLab (cyber DEfense Technology Experimental Research Laboratory) is a state-of-the-art scientific 
