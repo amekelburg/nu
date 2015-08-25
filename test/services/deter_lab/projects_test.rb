@@ -52,6 +52,15 @@ class DeterLab::ProjectsTest < DeterLab::AbstractTest
     end
   end
 
+  test "listing all projects as admin" do
+    VCR.use_cassette "deterlab/projects/view-all-projects", record: :all do
+      login 'admin_user'
+      projects = DeterLab.view_projects(@username)
+      fail "can't get the list of all projects as admin"
+      assert_equal [], projects
+    end
+  end
+
   test "creating a project successfully" do
     VCR.use_cassette "deterlab/projects/create-project" do
       login

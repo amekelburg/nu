@@ -27,9 +27,9 @@ module DeterLab
     end
 
     # Returns the list of user projects
-    def view_projects(uid)
+    def view_projects(uid, owner = uid)
       cl = client("Projects", uid)
-      response = cl.call(:view_projects, message: { uid: uid })
+      response = cl.call(:view_projects, message: { uid: owner })
 
       return [response.to_hash[:view_projects_response][:return] || []].flatten.map do |p|
         members = [ p[:members] ].flatten.map do |m|
