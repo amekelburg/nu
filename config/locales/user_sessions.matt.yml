@@ -1,7 +1,7 @@
 matt:
   user_sessions:
     new:
-      title: Welcome to the DeterLab Nu Experimenter's Portal
+      title: Welcome to DeterLab's Nu Experimenter Portal
       info: >
         <p>
           DeterLab (cyber DEfense Technology Experimental Research Laboratory) is a state-of-the-art scientific 
@@ -32,17 +32,24 @@ matt:
         label: Register
         body: >
           <p>
-            In order to use DeterLab’s resources and tools you must first register. This is accomplished by an application 
-            process. There are two distinct application forms; one for creating a new project and another for joining an 
-            existing project, as a member. 
+            In order to use DeterLab, its resources, and tools you must first register for an account. This is accomplished 
+            by an online application process. There are two types of application forms: 
+            
+            <ol>
+            1) New Project Application Form for project leaders to create a DeterLab project
+            </ol>
+            
+            <ol>
+            2) Apply For Project Membership Form to join an existing DeterLab project as a member
+            </ol>
           </p>
 
           <p>
-            There are several areas of information that need to be provided in the application in order to gain lab access. 
-            Part of the information that we ask for is a purpose narrative for your proposed project, as project lead. 
-            You will also need to provide your organization-affiliated email address for follow-up and general communication
-            from DETER Staff, to include next steps once a project is approved. NOTE: Non organization-affiliated email 
-            addresses from ISPs, such as gmail, are not accepted and will cause your application to be rejected.
+            Both DeterLab forms ask for basic applicant information that you would expect to find on most types of application
+            forms. For a New Project, we ask that you provide a purpose narrative for your proposed project. 
+            You will also need to give us your organization-affiliated email address for general communication and project
+            approval next steps from DETER Staff. <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
+            provided by an ISP, are not accepted and could cause immediate rejection of your application.</i>
           </p>
 
           <p>
