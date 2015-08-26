@@ -33,31 +33,22 @@ matt:
         body: >
           <p>
             In order to use DeterLab, its resources, and tools you must first register for an account. This is accomplished 
-            by an online application process. There are two types of application forms: 
-            
-            <ol>
-            New Project Application Form for project leaders to create a DeterLab project
-            
-            Apply For Project Membership Form to join an existing DeterLab project as a member
-            </ol>
+            by an online application process. We will ask for information that you would likely expect to be asked on most 
+            types of applications, specific to evaluating access to a system and its collecitve resources. For example, you
+            will be asked to provide a project purpose narrative. You will also be asked to give us your 
+            organization-affiliated email address for general communication and 'approved project next-steps' from DETER Staff.
+            <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
+            provided by an ISP, are not acceptable and will likely cause your application to be rejected.</i>
           </p>
 
           <p>
-            Both DeterLab forms ask for basic applicant information that you would expect to find on most types of application
-            forms. For a New Project, we ask that you provide a project purpose narrative. 
-            You will also need to give us your organization-affiliated email address for general communication and approved
-            project next-steps from DETER Staff. <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
-            provided by an ISP, are not accepted and could cause immediate rejection of your application.</i>
-          </p>
-
-          <p>
-            Before you proceed to register, it is important that you have an adequate understanding of DeterLab basics, 
-            its usage policy, and who can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
+            Before you click on the blue button to register, it is important that you have an adequate understanding of 
+            DeterLab basics, its usage policy, and who can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
           </p>  
             
           <p>  
-            If you are now ready to be guided through the registration process, click the blue register button. 
-            Otherwise, <a href=http://www.deter-project.org/contact_deter>contact us</a> if you need help.
+            If you are ready to be guided through the registration process, click the blue register button now. 
+            Otherwise, <a href=http://www.deter-project.org/contact_deter>contact us</a> if you need additional information or help.
           </p>
 
         button: Register
@@ -79,14 +70,27 @@ matt:
           </p>
           
           <p>
-            <ol>
-                <b>Multi-Resolution Virtualization</b> of experiment resources.
-                <b>Risky Experiment Management</b> to allow controlled experiment interaction with the real Internet.
-                <b>Experiment Orchestration</b>, providing deterministic control over the various components in an experiment.
-                <b>Federation</b> to connect heterogeneous resources from different owners with varying usage and access policies.
-                <b>Multi-Party Experiments Technology</b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
-                <b>Predictive Modeling of Human Behavior</b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
-            </ol>    
+            – <b>Multi-Resolution Virtualization</b> of experiment resources.
+          </p>
+          
+          <p>
+            – <b>Risky Experiment Management</b> to allow controlled experiment interaction with the real Internet.
+          </p>
+          
+          <p>
+            – <b>Experiment Orchestration</b>, providing deterministic control over the various components in an experiment.
+          </p>
+          
+          <p>
+            – <b>Federation</b> to connect heterogeneous resources from different owners with varying usage and access policies.
+          </p>
+          
+          <p>
+            – <b>Multi-Party Experiments Technology</b> that provides controlled but co-joined experiments, creating different views of the experiment environment for multiple experimenters or groups of experimenters within one unified experiment.
+          </p>
+          
+          <p>
+            – <b>Predictive Modeling of Human Behavior</b> supporting definition of mental models, reactive goal-driven behavior, and combinations of deliberative/instinctive behaviors.
           </p>
           
           <p>
