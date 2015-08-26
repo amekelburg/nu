@@ -32,18 +32,18 @@ matt:
         label: Register
         body: >
           <p>
-            In order to use DeterLab, its resources, and tools you must first register for an account. This is accomplished 
-            by an online application process. We will ask for information that you would likely expect to be asked on most 
+            In order to use DeterLab and its tools you must first register for an account. This is accomplished 
+            by an online application process. We ask for information that you would likely expect on most 
             types of applications, specific to evaluating access to a system and its collecitve resources. For example, you
-            will be asked to provide a project purpose narrative. You will also be asked to give us your 
-            organization-affiliated email address for general communication and 'approved project next-steps' from DETER Staff.
-            <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
+            will need to provide a project purpose narrative if creating a project. You will also need to give us your 
+            organization-affiliated email address for general communication and project approval notification 'next-steps' 
+            from DETER Staff. <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
             provided by an ISP, are not acceptable and will likely cause your application to be rejected.</i>
           </p>
 
           <p>
             Before you click on the blue button to register, it is important that you have an adequate understanding of 
-            DeterLab basics, its usage policy, and who can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
+            DeterLab basics, its usage policy, and who exactly can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
           </p>  
             
           <p>  
