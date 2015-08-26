@@ -95,6 +95,7 @@ matt:
           
           <p>
             To learn more, <a href=http://deter-project.org/about_deterlab>click here.</a>
+          </p>
           
         button: About
         link: http://www.deter-project.org/about_deterlab
