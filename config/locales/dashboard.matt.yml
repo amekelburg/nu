@@ -1,7 +1,7 @@
 matt:
   dashboard:
     show:
-      title: Nu DETERLab Dashboard
+      title: Welcome to DeterLab's <i>Nu Experimenter Dashboard</i>
       info: >
         <p>
           You have <a href="%{notifications_link}">%{label}</a>
