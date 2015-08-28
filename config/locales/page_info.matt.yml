@@ -6,34 +6,23 @@ matt:
 
       <p>
         You are on the initial page of the registration (Nu) walk-thru process for DeterLab access. As explained in the prior 
-        "register" tab, this is where you need to be if you now have an adequate understanding of DeterLab basics, its
-        <a href="https://trac.deterlab.net/wiki/Policy>usage policy</a>, and
-        <a href="https://trac.deterlab.net/wiki/GettingStarted>who can apply</a>. Please refer back to both, if you need to,
-        to ensure that your project aligns with the appropriate uses of DeterLab and that you understand what type of access
-        you need to apply for.
+        "register" tab, this is where you need to be if you now have an adequate understanding of DeterLab basics, its <a href="https://trac.deterlab.net/wiki/Policy>usage policy</a>, and <a href="https://trac.deterlab.net/wiki/GettingStarted>who can apply</a>. Please refer back to both, if you need to, to ensure that your project aligns with the appropriate uses of DeterLab and that you understand what type of access you need to apply for.
       </p>
     
       <p>
-        To start using DeterLab, you need a user account. We'll step you through this process to make it easy on you 
-        and we'll also ask for information that we need in order to appropriately evaluate your access request.
+        To start using DeterLab, you need a user account. We'll step you through this process to make it easy on you and we'll also ask for information that we need in order to appropriately evaluate your access request.
       </p>
       
       <p>
-        In order to proceed, you will need to confirm that you would like to apply and that you have also 
-        reviewed <i>Registering To Use DeterLab</i> and the <i>Usage Policy</i>. Once you have checked both 
-        boxes below, you can then click the "next" button to proceed to the next page of the application
-        process.
+        In order to proceed, you will need to confirm that you would like to apply and that you have also reviewed <i>Registering To Use DeterLab</i> and the <i>Usage Policy</i>. Once you have checked both boxes below, you can then click the "next" button to advance to the next page of the application process.
       </p>
         
       <p>
-        <b>If you already have a DeterLab account, please do not proceed with this application walk-thru.</b> 
-        Instead, login <a href="/#loginB">here</a> and then choose from the options for requesting additional access.
+        <b>If you already have a DeterLab account, please do not proceed with this application walk-thru. </b>Instead, login <a href="/#loginB">here</a> and then choose from the options for requesting additional access.
       </p>
 
       <p>
-        <i>Once again, your application requires an organization-affiliated email address. In other words, your email 
-        address must correspond with your listed affiliation. Otherwise, if you fail to do so this could cause 
-        application delays or even rejection.</i>
+        <i>Once again, your application requires an organization-affiliated email address. In other words, your email address must correspond with your listed affiliation. Otherwise, if you fail to do so this, this could cause application delays or even rejection.</i>
       </p>
 
     back_button: Cancel
