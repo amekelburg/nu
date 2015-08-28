@@ -4,12 +4,10 @@ matt:
       title: Welcome to DeterLab's <i>Nu Experimenter Portal</i>
       info: >
         <p>
-          DeterLab (cyber DEfense Technology Experimental Research Laboratory) is a state-of-the-art scientific 
-          computing facility for cybersecurity researchers engaged in research, development, discovery, experimentation, 
-          and testing of innovative cybersecurity technology. DeterLab is a shared testbed providing a platform for 
-          research in cybersecurity and serving a broad user community, including academia, industry, and government. 
-          To date, DeterLab-based projects have included behavior analysis and defensive technologies comprising DDoS 
-          attacks, worm and botnet attacks, encryption, pattern detection, and intrusion-tolerant storage protocols.
+          DeterLab: Advanced testbed facility where leading researchers and academics conduct critical cybersecurity 
+          experimentation and educational exercises. It emulates real-world complexity and scale necessary to evolve 
+          next generation solutions to help protect against sophisticated cyber attacks and network design vulnerabilities. 
+          As devices become Internet integrated, the need for resilient design is apparent. This is where it begins.
         </p>
 
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
