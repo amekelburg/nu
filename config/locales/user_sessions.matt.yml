@@ -30,23 +30,17 @@ matt:
         label: Register
         body: >
           <p>
-            In order to use DeterLab and its tools you must first register for an account. This is accomplished 
-            by an online application process. We ask for information that you would likely expect on most 
-            types of applications, specific to evaluating access to a system and its collecitve resources. For example, you
-            will need to provide a project purpose narrative if creating a project. You will also need to give us your 
-            organization-affiliated email address for general communication and project approval notification 'next-steps' 
-            from DETER Staff. <i>NOTE: Non organization-affiliated email addresses, such as gmail or those
-            provided by an ISP, are not acceptable and will likely cause your application to be rejected.</i>
-          </p>
-
-          <p>
-            Before you click on the blue button to register, it is important that you have an adequate understanding of 
-            DeterLab basics, its usage policy, and who exactly can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
+            In order to use DeterLab and its tools you must first register for an account. This is accomplished through 
+            an online application process. Before you click on the blue "register" button, it is important that you have 
+            an adequate understanding of DeterLab basics, its usage policy, and who can apply. <a href=https://trac.deterlab.net/wiki>Click here</a> to find out.
           </p>  
             
           <p>  
-            If you are ready to be guided through the registration process, click the blue "register" button now. 
-            Otherwise, <a href=http://www.deter-project.org/contact_deter>contact us</a> if you need additional information or help.
+            If you understand usage and have determinded that you are qualified to apply, please click the blue "register" button now.
+          </p>
+          
+          <p>
+            If you need additional information or help, <a href=http://www.deter-project.org/contact_deter>contact us</a>.
           </p>
 
         button: Register
