@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get '/news' => 'pages#news', as: 'news'
   get '/usage' => 'pages#usage', as: 'usage'
+  get '/recent_activity' => 'pages#recent_activity', as: 'recent_activity'
 
   resources :applications
   resources :user_sessions, only: [ :new, :create, :destroy ]

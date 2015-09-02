@@ -1,8 +1,10 @@
 - if flash.alert
   .alert.alert-error.header
-    %span.glyphicon.glyphicon-minus-sign
-    .msg= flash.alert.html_safe
+    .container
+      %span.glyphicon.glyphicon-minus-sign
+      .msg= flash.alert.html_safe
 - if flash.notice
   .alert.header
-    %span.glyphicon.glyphicon-info-sign
-    .msg= flash.notice.html_safe
+    .container
+      %span.glyphicon.glyphicon-info-sign
+      .msg= flash.notice.html_safe

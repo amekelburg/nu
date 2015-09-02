@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :change_locale
+  before_action :preload_data
 
   rescue_from DeterLab::NotLoggedIn do
     app_session.logged_out
@@ -79,6 +80,12 @@ class ApplicationController < ActionController::Base
     end
 
     I18n.locale = session[:locale] || I18n.default_locale
+  end
+
+  def preload_data
+    if logged_in?
+      @notifications = Rails.env.test? ? [] : deter_lab.get_notifications
+    end
   end
 
 end

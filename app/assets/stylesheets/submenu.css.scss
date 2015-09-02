@@ -1,5 +1,5 @@
 .submenu {
-  margin-top: -19px;
+  margin-top: -20px;
   margin-bottom: 20px;
   background: #000;
   border-top: 1px solid #fff;
@@ -48,6 +48,11 @@
       -webkit-border-radius: 0;
       -moz-border-radius: 0;
     }
+  }
+
+  .navbar {
+    min-height: inherit;
+    margin-bottom: 0;
   }
 }
 
@@ -99,3 +104,4 @@
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
