@@ -1,0 +1,17 @@
+en:
+  layouts:
+    header:
+      profile: Profile
+      login: Login
+      logout: Logout
+      recent_activity: Recent Activity
+      documentation:
+        label: Documentation
+        url: "http://info.deterlab.org"
+      tech_support:
+        label: Technical Support
+        url: "http://info.deterlab.org"
+      ops_notices:
+        lable: Operations Notices
+        url: "http://info.deterlab.org"
+

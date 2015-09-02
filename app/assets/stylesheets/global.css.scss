@@ -1,5 +1,9 @@
 body {
-  padding-top: 0;
+  padding-top: 74px + 20px + 48px;
+}
+
+body.loggedout {
+  padding-top: 74px + 20px;
 }
 
 body#spi_log_index {
@@ -8,12 +12,12 @@ body#spi_log_index {
 
 #main-wrapper {
   min-height: 100vh;
-  margin-top: -80px;
-  padding-top: 117px + 20px + 48px + 80px;
+  // margin-top: -80px;
+  // padding-top: 74px;
 }
-body.loggedout #main-wrapper {
-  padding-top: 117px + 20px + 80px;
-}
+// body.loggedout #main-wrapper {
+//   padding-top: 74px + 20px;
+// }
 
 .spinner {
   width: 32px;

@@ -1,59 +1,90 @@
-.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
-  .container
-    .navbar-header
-      %button.navbar-toggle.collapsed{ type: 'button', data: { toggle: 'collapse', target: '.navbar-collapse' } }
-        %span.sr-only Toggle navigation
-        %span.icon-bar
-        %span.icon-bar
-        %span.icon-bar
-      = link_to (logged_in? ? :dashboard : :root), class: 'navbar-brand' do
-        = image_tag "logo.png"
-
-    - unless @no_top_menu
-      .navbar-collapse.collapse
-        %ul.nav.navbar-nav.navbar-right
-          - if logged_in?
-            %li= link_to "Logout", :logout
-          - else
-            %li= link_to "Login", :login
-          %li= link_to "DETER Project", AppConfig['deter_project_link']
-          %li= link_to "Contact", AppConfig['contact_link']
-
-- if logged_in?
-  .submenu.navbar-fixed-top
+.navbar-fixed-top{ role: 'navigation' }
+  .navbar.navbar-inverse
     .container
-      .navbar.navbar-inverse{ role: 'navigation' }
-        %ul.nav.navbar-nav
-          = submenu_item :profile, "Profile", my_profile_path
-          = dropdown_submenu_item [ :my_projects, :new_project, :join_project, :manage_project ], t("submenu.projects") do
-            = submenu_item :my_projects, t("submenu.my_projects"), projects_path
-            = submenu_item :new_project, t("submenu.new_project"), new_project_path
-            = submenu_item :join_project, t("submenu.join_project"), new_project_join_path
-            %li.dropdown-submenu{ class: @submenu == :manage_project ? 'active' : nil }
-              = link_to t("submenu.manage_projects"), "#", tabindex: -1
-              %ul.dropdown-menu
-                - projects = Rails.env.test? ? [] : deter_lab.get_managed_projects.reject(&:admin?)
-                - if projects.blank?
-                  %li= link_to t("submenu.no_managed_projects"), "#"
-                - else
-                  - projects.each do |p|
-                    %li{ class: p.project_id == params[:id] ? 'active' : nil }
-                      = link_to t("submenu.manage_project", id: p.project_id), manage_project_path(p.project_id)
+      .navbar-header
+        %button.navbar-toggle.collapsed{ type: 'button', data: { toggle: 'collapse', target: '.navbar-collapse' } }
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        = link_to (logged_in? ? :dashboard : :root), class: 'navbar-brand' do
+          = image_tag "logo.png", size: "114x45"
 
-          = dropdown_submenu_item [ :main_library, :my_libraries, :other_libraries, :new_library ], t("submenu.libraries") do
-            = submenu_item :main_library, main_library_name, library_path(main_library_id)
-            = submenu_item :my_libraries, t("submenu.my_libraries"), my_libraries_path
-            = submenu_item :other_libraries, t("submenu.other_libraries"), other_libraries_path
-            = submenu_item :new_library, t("submenu.create_new_library"), new_library_path
-          = dropdown_submenu_item [ :my_experiments, :new_experiment ], t("submenu.experiments") do
-            = submenu_item :my_experiments, t("submenu.my_experiments"), experiments_path
-            = submenu_item :new_experiment, t("submenu.new_experiment"), new_experiment_path
-          = dropdown_submenu_item [ :new_notifications, :all_notifications ], t("submenu.notifications") do
-            = submenu_item :new_notifications, t("submenu.new_notifications"), new_only_notifications_path
-            = submenu_item :all_notifications, t("submenu.all_notifications"), notifications_path
-          - if admin?
-            = dropdown_submenu_item [ :project_requests, :user_admin, :project_admin, :privilege_admin ], t("submenu.administration") do
-              = submenu_item :project_requests, t("submenu.project_requests"), new_project_requests_path
-              = submenu_item :user_admin, t("submenu.user_admin"), "#TBD"
-              = submenu_item :project_admin, t("submenu.project_admin"), "#TBD"
-              = submenu_item :privilege_admin, t("submenu.privilege_admin"), "#TBD"
+      - unless @no_top_menu
+        .navbar-collapse.collapse#top-menu
+          %ul.nav.navbar-nav.navbar-right
+            %li.dropdown
+              = link_to "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+                %span.glyphicon.glyphicon-user
+              %ul.dropdown-menu
+                - if logged_in?
+                  %li.dropdown-header.user-name
+                    %strong= current_user_name
+                  %li.divider{ role: "separator" }
+                  %li= link_to t(".profile"), my_profile_path
+                  %li= link_to t(".logout"), :logout
+                - else
+                  %li= link_to t(".login"), :root
+
+            - if logged_in?
+              %li.notifications.dropdown
+                = link_to "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+                  - if @notifications.try(:size) > 0
+                    %span.badge= @notifications.size
+                  %span.glyphicon.glyphicon-envelope
+                %ul.dropdown-menu
+                  %li= link_to t("submenu.new_notifications"), new_only_notifications_path
+                  %li= link_to t("submenu.all_notifications"), notifications_path
+
+            %li.dropdown
+              = link_to "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+                %span.glyphicon.glyphicon-info-sign
+              %ul.dropdown-menu
+                %li= link_to t(".documentation.label"), t(".documentation.url")
+                %li= link_to t(".tech_support.label"), t(".tech_support.url")
+                %li= link_to t(".ops_notices.label"), t(".ops_notices.url")
+
+            %li.dropdown
+              = link_to "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+                %span.glyphicon.glyphicon-eye-open
+              %ul.dropdown-menu
+                %li= link_to t(".recent_activity"), :recent_activity
+
+  - if logged_in?
+    .submenu
+      .container
+        .navbar.navbar-inverse{ role: 'navigation' }
+          %ul.nav.navbar-nav
+            -# = submenu_item :profile, "Profile", my_profile_path
+
+            = dropdown_submenu_item [ :my_experiments, :new_experiment ], t("submenu.experiments") do
+              = submenu_item :my_experiments, t("submenu.my_experiments"), experiments_path
+              = submenu_item :new_experiment, t("submenu.new_experiment"), new_experiment_path
+            = dropdown_submenu_item [ :main_library, :my_libraries, :other_libraries, :new_library ], t("submenu.libraries") do
+              = submenu_item :main_library, main_library_name, library_path(main_library_id)
+              = submenu_item :my_libraries, t("submenu.my_libraries"), my_libraries_path
+              = submenu_item :other_libraries, t("submenu.other_libraries"), other_libraries_path
+              = submenu_item :new_library, t("submenu.create_new_library"), new_library_path
+            = dropdown_submenu_item [ :my_projects, :new_project, :join_project, :manage_project ], t("submenu.projects") do
+              = submenu_item :my_projects, t("submenu.my_projects"), projects_path
+              = submenu_item :new_project, t("submenu.new_project"), new_project_path
+              = submenu_item :join_project, t("submenu.join_project"), new_project_join_path
+              %li.dropdown-submenu{ class: @submenu == :manage_project ? 'active' : nil }
+                = link_to t("submenu.manage_projects"), "#", tabindex: -1
+                %ul.dropdown-menu
+                  - projects = Rails.env.test? ? [] : deter_lab.get_managed_projects.reject(&:admin?)
+                  - if projects.blank?
+                    %li= link_to t("submenu.no_managed_projects"), "#"
+                  - else
+                    - projects.each do |p|
+                      %li{ class: p.project_id == params[:id] ? 'active' : nil }
+                        = link_to t("submenu.manage_project", id: p.project_id), manage_project_path(p.project_id)
+            -# = dropdown_submenu_item [ :new_notifications, :all_notifications ], t("submenu.notifications") do
+            -#   = submenu_item :new_notifications, t("submenu.new_notifications"), new_only_notifications_path
+            -#   = submenu_item :all_notifications, t("submenu.all_notifications"), notifications_path
+            - if admin?
+              = dropdown_submenu_item [ :project_requests, :user_admin, :project_admin, :privilege_admin ], t("submenu.administration") do
+                = submenu_item :project_requests, t("submenu.project_requests"), new_project_requests_path
+                = submenu_item :user_admin, t("submenu.user_admin"), "#TBD"
+                = submenu_item :project_admin, t("submenu.project_admin"), "#TBD"
+                = submenu_item :privilege_admin, t("submenu.privilege_admin"), "#TBD"
