@@ -7,6 +7,10 @@ require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'test/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb
+
+  c.ignore_request do |r|
+    URI(r.uri).query == 'wsdl'
+  end
 end
 
 # Mocha

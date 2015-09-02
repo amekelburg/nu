@@ -7,6 +7,7 @@ module DeterLab
     def client(service, uid = nil)
       options = {
         wsdl:             WsdlCachingAdapter.service_url(service),
+        adapter:          :wsdl_caching_adapter,
         log_level:        :debug,
         log:              !Rails.env.test?,
         pretty_print_xml: true,
@@ -15,10 +16,6 @@ module DeterLab
         logger:           Rails.logger,
         filters:          :password,
         ssl_verify_mode:  :none }
-
-      unless Rails.env.test?
-        options[:adapter] = :wsdl_caching_adapter
-      end
 
       # optionally user user certs from the storage
       if uid.present?

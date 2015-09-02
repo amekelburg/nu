@@ -7,6 +7,7 @@ class ExperimentMembersControllerTest < ActionController::TestCase
 
     @eid = 'Project:Experiment'
     @controller.deter_lab.expects(:get_experiment).returns(Experiment.new(@eid, 'mark', [], [], []))
+    @controller.stubs(:current_user_name).returns("mark")
   end
 
   test 'should show members list' do
