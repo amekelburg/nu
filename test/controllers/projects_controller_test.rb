@@ -7,7 +7,7 @@ class ProjectsControllerTest < ActionController::TestCase
   end
 
   test "index" do
-    DeterLab.expects(:view_projects).twice.returns([])
+    DeterLab.expects(:view_projects).returns([])
     get :index
     assert_not_nil assigns[:approved]
     assert_not_nil assigns[:unapproved_new]
@@ -27,7 +27,7 @@ class ProjectsControllerTest < ActionController::TestCase
     approved = assigns[:approved].map { |p| p[:project_id] }
     assert_equal ["owner-a", "member-b"], approved
 
-    unapproved = assigns[:unapproved].map { |p| p[:project_id] }
+    unapproved = assigns[:unapproved_new].map { |p| p[:project_id] }
     assert_equal ["owner-b"], unapproved
   end
 
@@ -40,13 +40,14 @@ class ProjectsControllerTest < ActionController::TestCase
     ])
     get :index
     assert_equal ["owner-a", "owner-b", "member-a", "member-b"], assigns[:approved].map { |p| p[:project_id] }
-    assert_equal [], assigns[:unapproved]
+    assert_equal [], assigns[:unapproved_new]
+    assert_equal [], assigns[:unapproved_joins]
   end
 
   test "show" do
     pid = "project_id"
     pr = Project.new(pid, "mark", true, [])
-    DeterLab.expects(:view_projects).twice.returns([ pr ])
+    DeterLab.expects(:view_projects).returns([ pr ])
     DeterLab.expects(:get_project_profile).with("mark", pid).returns({})
     get :show, id: pid
     assert_not_nil assigns[:project]

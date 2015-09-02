@@ -48,7 +48,7 @@ class ProjectMembersTest < ActiveSupport::TestCase
     pid   = 'pid'
     uid   = 'john'
     DeterLab.expects(:remove_users).returns([ { success: false, reason: 'error reason' } ])
-    err = assert_raise do
+    err = assert_raise(DeterLab::RequestError) do
       ProjectMembers.new(owner, nil, pid).remove_user(uid)
     end
     assert_equal "error reason", err.message

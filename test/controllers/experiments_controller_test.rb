@@ -31,6 +31,7 @@ class ExperimentsControllerTest < ActionController::TestCase
     ex2 = Experiment.new("id2", "owner", [], [], [])
     DeterLab.expects(:view_experiments).returns([ ex1, ex2 ])
     @controller.deter_lab.expects(:get_experiment_profile).with(ex1.id).returns({})
+    DeterLab.expects(:view_realizations).returns([])
     get :show, id: ex1.id
     assert_equal ex1, assigns(:experiment)
     assert_equal({}, assigns(:profile))
@@ -42,6 +43,7 @@ class ExperimentsControllerTest < ActionController::TestCase
     @controller.deter_lab.stubs(:get_experiment_profile_description).returns([])
     @controller.deter_lab.stubs(:get_projects).returns([])
     @controller.deter_lab.stubs(:get_experiment_profile).with(ex.id).returns({})
+    DeterLab.expects(:view_realizations).returns([])
     get :show, id: ex.id
     assert_template :show
     assert_not_nil  assigns(:projects)
@@ -57,7 +59,7 @@ class ExperimentsControllerTest < ActionController::TestCase
 
   test "new" do
     DeterLab.expects(:get_experiment_profile_description).returns([])
-    DeterLab.expects(:view_projects).twice.returns([])
+    DeterLab.expects(:view_projects).returns([])
     get :new
     assert_equal [], assigns[:profile_descr]
     assert_equal [], assigns[:projects]
@@ -76,7 +78,7 @@ class ExperimentsControllerTest < ActionController::TestCase
   test "failed creating" do
     DeterLab.expects(:create_experiment).raises(DeterLab::RequestError.new("error message"))
     DeterLab.expects(:get_experiment_profile_description).returns([])
-    DeterLab.expects(:view_projects).twice.returns([])
+    DeterLab.expects(:view_projects).returns([])
     post :create, project_id: "pid", experiment: { }
     assert_template :new
     assert_equal I18n.t("experiments.create.failure", error: "error message"), flash.now[:alert]
@@ -95,6 +97,7 @@ class ExperimentsControllerTest < ActionController::TestCase
     ex = setup_experiment
     @controller.expects(:create_experiment).raises(DeterLab::RequestError.new("error message"))
     DeterLab.expects(:get_experiment_profile).with("mark", ex.id).returns({})
+    DeterLab.expects(:view_realizations).returns([])
     post :clone, id: ex.id, experiment: { skipped: "data" }
     assert_template :show
     assert_equal I18n.t("experiments.clone.failure", error: "error message"), flash.now[:alert]

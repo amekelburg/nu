@@ -15,7 +15,6 @@ class DashboardControllerTest < ActionController::TestCase
 
     get :show
     assert_response :success
-    assert @response.body.match(/User <strong>Mark Smith<\/strong>:.*Dashboard/)
   end
 
 end
