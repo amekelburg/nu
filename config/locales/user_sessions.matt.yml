@@ -1,7 +1,13 @@
 matt:
   user_sessions:
     new:
-      title: Welcome to DeterLab's <i>Nu Experimenter Portal</i>
+      title: "Welcome to DeterLab's <i>Nu Experimenter Portal</i>"
+      subheader: "DeterLab is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" 
+      links: >
+        <strong>Learn More:</strong>&nbsp;&nbsp;
+        <a href="http://deter-project.org" target="_blank">DeterLab for Scientists</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+        <a href="http://deter-project.org" target="_blank">DeterLab for Educators</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+        <a href="http://deter-project.org" target="_blank">Support for Users</a>
       info: >
         <p>
           DeterLab: Advanced testbed facility where leading researchers and academics conduct critical cybersecurity 
@@ -15,6 +21,7 @@ matt:
 
       username: Username
       password: Password
+      incorrect: Incorrect username or password
 
       no_account: >
         <p>

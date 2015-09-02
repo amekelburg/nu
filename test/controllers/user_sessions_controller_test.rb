@@ -12,7 +12,7 @@ class UserSessionsControllerTest < ActionController::TestCase
     DeterLab.stubs(:admin?).returns(false)
     @app_session = AppSession.new(@controller.session)
 
-    post :create, username: 'user_id', password: 'pass'
+    post :create, user_login: { username: 'user_id', password: 'pass' }
     assert_redirected_to :dashboard
     assert_equal I18n.t("user_sessions.create.success"), flash.notice
     assert @app_session.logged_in?
@@ -22,9 +22,9 @@ class UserSessionsControllerTest < ActionController::TestCase
   test "doesn't login" do
     DeterLab.stubs(:valid_credentials?).returns(false)
 
-    post :create, uid: 'user_id', password: 'pass'
-    assert_equal I18n.t("user_sessions.create.failure"), flash.now[:alert]
+    post :create, user_login: { username: 'user_id', password: 'pass' }
     assert_template :new
+    assert assigns(:error)
   end
 
   test "logging out" do

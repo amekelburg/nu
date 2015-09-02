@@ -9,14 +9,15 @@
       = link_to (logged_in? ? :dashboard : :root), class: 'navbar-brand' do
         = image_tag "logo.png"
 
-    .navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
-        - if logged_in?
-          %li= link_to "Logout", :logout
-        - else
-          %li= link_to "Login", :login
-        %li= link_to "DETER Project", AppConfig['deter_project_link']
-        %li= link_to "Contact", AppConfig['contact_link']
+    - unless @no_top_menu
+      .navbar-collapse.collapse
+        %ul.nav.navbar-nav.navbar-right
+          - if logged_in?
+            %li= link_to "Logout", :logout
+          - else
+            %li= link_to "Login", :login
+          %li= link_to "DETER Project", AppConfig['deter_project_link']
+          %li= link_to "Contact", AppConfig['contact_link']
 
 - if logged_in?
   .submenu.navbar-fixed-top
