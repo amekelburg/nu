@@ -1,6 +1,9 @@
 - @submenu = :new_notifications
+- @section = :notifications
+- @section_title = raw t '.title'
+- @section_root  = true
+
 .page-header
-  %h1= raw t '.title'
   = raw t '.info'
 
 = react_component 'NotificationsBox', nothing_text: t('.none'), no_old_hiding: true

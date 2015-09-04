@@ -1,7 +1,10 @@
-- @submenu = :profile
 - is_owner = @uid == @app_session.current_user_id
+- @submenu = :profile
+- @section = :profile
+- @section_title = raw t(is_owner ? '.title' : '.title_other')
+- @section_root  = true
+
 .page-header
-  %h1= raw t(is_owner ? '.title' : '.title_other')
   = raw t(is_owner ? '.info' : '.info_other', uid: @uid)
 
 .row

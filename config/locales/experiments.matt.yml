@@ -20,6 +20,11 @@ matt:
       manage: Manage
       view: View
 
+    new:
+      title: New experiment
+      info: >
+        <p>Please fill the form:</p>
+
     manage:
       title: "Manage experiment: %{id}"
       info: >

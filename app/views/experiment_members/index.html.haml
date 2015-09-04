@@ -1,7 +1,9 @@
 - @submenu = :my_experiments
+- @section = :experiments
+- @section_title = raw t '.title'
 - pid = @experiment.id.split(':').first
+
 .page-header
-  %h1= raw t '.title'
   = raw t '.info'
 
 - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)

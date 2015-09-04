@@ -1,6 +1,8 @@
 - @submenu ||= :library
+- @section = :libraries
+- @section_title = raw t '.title', id: @library.id
+
 .page-header
-  %h1= raw t '.title', id: @library.id
   = raw t '.info', owner: @library.owner
 
 .row

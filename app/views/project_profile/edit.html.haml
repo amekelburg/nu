@@ -1,7 +1,9 @@
 - @submenu = :my_projects
 - @errors ||= {}
+- @section = :projects
+- @section_title = raw t '.title'
+
 .page-header
-  %h1= raw t '.title'
   = raw t '.info'
 
 = form_tag project_profile_path(params[:project_id]), method: 'put', class: 'form-horizontal' do
