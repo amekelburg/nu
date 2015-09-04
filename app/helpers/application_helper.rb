@@ -49,10 +49,21 @@ module ApplicationHelper
     content_tag(:div, svg, class: 'icon')
   end
 
+  def section_icon(section)
+    case section.to_sym
+    when :profile
+      'person'
+    else
+      section.to_s
+    end
+  end
+
   def section_root_path(section)
     case section.to_sym
     when :libraries
       :my_libraries
+    when :profile
+      :my_profile
     else
       section.to_sym
     end

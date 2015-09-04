@@ -59,14 +59,14 @@
               = link_to icon_tag("menu"), "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
               %ul.dropdown-menu
                 - %w{ dashboard experiments libraries projects }.each do |s|
-                  %li= link_to "#{icon_tag s}#{t("submenu.#{s}")}".html_safe, section_root_path(s)
+                  %li= link_to "#{icon_tag(section_icon(s))}#{t("submenu.#{s}")}".html_safe, section_root_path(s)
                 - if admin?
                   %li.no-icon= link_to t("submenu.project_requests"), new_project_requests_path
                   %li.no-icon= link_to t("submenu.user_admin"), '#TBD'
                   %li.no-icon= link_to t("submenu.project_admin"), '#TBD'
                   %li.no-icon= link_to t("submenu.privilege_admin"), '#TBD'
             - else
-              = link_to icon_tag(@section), section_root_path(@section), class: 'btn-lg'
+              = link_to icon_tag(section_icon(@section)), section_root_path(@section), class: 'btn-lg'
 
 
             .title= @section_title || (@section && @section.capitalize)
