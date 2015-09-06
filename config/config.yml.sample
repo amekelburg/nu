@@ -3,10 +3,7 @@ contact_link: "http://info.deterlab.net/contact_deterlab"
 guide_link: "http://deter-project.org/#guide"
 
 deter_lab:
-  # wsdl: "https://users.isi.deterlab.net:52323/axis2/services/%s?wsdl"
   wsdl: "https://spidev.isi.deterlab.net:52323/axis2/services/%s?wsdl"
-  # wsdl: "https://128.9.160.249:52323/axis2/services/%s?wsdl"
-  # wsdl: "https://isi.deterlab.net:52323/axis2/services/%s?wsdl"
 
 # refresh rate of the realization status / resource view
 realization_refresh_rate: 30
