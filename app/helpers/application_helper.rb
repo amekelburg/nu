@@ -34,11 +34,11 @@ module ApplicationHelper
     content_tag(:div, content.join.html_safe, class: 'row section-row')
   end
 
-  def icon_tag(icon, tag = :div)
-    path = content_tag(:path, '', d: Icons::PATHS[icon.to_sym] || Icons::PATHS[:_missing])
+  def icon_tag(icon, path_options = nil)
+    path = content_tag(:path, '', { d: Icons::PATHS[icon.to_sym] || Icons::PATHS[:_missing] }.merge(path_options || {}))
     g = content_tag(:g, path)
     svg = content_tag(:svg, g, viewBox: '0 0 24 24', preserveAspectRatio: 'xMidYMid meet')
-    content_tag(tag, svg, class: 'icon')
+    content_tag(:div, svg, class: 'icon')
   end
 
   def section_icon(section)

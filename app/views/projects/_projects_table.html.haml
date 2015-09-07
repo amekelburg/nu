@@ -8,13 +8,9 @@
       - pid = p[:project_id]
       %tr
         %td
-          #{link_to pid, project_path(pid)}
+          %h4= link_to pid, project_path(pid)
           %p
             <strong>Project Leader</strong>: #{link_to p[:leader][:name], profile_path(p[:leader][:uid])} (#{p[:leader][:uid]})<br/>
             <strong>Project Members</strong>: #{p[:members]}<br/>
             <strong>Experiments</strong>: #{p[:experiments]}<br/>
-          %p
-            - if p[:leader][:uid] == current_user_id
-              = link_to t(".manage"), manage_project_path(pid), class: 'btn btn-xs btn-info'
-            = link_to t(".view"), project_path(pid), class: 'btn btn-xs btn-info'
 

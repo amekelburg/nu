@@ -11,8 +11,8 @@ $base_color: #fdb813;
 
   background: #444;
   &.experiments { background: $base_color; }
-  &.libraries { background: $base_color - #222222; }
-  &.projects { background: #3f51b5; }
+  &.libraries { background: desaturate($base_color, 40%); }
+  &.projects { background: mix($base_color, #666, 10%); }
 
   .bar {
     padding-left: 0;
