@@ -3,6 +3,10 @@
   margin-bottom: 20px;
   color: #fff;
 
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+
   background: #444;
   &.experiments { background: #0f9d58; }
   &.libraries { background: #f4b400; }
