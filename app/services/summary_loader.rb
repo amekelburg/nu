@@ -16,6 +16,12 @@ class SummaryLoader
     end
   end
 
+  # Lists all experiments managed by the given user
+  def self.user_managed_experiments(uid)
+    all = user_experiments(uid)
+    all.keep_if { |e| e[:owner][:uid] == uid }.sort { |e1, e2| e1[:id] <=> e2[:id] }
+  end
+
   # Loads the summary of user experiments.
   def self.user_experiments(uid)
     cache = DeterCache.new(uid)

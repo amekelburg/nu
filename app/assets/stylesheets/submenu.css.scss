@@ -8,7 +8,7 @@
   }
 
   background: #444;
-  &.experiments { background: #0f9d58; }
+  &.experiments { background: #fdb813; }
   &.libraries { background: #f4b400; }
   &.projects { background: #3f51b5; }
 
@@ -28,7 +28,7 @@
     align-items: center;
     position: relative;
 
-    & > a {
+    & > a, & a.dropdown-toggle {
       color: #fff;
 
       &:hover {

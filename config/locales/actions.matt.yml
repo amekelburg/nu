@@ -1,5 +1,0 @@
-en:
-  actions:
-    dashboard:
-      - icon: 'help'
-        path: 'recent_activity'
