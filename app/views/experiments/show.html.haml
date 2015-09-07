@@ -2,7 +2,8 @@
 - pid                = @experiment.id.split(':').first
 - is_owner           = @experiment.owner == uid
 - collapse_class     = @managing ? 'in' : 'collapse'
-- toggle_label       = @managing ? 'Hide' : 'Show'
+- realizations_expand = @realizations.any?
+- aspects_expand     = !realizations_expand
 - action_class       = @managing ? 'btn-success' : 'btn-default'
 - belongs_to_project = @experiment.belongs_to_project?
 - @submenu           = :my_experiments
@@ -10,69 +11,62 @@
 - @section_title     = raw t '.title', id: @experiment.id
 
 .page-header
-  = raw t '.info', owner: @experiment.owner
+  = raw t '.info', owner: @experiment.owner, aspects: pluralize(@experiment.aspects.count, 'aspect'), realizations: pluralize(@realizations.count, 'realization')
 
 .row
   .col-sm-12
 
-    = section_row t('.experiment_profile'), 'profile-section', state: @managing ? :opened : :closed
-    .row#profile-section.section{ class: collapse_class }
-      .col-sm-12
-        - if is_owner
-          %p.text-right= link_to t('.edit'), edit_experiment_profile_path(@experiment.id), class: "btn btn-xs #{action_class}"
-        %table.table.table-bordered
-          - @profile.each do |f|
-            - k = f.name
-            - next unless Project::PROFILE_FIELDS.include?(k)
-            - v = f.value
-            %tr
-              %td.col-sm-4= k.capitalize
-              %td.col-sm-8= v
-
-    - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
-    = section_row t('.access_control'), 'acl-section', state: @managing ? :opened : :closed
-    .row#acl-section.section{ class: collapse_class }
-      .col-sm-12
-        - if @experiment.can_modify_experiment_access?
-          %p.text-right= link_to t('.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"
-        %table.table.table-bordered
-          - unless acl.owner_perms.blank?
-            %tr
-              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
-              %td.col-sm-8= acl.owner_perms.join(", ")
-          - acl.other_users_acl.each do |acl|
-            %tr
-              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
-              %td.col-sm-8= acl[1].join(", ")
-
-
-        - unless acl.project_perms.blank? and acl.groups_acl.blank?
+    - if @managing
+      = section_row t('.experiment_profile'), 'profile-section', state: @managing ? :opened : :closed
+      .row#profile-section.section{ class: collapse_class }
+        .col-sm-12
+          - if is_owner
+            %p.text-right= link_to t('.edit'), edit_experiment_profile_path(@experiment.id), class: "btn btn-xs #{action_class}"
           %table.table.table-bordered
-            - unless acl.project_perms.blank?
+            - @profile.each do |f|
+              - k = f.name
+              - next unless Project::PROFILE_FIELDS.include?(k)
+              - v = f.value
               %tr
-                %td.col-sm-4 Group:&nbsp;#{pid}
-                %td.col-sm-8= acl.project_perms.join(", ")
-            - acl.groups_acl.each do |acl|
-              %tr
-                %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
-                %td.col-sm-8= acl.permissions.join(", ")
+                %td.col-sm-4= k.capitalize
+                %td.col-sm-8= v
 
-    = section_row t('.recent_activity'), 'activity-section', state: @managing ? :opened : :closed
-    .row.section#activity-section{ class: collapse_class }
-      .col-sm-12
-        - log = ActivityLog.for_experiment(@experiment.id)
-        = render partial: 'shared/activity_log', object: log
+      - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
+      = section_row t('.access_control'), 'acl-section', state: @managing ? :opened : :closed
+      .row#acl-section.section{ class: collapse_class }
+        .col-sm-12
+          - if @experiment.can_modify_experiment_access?
+            %p.text-right= link_to t('.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"
+          %table.table.table-bordered
+            - unless acl.owner_perms.blank?
+              %tr
+                %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
+                %td.col-sm-8= acl.owner_perms.join(", ")
+            - acl.other_users_acl.each do |acl|
+              %tr
+                %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
+                %td.col-sm-8= acl[1].join(", ")
+
+
+          - unless acl.project_perms.blank? and acl.groups_acl.blank?
+            %table.table.table-bordered
+              - unless acl.project_perms.blank?
+                %tr
+                  %td.col-sm-4 Group:&nbsp;#{pid}
+                  %td.col-sm-8= acl.project_perms.join(", ")
+              - acl.groups_acl.each do |acl|
+                %tr
+                  %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
+                  %td.col-sm-8= acl.permissions.join(", ")
 
     .row.section-row
-      .col-sm-10
+      .col-sm-12.f.actions
         %h4= t ".realizations"
-      .col-sm-2.text-right
         - if belongs_to_project
-          = link_to t(".realize"), experiment_realizations_path(@experiment.id), method: 'post', class: 'btn btn-xs btn-default'
-        - else
-          %button.btn.btn-xs.btn-default{ type: 'button', data: { toggle: 'collapse', target: '#realization-section' }, "aria-expanded" => false, "aria-controls" => "realization-section" }= toggle_label
+          = link_to icon_tag('play'), experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
+        = show_hide_link '#realization-section', realizations_expand
 
-    .row.section#realization-section{ class: belongs_to_project ? nil : 'collapse' }
+    .row.section#realization-section{ class: realizations_expand ? nil : 'collapse' }
       .col-sm-12
         - if belongs_to_project
           - if @realizations.blank?
@@ -106,20 +100,25 @@
                 = submit_tag t(".submit"), class: "btn btn-default"
 
     .row.section-row
-      .col-sm-12
+      .col-sm-12.f.actions
         %h4= t ".aspects"
+        - if @experiment.can_modify_experiment?
+          .dropdown
+            = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+              = icon_tag "plus"
+            %ul.dropdown-menu
+              - %w{ layout orchestration visualization }.each do |type|
+                %li= link_to t(".add_aspect", type: type.capitalize), new_experiment_aspect_path(@experiment.id, type: type)
+        = show_hide_link '#aspects-section', aspects_expand
 
-    .row
+    .row.section#aspects-section{ class: aspects_expand ? nil : 'collapse' }
       .col-sm-12
         - groupped_aspects = @experiment.aspects.group_by(&:type)
         - %w{ layout orchestration visualization }.each do |type|
           - aspects = groupped_aspects[type]
           .row.section-subheader
-            .col-sm-10
+            .col-sm-12
               %h5= type.capitalize
-            .col-sm-2.text-right.action
-              - if @experiment.can_modify_experiment?
-                = link_to t(".add_aspect", type: type.capitalize), new_experiment_aspect_path(@experiment.id, type: type), class: "btn btn-xs #{action_class}"
           .row
             .col-sm-12
               - if aspects.blank?

@@ -22,8 +22,33 @@ h2 {
   background-color: #f4f4f4;
   margin-bottom: 5px;
 
+  .f {
+    display: flex;
+    flex-flow: row nowrap;
+
+    h4 {
+      flex: 1;
+    }
+  }
+
   h4, button, .btn {
     margin-top: 10px;
+  }
+
+  .actions {
+    padding-right: 0;
+  }
+
+  a[data-toggle=expand] {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    text-align: center;
+    margin: 8px;
+    span {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 }
 

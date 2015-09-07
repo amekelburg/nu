@@ -59,4 +59,9 @@ module ApplicationHelper
     end
   end
 
+  def show_hide_link(section_selector, expanded)
+    link_to '#', data: { toggle: 'expand', expanded: expanded, target: section_selector } do
+      content_tag(:span, '', class: [ "glyphicon", expanded ? 'glyphicon-resize-small' : 'glyphicon-resize-full' ].join(' '))
+    end
+  end
 end

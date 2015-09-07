@@ -40,7 +40,7 @@ en:
       title: "Experiment: %{id}"
       info: >
         <p>
-          Experiment owner: %{owner}
+          %{aspects} defined. %{realizations} operational.
         </p>
 
       acl: Access control list

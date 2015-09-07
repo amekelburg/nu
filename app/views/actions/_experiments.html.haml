@@ -6,5 +6,5 @@
       = icon_tag("settings")
     %ul.dropdown-menu.dropdown-menu-right
       - managed_experiments.each do |e|
-        %li= link_to e[:id], experiment_path(e[:id])
+        %li= link_to e[:id], manage_experiment_path(e[:id])
 = link_to icon_tag('help'), '#help'
