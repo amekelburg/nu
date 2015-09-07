@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :init_gon
   before_action :change_locale
   before_action :preload_data
 
@@ -73,6 +74,11 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session
 
   private
+
+  def init_gon
+    gon.controller = params[:controller]
+    gon.action = params[:action]
+  end
 
   def change_locale
     if l = params[:locale]
