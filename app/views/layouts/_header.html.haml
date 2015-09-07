@@ -58,9 +58,12 @@
             - if @section_root or ![ :experiments, :libraries, :projects, :profile ].include?(@section)
               = link_to icon_tag("menu"), "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
               %ul.dropdown-menu
-                - %w{ dashboard experiments libraries projects }.each do |s|
+                - %w{ experiments libraries projects }.each do |s|
                   %li= link_to "#{icon_tag(section_icon(s))}#{t("submenu.#{s}")}".html_safe, section_root_path(s)
+                %li.divider{ role: "separator" }
+                %li= link_to "#{icon_tag(section_icon(:dashboard))}#{t("submenu.dashboard")}".html_safe, section_root_path(:dashboard)
                 - if admin?
+                  %li.divider{ role: "separator" }
                   %li.no-icon= link_to t("submenu.project_requests"), new_project_requests_path
                   %li.no-icon= link_to t("submenu.user_admin"), '#TBD'
                   %li.no-icon= link_to t("submenu.project_admin"), '#TBD'

@@ -1,5 +1,6 @@
 en:
   submenu:
+    dashboard:        Dashboard
     projects:         Projects
     my_projects:      My Projects
     new_project:      Request a New Project
