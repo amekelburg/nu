@@ -1,10 +1,10 @@
 - if flash.alert
   .alert.alert-error.header
     .container
-      %span.glyphicon.glyphicon-minus-sign
+      = icon_tag 'report_problem'
       .msg= flash.alert.html_safe
 - if flash.notice
   .alert.header
     .container
-      %span.glyphicon.glyphicon-info-sign
+      = icon_tag 'info'
       .msg= flash.notice.html_safe

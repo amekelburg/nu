@@ -3,22 +3,21 @@ $icon_padding: 10px;
 
 .alert.header {
   margin-top: -20px;
-  padding:10px 10px 10px 10px;
-  background-color: #ffffff;
+  padding: 0;
+  background-color: #f8f8f8;
   color: #00B8FF;
   min-height:24px;
   line-height:24px;
 
-  .glyphicon {
-    float: left;
+  .icon {
+    display: inline-block;
     font-size: $icon_size;
     margin-right: $icon_padding;
-    display: block;
     width: $icon_size;
   }
 
   .msg {
-    margin-left: $icon_size + $icon_padding;
+    display: inline-block;
   }
 }
 
