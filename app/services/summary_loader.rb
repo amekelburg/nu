@@ -8,6 +8,12 @@ class SummaryLoader
     end
   end
 
+  # Lists all libraries managed by the given user
+  def self.user_managed_libraries(uid)
+    all = user_libraries(uid)
+    all.keep_if { |l| l[:owner][:uid] == uid }.sort { |l1, l2| l1[:library_id] <=> l2[:library_id] }
+  end
+
   # Loads the summary of libraries for the given user.
   def self.user_libraries(uid)
     cache = DeterCache.new(uid)

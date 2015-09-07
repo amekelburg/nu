@@ -2,14 +2,24 @@ class LibrariesController < ApplicationController
 
   before_filter :require_login
 
-  # lists user own libraries
-  def my
-    @libraries = get_libraries.select { |l| l[:owner][:uid] == current_user_id }
-  end
-
-  # other's libraries user has access to
-  def other
-    @libraries = get_libraries.select { |l| l[:owner][:uid] != current_user_id }
+  # lists user-accessible libraries
+  def index
+    uid = current_user_id
+    @libraries = get_libraries.sort do |l1, l2|
+      o1 = l1[:owner][:uid] == uid
+      o2 = l2[:owner][:uid] == uid
+      if o1 == Library::MAIN_LIBRARY_ID
+        -1
+      elsif o2 == Library::MAIN_LIBRARY_ID
+        1
+      elsif o1 == o2
+        l1[:library_id] <=> l2[:library_id]
+      elsif o1
+        -1
+      else
+        1
+      end
+    end
   end
 
   # shows the library
@@ -48,7 +58,7 @@ class LibrariesController < ApplicationController
     lid = "#{current_user_id}:#{name}"
     if DeterLab.create_library(current_user_id, lid, lp)
       deter_lab.invalidate_libraries
-      redirect_to :my_libraries, notice: t(".success")
+      redirect_to :libraries, notice: t(".success")
     else
       flash.now.alert = t(".failure", error: t("libraries.errors.unknown"))
       new

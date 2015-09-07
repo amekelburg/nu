@@ -15,14 +15,6 @@ module ApplicationHelper
     content_tag(:li, li_content, class: codes.include?(@submenu) ? 'active' : nil)
   end
 
-  def main_library_name
-    "Main Library"
-  end
-
-  def main_library_id
-    "john:MainLibrary"
-  end
-
   # shows the section row with label and optional show / hide button
   def section_row(title, section_id, options = nil)
     options ||= {}
@@ -60,8 +52,6 @@ module ApplicationHelper
 
   def section_root_path(section)
     case section.to_sym
-    when :libraries
-      :my_libraries
     when :profile
       :my_profile
     else

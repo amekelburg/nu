@@ -24,7 +24,6 @@ matt:
     all_notifications: All Notifications
 
     libraries:        Libraries
-    my_libraries:     My Libraries
-    other_libraries:  Other Libraries
+    libraries:        Libraries
     create_new_library: Create New Library
 

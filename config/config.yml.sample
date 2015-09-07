@@ -8,3 +8,5 @@ deter_lab:
 # refresh rate of the realization status / resource view
 realization_refresh_rate: 30
 
+# main library id
+main_library_id: 'john:MainLibrary'

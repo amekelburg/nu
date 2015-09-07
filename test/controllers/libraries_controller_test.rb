@@ -16,7 +16,7 @@ class LibrariesControllerTest < ActionController::TestCase
   test "creating" do
     DeterLab.expects(:create_library).with("mark", "mark:name", { 'description' => 'desc' }).returns(true)
     post :create, library: { name: "name", description: "desc" }
-    assert_redirected_to :my_libraries
+    assert_redirected_to :libraries
     assert_equal I18n.t("libraries.create.success"), flash.notice
   end
 

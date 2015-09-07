@@ -72,11 +72,6 @@ Rails.application.routes.draw do
     end
   end
   resources :libraries do
-    collection do
-      get :my
-      get :other
-    end
-
     member do
       get  :details
       post :copy_experiment

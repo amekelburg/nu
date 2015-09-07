@@ -1,0 +1,10 @@
+= link_to icon_tag('plus'), :new_library
+- managed_libraries = SummaryLoader.user_managed_libraries(current_user_id)
+- if managed_libraries.any?
+  .settings
+    = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
+      = icon_tag("settings")
+    %ul.dropdown-menu.dropdown-menu-right
+      - managed_libraries.each do |l|
+        %li= link_to l[:library_id], library_path(l[:library_id])
+= link_to icon_tag('help'), '#help'

@@ -4,18 +4,11 @@ matt:
       nothing: "You don't have such libraries"
       view: View
 
-    my:
-      title: "My Libraries"
+    index:
+      title: Libraries
       info: >
         <p>
-          Libraries you are managing
-        </p>
-
-    other:
-      title: "Other Libraries"
-      info: >
-        <p>
-          Other libraries you have access to
+          Libraries you have access to
         </p>
 
     show:

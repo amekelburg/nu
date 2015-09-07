@@ -1,3 +1,5 @@
+$base_color: #fdb813;
+
 .submenu {
   margin-top: -20px;
   margin-bottom: 20px;
@@ -8,8 +10,8 @@
   }
 
   background: #444;
-  &.experiments { background: #fdb813; }
-  &.libraries { background: #f4b400; }
+  &.experiments { background: $base_color; }
+  &.libraries { background: $base_color - #222222; }
   &.projects { background: #3f51b5; }
 
   .bar {
