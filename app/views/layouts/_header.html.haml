@@ -76,7 +76,8 @@
             .title= @section_title || (@section && @section.capitalize)
 
             - if @section
-              = render partial: "actions/#{@section}" rescue ''
+              = render partial: "actions/#{@section}"
+              -# rescue ''
 
         -# .navbar.navbar-inverse{ role: 'navigation' }
         -#   %ul.nav.navbar-nav

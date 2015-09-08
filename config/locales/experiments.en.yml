@@ -43,6 +43,22 @@ en:
           %{aspects} defined. %{realizations} operational.
         </p>
 
+      help:
+        aspects:
+          brief: Aspects are blah blah blah
+          more:
+            title: Aspects
+            text: >
+              <p>More info on aspects.</p>
+              <p><a href='http://info.deterlab.net/aspects' target='_blank'>Even more info</a></p>
+        realizations:
+          brief: Running an experiment is blah blah blah
+          more:
+            title: Realizations
+            text: >
+              <p>More info on realizations.</p>
+              <p><a href='http://info.deterlab.net/realization' target='_blank'>Even more info</a></p>
+
       acl: Access control list
       circle: Circle
       permissins: Permissions

@@ -40,7 +40,16 @@ module ApplicationHelper
     path = content_tag(:path, '', { d: Icons::PATHS[icon.to_sym] || Icons::PATHS[:_missing] }.merge(path_options || {}))
     g = content_tag(:g, path)
     svg = content_tag(:svg, g, viewBox: '0 0 24 24', preserveAspectRatio: 'xMidYMid meet')
-    content_tag(:div, svg, class: [ 'icon', [ options[:class] ] ].flatten.reject(&:blank?).join(' '))
+
+    opts = { class: [ 'icon', [ options[:class] ] ].flatten.reject(&:blank?).join(' ') }
+    if options[:tooltip]
+      opts['data-toggle'] = 'tooltip'
+      opts['data-html'] = true
+      opts['title'] = options[:tooltip].gsub('"', '&#34;')
+      opts['data-modal-id'] = options[:modal_id]
+      # opts['data-delay'] = { show: 100, hide: 2000 }.to_json
+    end
+    content_tag(:div, svg, opts)
   end
 
   def section_icon(section)
@@ -68,4 +77,43 @@ module ApplicationHelper
     end
   end
 
+  def help_icon(brief, options = nil)
+    options ||= {}
+    more_title = options[:more_title]
+    more_text  = options[:more_text]
+
+    opts = {}
+    tooltip = brief
+    if more_text.present?
+      modal_id = SecureRandom.uuid
+      tooltip = [
+        content_tag(:p, tooltip),
+        content_tag(:p, "Click icon for more info", class: 'tooltip-more').gsub('"', "'")
+      ].join.html_safe
+      opts[:class] = "with-more"
+      opts[:modal_id] = modal_id
+    end
+    opts[:tooltip] = tooltip
+
+    icon = icon_tag('help', opts)
+
+    if more_text.present?
+      [ icon, modal(options[:more_title], options[:more_text], id: modal_id) ].join.html_safe
+    else
+      icon
+    end
+  end
+
+  def modal(title, text, options = nil)
+    options ||= {}
+
+    close_button  = content_tag(:button, content_tag(:span, '&times;'.html_safe, 'aria-hidden' => 'true'), 'class' => 'close', 'type' => 'button', 'data-dismiss' => 'modal', 'aria-label' => 'Close').html_safe
+    header        = content_tag(:h4, title, class: 'modal-title').html_safe
+    modal_header  = content_tag(:div, [ close_button, header ].join.html_safe, class: 'modal-header').html_safe
+    modal_body    = content_tag(:div, text.html_safe, class: 'modal-body').html_safe
+    modal_content = content_tag(:div, [ modal_header, modal_body ].join.html_safe, class: 'modal-content').html_safe
+
+    modal_dialog  = content_tag(:div, modal_content, class: 'modal-dialog').html_safe
+    content_tag(:div, modal_dialog, class: 'modal fade', id: options[:id]).html_safe
+  end
 end
