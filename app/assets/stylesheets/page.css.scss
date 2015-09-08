@@ -18,6 +18,9 @@ h2 {
   margin-top: 20px;
 }
 
+$section-link: #444;
+$section-link-hover: #222;
+
 .section-row {
   background-color: #f4f4f4;
   margin-bottom: 5px;
@@ -41,14 +44,24 @@ h2 {
 
   a[data-toggle=expand] {
     display: inline-block;
-    width: 24px;
-    height: 24px;
-    text-align: center;
-    margin: 8px;
     span {
       font-size: 16px;
       line-height: 24px;
+      color: $section-link;
+
+      &:hover {
+        color: $section-link-hover;
+      }
     }
+  }
+
+  .icon {
+    color: $section-link;
+    cursor: pointer;
+  }
+
+  .icon:hover {
+    color: $section-link-hover;
   }
 }
 

@@ -1,4 +1,4 @@
-= link_to icon_tag('share', transform: "scale(-1,1) translate(-24,0)"), :new_project_join
+= link_to icon_tag('share', path_options: { transform: "scale(-1,1) translate(-24,0)" }), :new_project_join
 = link_to icon_tag('plus'), :new_library
 = link_to icon_tag('storage'), '#join-project-approve'
 - managed_projects = Rails.env.test? ? [] : deter_lab.get_managed_projects.reject(&:admin?)

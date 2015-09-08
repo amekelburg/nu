@@ -34,11 +34,13 @@ module ApplicationHelper
     content_tag(:div, content.join.html_safe, class: 'row section-row')
   end
 
-  def icon_tag(icon, path_options = nil)
+  def icon_tag(icon, options = nil)
+    options ||= {}
+    path_options = options[:path_options]
     path = content_tag(:path, '', { d: Icons::PATHS[icon.to_sym] || Icons::PATHS[:_missing] }.merge(path_options || {}))
     g = content_tag(:g, path)
     svg = content_tag(:svg, g, viewBox: '0 0 24 24', preserveAspectRatio: 'xMidYMid meet')
-    content_tag(:div, svg, class: 'icon')
+    content_tag(:div, svg, class: [ 'icon', [ options[:class] ] ].flatten.reject(&:blank?).join(' '))
   end
 
   def section_icon(section)
@@ -61,7 +63,9 @@ module ApplicationHelper
 
   def show_hide_link(section_selector, expanded)
     link_to '#', data: { toggle: 'expand', expanded: expanded, target: section_selector } do
-      content_tag(:span, '', class: [ "glyphicon", expanded ? 'glyphicon-resize-small' : 'glyphicon-resize-full' ].join(' '))
+      [ icon_tag('expand_less', class: [ "less", expanded ? nil : 'hide' ]),
+        icon_tag('expand_more', class: [ "more", expanded ? 'hide' : nil ]) ].join.html_safe
     end
   end
+
 end

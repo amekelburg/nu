@@ -110,6 +110,7 @@
               - %w{ layout orchestration visualization }.each do |type|
                 %li= link_to t(".add_aspect", type: type.capitalize), new_experiment_aspect_path(@experiment.id, type: type)
         = show_hide_link '#aspects-section', aspects_expand
+        = icon_tag "help"
 
     .row.section#aspects-section{ class: aspects_expand ? nil : 'collapse' }
       .col-sm-12

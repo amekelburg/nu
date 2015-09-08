@@ -1,15 +1,18 @@
 $ ->
   $("[data-toggle=expand]").each (i, l) ->
     link = $(l)
-    span = $('span', l) || $("<span>").addClass('glyphicon').appendTo(link)
+    less = $(".icon.less", link)
+    more = $(".icon.more", link)
     sect = $(link.data('target'))
 
     updateSection = ->
       if link.data('expanded')
-        span.removeClass('glyphicon-resize-full').addClass('glyphicon-resize-small')
+        more.hide()
+        less.show()
         sect.removeClass('collapse')
       else
-        span.removeClass('glyphicon-resize-small').addClass('glyphicon-resize-full')
+        less.hide()
+        more.show()
         sect.addClass('collapse')
 
     link.on 'click', (e) ->
@@ -18,3 +21,6 @@ $ ->
       updateSection()
 
     updateSection()
+
+    # remove initial hide class
+    $(".icon", link).removeClass('hide')
