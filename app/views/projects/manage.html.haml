@@ -1,0 +1,61 @@
+- @profile_errors ||= {}
+- @submenu       = :my_projects
+- @section       = :projects
+- @section_title = raw t '.title', id: @project.project_id
+- @subsection    = :manage
+
+- collapse_class = 'in'
+- toggle_label   = 'Hide'
+- action_class   = 'btn-success'
+
+.page-header
+  = raw t '.info', owner: @project.owner
+
+.row
+  .col-sm-12
+    = section_row t('.project_profile'), 'profile-section', state: :opened
+    .row#profile-section.section{ class: collapse_class }
+      .col-sm-12
+        = form_tag profile_update_project_path(@project.project_id), method: 'put', class: 'form-horizontal' do
+          .row
+            .col-sm-12
+              %table.table.table-bordered
+                - @profile_description.each do |pd|
+                  - error = @profile_errors[pd.name]
+                  %tr{ class: error.nil? ? nil : "has-error" }
+                    %td.col-sm-3= label_tag "profile[#{pd.name}]", pd.description
+                    %td.col-sm-9
+                      - if pd.access == "READ_WRITE"
+                        - if %w{ org_type research_focus funding listing }.include?(pd.name)
+                          = select_tag "profile[#{pd.name}]", options_for_select(t("page_project_info.project_leader.project_#{pd.name}.options"), @profile[pd.name].try(:value)), class: 'form-control'
+                        - else
+                          = text_field_tag "profile[#{pd.name}]", @profile[pd.name].try(:value), class: 'form-control'
+                      - else
+                        = @profile[pd.name].value
+                      - if error.present?
+                        .helpBlock= error
+          .row
+            .col-sm-12
+              %p= submit_tag t('.profile.save'), class: 'btn btn-default'
+
+    = section_row t('.project_team'), 'team-section', state: :opened
+    .row.section#team-section{ class: collapse_class }
+      .col-sm-12
+        = form_for @new_member, as: :member, url: add_member_project_path(@project.project_id), html: { class: 'form-horizontal' } do |f|
+          %table.table.table-bordered
+            - @team.each do |m|
+              %tr
+                %td.col-sm-3
+                  #{link_to (m['name'] or "<unnamed>"), profile_path(m['uid'])} (#{m['uid']})
+                  #{"<br/> Project Leader".html_safe if m['leader']}
+                %td.col-sm-8= m['perms'].join(', ')
+                %td.col-sm-1.text-center
+                  - if m['uid'] == current_user_id
+                    &nbsp;
+                  - else
+                    = link_to t(".delete"), delete_member_project_path(@project.project_id, uid: m['uid']), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+            %tr
+              %td.col-sm-3= f.text_field :uid, class: "input-sm form-control", placeholder: t(".add_user.hint")
+              %td
+              %td.text-center{ style: 'vertical-align: middle' }= f.submit t(".add_user.submit"), class: "btn btn-default btn-xs"
+

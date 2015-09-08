@@ -9,7 +9,7 @@ $ ->
 
 
 $ ->
-  return if $("body#projects_show, body#projects_manage").length == 0
+  return if $("body#projects_show, body#projects_manage, body#projects_profile_update").length == 0
 
   findButton = (section) ->
     $("button[data-target='#" + $(section)[0].id + "']")
@@ -26,6 +26,7 @@ $ ->
     button.text("Show")
 
   # start loading team and experiments data
-  $.getJSON gon.projectDetailsUrl, (data) ->
-    $("#team-section .body").html(data.team_html)
-    $("#experiments-section .body").html(data.experiments_html)
+  if gon.projectDetailsUrl
+    $.getJSON gon.projectDetailsUrl, (data) ->
+      $("#team-section .body").html(data.team_html)
+      $("#experiments-section .body").html(data.experiments_html)

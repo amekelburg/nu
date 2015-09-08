@@ -38,7 +38,6 @@ class ProjectsController < ApplicationController
     @profile = deter_lab.get_project_profile(@project.project_id)
 
     gon.projectDetailsUrl = details_project_path(pid)
-    render :show
   end
 
   # renders details about project team and experiments
@@ -51,13 +50,71 @@ class ProjectsController < ApplicationController
     @experiments   = get_project_experiments_details(pid, members)
 
     render json: {
-      team_html:        render_to_string(partial: "details_team"),
+      team_html:        render_to_string(partial: "details_team", locals: { pid: pid }),
       experiments_html: render_to_string(partial: "shared/details_experiments") }
   end
 
   def manage
-    @managing = true
-    show
+    pid = params[:id]
+    @project = get_project(pid)
+    if @project.nil?
+      redirect_to :projects, alert: t(".not_found")
+      return
+    end
+
+    @profile_description = deter_lab.get_project_profile_description
+    @profile = deter_lab.get_project_profile(@project.project_id)
+    @team, members = get_project_member_details(@project)
+    @new_member = ProjectMember.new
+
+    render :manage
+  end
+
+  # adds a member
+  def add_member
+    pid = params[:id]
+    @project = get_project(pid)
+
+    options = {}
+    ProjectMembers.new(current_user_id, deter_lab, @project.project_id).add_user(member_params[:uid])
+    options[:notice] = t('.success')
+  rescue DeterLab::RequestError => e
+    options[:alert] = t('.failure', error: e.message)
+  ensure
+    redirect_to manage_project_path(@project.project_id), options
+  end
+
+  # removes the member record
+  def delete_member
+    pid = params[:id]
+    @project = get_project(pid)
+
+    options = {}
+    ProjectMembers.new(current_user_id, deter_lab, @project.project_id).remove_user(params[:uid])
+    options[:notice] = t('.success')
+  rescue DeterLab::RequestError => e
+    options[:alert] = t('.failure', error: e.message)
+  ensure
+    redirect_to manage_project_path(@project.project_id), options
+  end
+
+  # Profile updates
+  def profile_update
+    res = DeterLab.change_project_profile(current_user_id, params[:id], params[:profile])
+    deter_lab.invalidate_projects
+
+    @profile_errors = res.inject({}) do |m, r|
+      m[r[0]] = r[1][:reason] unless r[1][:success]
+      m
+    end
+
+    if @profile_errors.blank?
+      redirect_to manage_project_path(params[:id]), notice: t('.success')
+    else
+      manage
+    end
+  rescue DeterLab::RequestError => e
+    redirect_to project_path(params[:id]), alert: t(".failure", error: e.message).html_safe
   end
 
   # returns project profile
@@ -120,7 +177,6 @@ class ProjectsController < ApplicationController
   def get_project_member_details(project)
     members = {}
 
-
     team = project.members.map do |m|
       profile = SummaryLoader.member_profile(deter_cache, @app_session.current_user_id, m.uid)
       profile['uid'] = m.uid
@@ -144,5 +200,9 @@ class ProjectsController < ApplicationController
     end
 
     return [ team, members ]
+  end
+
+  def member_params
+    params[:member].permit(:uid).symbolize_keys
   end
 end

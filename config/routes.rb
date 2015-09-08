@@ -35,6 +35,10 @@ Rails.application.routes.draw do
     member do
       get :profile
       get :manage
+      put '/manage' => 'projects#profile_update', as: 'profile_update'
+      put :profile_update
+      post :add_member
+      delete :delete_member
       get :details
     end
 

@@ -47,7 +47,33 @@ matt:
       confirm_delete: Are you sure to delete this project?
 
     manage:
-      title: "Manage Project %{id} TBD"
+      title: "Project %{id}: Manage Profile and Access Control"
+      info: >
+        <p>
+          Project owner: %{owner}
+        </p>
+
+      profile:
+        save: Save Profile
+
+      field: Field
+      value: Value
+
+      not_found: Project is missing
+      delete: Delete
+      confirm_delete: Are you sure to delete this project?
+
+      add_user:
+        hint: User name
+        submit: Add User
+
+    add_member:
+      success: "Notification is sent"
+      failure: "Failed to create the record:<br/>%{error}"
+
+    delete_member:
+      success: "Member deleted"
+      failure: "Failed to delete the record:<br/>%{error}"
 
     new:
       title: Create project
