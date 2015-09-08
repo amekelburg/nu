@@ -6,12 +6,8 @@
       - eid = e[:id]
       %tr
         %td
-          #{link_to eid, experiment_path(eid)}
+          %h4= link_to eid, experiment_path(eid)
           %p
             <strong>Owner</strong>: #{link_to (e[:owner][:name] or "<unnamed>"), profile_path(e[:owner][:id])} (#{e[:owner][:id]})<br/>
             <strong>Description</strong>: #{e[:descr]}<br/>
             <strong>Status</strong>: #{e[:status]}<br/>
-          %p
-            - if e[:owner][:id] == current_user_id
-              = link_to t(".manage"), manage_experiment_path(eid), class: 'btn btn-xs btn-info'
-            = link_to t(".view"), experiment_path(eid), class: 'btn btn-xs btn-info'
