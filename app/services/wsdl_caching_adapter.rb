@@ -14,7 +14,7 @@ class WsdlCachingAdapter < HTTPI::Adapter::NetHTTP
 
     if reqesting_wsdl = (url =~ Regexp.new(match))
       # wsdl request
-      key = "wsdl:#{$1}"
+      key = "wsdl:#{url}"
       if Rails.cache.exist?(key)
         raw_body = Rails.cache.read(key)
         res = HTTPI::Response.new(200, {}, raw_body)

@@ -5,19 +5,17 @@
 .page-header
   = raw t '.info', owner: @experiment.owner
 
-= react_component 'Realization'
+= react_component 'Status'
 
-.row.section-row
-  .col-sm-12
-    %h4= t '.visualization'
+- @visualizations.each do |v|
+  .row.section-row
+    .col-sm-12.f.actions
+      %h4= t '.visualization', name: v.name
+      = show_hide_link "#vis-#{v.name}", true
 
-.row
-  .col-sm-12
-    - if @visualizations.blank?
-      %p= t '.no_visualizations'
-    - else
-      - @visualizations.each do |v|
-        .visualization
-          %h5= v.name
-          %iframe{ src: v.data, class: 'vis col-sm-12' }
+  .row{ id: "vis-#{v.name}" }
+    .col-sm-12
+      .visualization
+        %iframe{ src: v.data, class: 'vis col-sm-12' }
 
+= react_component 'Resources'
