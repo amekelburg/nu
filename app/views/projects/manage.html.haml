@@ -4,17 +4,16 @@
 - @section_title = raw t '.title', id: @project.project_id
 - @subsection    = :manage
 
-- collapse_class = 'in'
-- toggle_label   = 'Hide'
-- action_class   = 'btn-success'
-
 .page-header
   = raw t '.info', owner: @project.owner
 
 .row
   .col-sm-12
-    = section_row t('.project_profile'), 'profile-section', state: :opened
-    .row#profile-section.section{ class: collapse_class }
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t ".project_profile"
+        = show_hide_link '#profile-section', true
+    .row#profile-section.section
       .col-sm-12
         = form_tag profile_update_project_path(@project.project_id), method: 'put', class: 'form-horizontal' do
           .row
@@ -38,8 +37,11 @@
             .col-sm-12
               %p= submit_tag t('.profile.save'), class: 'btn btn-default'
 
-    = section_row t('.project_team'), 'team-section', state: :opened
-    .row.section#team-section{ class: collapse_class }
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t ".project_team"
+        = show_hide_link '#team-section', true
+    .row.section#team-section
       .col-sm-12
         = form_for @new_member, as: :member, url: add_member_project_path(@project.project_id), html: { class: 'form-horizontal' } do |f|
           %table.table.table-bordered

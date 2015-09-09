@@ -1,5 +1,8 @@
-= section_row t('.resources.title'), 'resources-section', state: 'opened'
-.row#resources-section.section.in
+.row.section-row
+  .col-sm-12.f.actions
+    %h4= t '.resources.title'
+    = show_hide_link "#resources-section", true
+.row#resources-section.section
   .col-sm-12
     %p= t '.resources.before'
     %ul
@@ -40,8 +43,11 @@
     %p= t '.resources.after'
 
 
-= section_row t('.notifications.title'), 'notifications-section', state: 'opened'
-.row#notifications-section.section.in
+.row.section-row
+  .col-sm-12.f.actions
+    %h4= t '.notifications.title'
+    = show_hide_link "#notifications-section", true
+.row#notifications-section.section
   %ul
     - u = @resources.unread_project_requests_count
     - if u > 0
@@ -62,7 +68,11 @@
       = raw(j == 0 ? t('.notifications.join_projects.zero') : t('.notifications.join_projects', count: j))
 
 
-= section_row t('.activity.title'), 'activity-section'
+-# = section_row t('.activity.title'), 'activity-section'
+.row.section-row
+  .col-sm-12.f.actions
+    %h4= t '.activity.title'
+    = show_hide_link "#activity-section", false
 .row#activity-section.section.collapse
   -# load on open, cache on close
   -# config item for N of events (default 5)

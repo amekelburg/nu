@@ -17,8 +17,11 @@
   .col-sm-12
 
     - if @managing
-      = section_row t('.experiment_profile'), 'profile-section', state: @managing ? :opened : :closed
-      .row#profile-section.section{ class: collapse_class }
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".experiment_profile"
+          = show_hide_link '#profile-section', true
+      .row#profile-section.section
         .col-sm-12
           - if is_owner
             %p.text-right= link_to t('.edit'), edit_experiment_profile_path(@experiment.id), class: "btn btn-xs #{action_class}"
@@ -32,8 +35,11 @@
                 %td.col-sm-8= v
 
       - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
-      = section_row t('.access_control'), 'acl-section', state: @managing ? :opened : :closed
-      .row#acl-section.section{ class: collapse_class }
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".access_control"
+          = show_hide_link '#acl-section', true
+      .row#acl-section.section
         .col-sm-12
           - if @experiment.can_modify_experiment_access?
             %p.text-right= link_to t('.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"

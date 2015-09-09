@@ -30,7 +30,11 @@
     -#   .col-sm-12.body
     -#     %span.spinner Loading. Please wait&hellip;
 
-    = section_row t('.experiments'), 'experiments-section', state: :always_open
+    -# = section_row t('.experiments'), 'experiments-section', state: :always_open
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t ".experiments"
+        = show_hide_link '#experiments-section', true
     .row.section.in#experiments-section
       .col-sm-12.body
         %span.spinner Loading. Please wait&hellip;
