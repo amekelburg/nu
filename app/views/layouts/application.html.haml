@@ -9,8 +9,8 @@
 
   %body{ id: "#{params[:controller]}_#{params[:action]}", class: (logged_in? ? "loggedin" : "loggedout") }
     = render "layouts/header"
-    = render "layouts/messages"
     #main-wrapper
+      = render "layouts/messages"
       #middle.container
         .row
           .col-sm-12

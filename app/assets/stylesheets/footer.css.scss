@@ -1,5 +1,7 @@
+$footer-height: 60px;
+
 #footer-container {
-  margin-top: 20px;
+  margin-top: -$footer-height;
   background-color: #000;
 }
 

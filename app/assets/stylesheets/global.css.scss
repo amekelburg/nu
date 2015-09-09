@@ -1,9 +1,15 @@
-body {
-  padding-top: 74px + 20px + 48px;
-}
+$footer-height: 60px;
+$content-padding: 20px;
 
-body.loggedout {
-  padding-top: 74px + 20px;
+body {
+  #main-wrapper {
+    padding-top: 74px + 48px + $content-padding;
+    padding-bottom: $footer-height + $content-padding;
+  }
+
+  &.loggedout #main-wrapper {
+    padding-top: 74px + $content-padding;
+  }
 }
 
 body#spi_log_index {
