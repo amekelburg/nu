@@ -1,6 +1,22 @@
-#footer-container
-  .container
-    #footer
+#footer-container{ class: @show_locale_switch ? 'with-locale-switch' : nil }
+
+  - if @show_locale_switch
+    .container#locale-switch
+      .row
+        .col-sm-12
+          %p.text-right
+            Locale:
+            - if I18n.locale == :en
+              English
+              \-
+              = link_to "Matt", "?locale=matt"
+            - else
+              = link_to "English", "?locale=en"
+              \-
+              Matt
+
+  #footer
+    .container
       .row
         .col-md-2.visible-md.visible-lg
           = link_to (logged_in? ? :dashboard : :root) do

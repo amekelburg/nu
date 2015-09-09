@@ -8,7 +8,8 @@ en:
         <a href="http://deter-project.org" target="_blank">DeterLab for Scientists</a>&nbsp;&nbsp;-&nbsp;&nbsp;
         <a href="http://deter-project.org" target="_blank">DeterLab for Educators</a>&nbsp;&nbsp;-&nbsp;&nbsp;
         <a href="http://deter-project.org" target="_blank">Support for Users</a>
-      info: Login to access your DeterLab account
+      info_old: Login to access your DeterLab account
+      info: ''
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
       password_reset_request: "Forgot password?<br/>Start reset recovery <a href='%{url}'>here</a>."
 

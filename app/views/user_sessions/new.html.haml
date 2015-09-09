@@ -1,20 +1,10 @@
-- @no_top_menu = true
+- @show_locale_switch = true
+
 .page-header
   %h1= raw t '.title'
   .info
     %p= raw t '.subheader'
     %p= raw t '.links'
-
-%p.text-right
-  Locale:
-  - if I18n.locale == :en
-    English
-    \-
-    = link_to "Matt", "?locale=matt"
-  - else
-    = link_to "English", "?locale=en"
-    \-
-    Matt
 
 %p= raw t '.info'
 

@@ -1,11 +1,25 @@
 $footer-height: 60px;
+$locale-switch-height: 20px;
 
 #footer-container {
   margin-top: -$footer-height;
-  background-color: #000;
+
+  &.with-locale-switch {
+    margin-top: -$footer-height - $locale-switch-height;
+  }
+}
+
+#locale-switch {
+  height: $locale-switch-height;
+  font-size: 85%;
+
+  p {
+    margin-bottom: 0;
+  }
 }
 
 #footer {
+  background-color: #000;
   color: #666;
   padding: 10px;
   height: 60px;

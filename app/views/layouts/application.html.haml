@@ -7,7 +7,7 @@
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
 
-  %body{ id: "#{params[:controller]}_#{params[:action]}", class: (logged_in? ? "loggedin" : "loggedout") }
+  %body{ id: "#{params[:controller]}_#{params[:action]}", class: (logged_in? && !public_page? ? "loggedin" : "loggedout") }
     = render "layouts/header"
     #main-wrapper
       = render "layouts/messages"

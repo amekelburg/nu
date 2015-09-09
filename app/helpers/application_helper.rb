@@ -116,4 +116,13 @@ module ApplicationHelper
     modal_dialog  = content_tag(:div, modal_content, class: 'modal-dialog').html_safe
     content_tag(:div, modal_dialog, class: 'modal fade', id: options[:id]).html_safe
   end
+
+  def front_page?
+    params[:controller] == 'user_sessions'
+  end
+
+  def public_page?
+    %w{ user_sessions applications }.include?(params[:controller])
+  end
+
 end

@@ -12,6 +12,15 @@ matt:
         label: Technical Support
         url: "http://info.deterlab.org"
       ops_notices:
-        lable: Operations Notices
+        label: Operations Notices
+        url: "http://info.deterlab.org"
+      public_link_1:
+        label: Public Link 1
+        url: "http://info.deterlab.org"
+      public_link_2:
+        label: Public Link 2
+        url: "http://info.deterlab.org"
+      public_link_3:
+        label: Public Link 3
         url: "http://info.deterlab.org"
 
