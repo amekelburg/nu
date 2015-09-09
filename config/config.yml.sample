@@ -10,3 +10,6 @@ realization_refresh_rate: 30
 
 # main library id
 main_library_id: 'john:MainLibrary'
+
+# Redis memory cache namespace
+redis_namespace: deter-gdocs

@@ -21,7 +21,5 @@ module Deter
     # config.i18n.default_locale = :de
 
     config.autoload_paths << Rails.root.join('lib')
-
-    config.cache_store = :redis_store, 'redis://localhost:6379/0/deter-cache', { expires_in: 90.minutes }
   end
 end
