@@ -18,7 +18,9 @@
       - @records.each do |json|
         - r = JSON.parse(json)
         %tr
-          %td.col-sm-1= Time.at(r["time"]).strftime("%B %d %H:%M:%S")
-          %td.col-sm-1= r["type"]
+          %td.col-sm-1= raw Time.at(r["time"]).strftime("%B&nbsp;%d %H:%M:%S")
+          %td.col-sm-1= r["type"] == "request" ? "REQ" : "RESP"
           %td.col-sm-10
+            - if r["url"]
+              %pre.pre-scrollable= r["url"]
             %pre.pre-scrollable= format_log_xml r["xml"]

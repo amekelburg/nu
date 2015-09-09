@@ -25,12 +25,12 @@ class WsdlCachingAdapter < HTTPI::Adapter::NetHTTP
         end
       end
     else
-      REDIS.lpush("spi_log", { time: Time.now.to_f, type: 'request', xml: @request.body }.to_json)
+      REDIS.lpush("spi_log", { time: Time.now.to_f, type: 'request', xml: @request.body, url: @request.url.to_s }.to_json)
 
       # data request
       res = super(method)
 
-      REDIS.lpush("spi_log", { time: Time.now.to_f, type: 'response', xml: res.raw_body }.to_json)
+      REDIS.lpush("spi_log", { time: Time.now.to_f, type: 'response', xml: res.raw_body, url: @request.url.to_s }.to_json)
       REDIS.ltrim("spi_log", 0, 99)
     end
 
