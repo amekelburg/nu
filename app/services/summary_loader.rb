@@ -44,7 +44,7 @@ class SummaryLoader
       m << {
         id:    ex.id,
         owner: { uid: ex.owner, name: user_profile["name"] },
-        description: ex_profile['description'].value
+        description: ex_profile['description'].try(:value)
       }
 
       m

@@ -104,7 +104,7 @@ module DeterLab
 
       return ProfileFields.new(fields)
     rescue Savon::SOAPFault => e
-      process_error e
+      process_experiment_profile_error e
     end
 
     # changes experiment profile
@@ -191,5 +191,18 @@ module DeterLab
     rescue Savon::SOAPFault => e
       process_error e
     end
+
+    private
+
+    def process_experiment_profile_error(e)
+      process_error e
+    rescue => ex
+      if ex.message =~ /^No profile/
+        return ProfileFields.new([])
+      else
+        raise ex
+      end
+    end
+
   end
 end
