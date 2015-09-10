@@ -23,3 +23,9 @@ en:
       public_link_3:
         label: Public Link 3
         url: "http://info.deterlab.org"
+
+    top_menu:
+      profile: Profile
+      logout: Logout
+      login: Login
+      recent_activity: Recent Activity

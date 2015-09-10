@@ -69,7 +69,7 @@
       .col-sm-12.f.actions
         %h4= t ".realizations"
         - if belongs_to_project
-          = icon_link_to 'play', experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
+          = icon_link_to 'play_arrow', experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
         = show_hide_link '#realization-section', realizations_expand
         = help_icon t(".help.realizations.brief"), more_title: t(".help.realizations.more.title"), more_text: t(".help.realizations.more.text")
 

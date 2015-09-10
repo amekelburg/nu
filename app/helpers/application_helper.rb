@@ -81,27 +81,14 @@ module ApplicationHelper
     options ||= {}
     more_title = options[:more_title]
     more_text  = options[:more_text]
+    modal_id = SecureRandom.uuid
 
-    opts = {}
-    tooltip = brief
-    if more_text.present?
-      modal_id = SecureRandom.uuid
-      tooltip = [
-        content_tag(:p, tooltip),
-        content_tag(:p, "Click icon for more info", class: 'tooltip-more').gsub('"', "'")
-      ].join.html_safe
-      opts[:class] = "with-more"
-      opts[:modal_id] = modal_id
-    end
-    opts[:tooltip] = tooltip
+    link = link_to('help', '#', class: 'icon material-icons help',
+      data: { toggle: 'tooltip', placement: 'left', html: true, modal_id: modal_id },
+      role: 'button',
+      title: "<p>#{brief}</p><p><a href='#' class='tooltip-more' data-modal-id='#{modal_id}'>Read more</a>".html_safe.gsub('"', "'") )
 
-    icon = icon_tag('help', opts)
-
-    if more_text.present?
-      [ icon, modal(options[:more_title], options[:more_text], id: modal_id) ].join.html_safe
-    else
-      icon
-    end
+    [ link, modal(options[:more_title], options[:more_text], id: modal_id) ].join.html_safe
   end
 
   def modal(title, text, options = nil)
