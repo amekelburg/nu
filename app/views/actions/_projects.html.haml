@@ -1,6 +1,6 @@
 - unless @subsection == :manage
   = icon_link_to 'person_add', :new_project_join
-  = icon_link_to 'add', :new_library
+  = icon_link_to 'add', :new_project
   = icon_link_to 'storage', '#join-project-approve'
   - managed_projects = Rails.env.test? ? [] : deter_lab.get_managed_projects.reject(&:admin?)
   - if managed_projects.any?
