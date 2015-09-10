@@ -1,0 +1,14 @@
+- max_top      = AppConfig['dashboard']['list_items']
+- running      = @resources.running_experiment_ids
+- operational  = running.size
+- realizations = @resources.total_realizations
+%tr
+  %th.col-sm-2 Running Experiments:
+  %td.col-sm-9
+    #{pluralize(operational, 'experiment')} operational, #{pluralize(realizations, 'total realization')}
+    %ul
+      - running[0, max_top].each do |id|
+        %li= link_to id, experiment_path(id)
+      - if running.size > max_top
+        %li= link_to "More &hellip;".html_safe, :experiments
+  %td.col-sm-1= help_icon "Running Experiments are...", more_title: "Running Experiments", more_text: "Running Experiments are blah blah blah"

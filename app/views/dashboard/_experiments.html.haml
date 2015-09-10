@@ -1,0 +1,12 @@
+- max_top = AppConfig['dashboard']['list_items']
+- exp     = @resources.experiments
+%tr
+  %th.col-sm-2 Experiments:
+  %td.col-sm-9
+    #{exp.size} total
+    %ul
+      - exp[0, max_top].each do |e|
+        %li= link_to e.id, experiment_path(e.id)
+      - if exp.size > max_top
+        %li= link_to "More &hellip;".html_safe, :experiments
+  %td.col-sm-1= help_icon "Experiments are...", more_title: "Experiments", more_text: "Experiments are blah blah blah"

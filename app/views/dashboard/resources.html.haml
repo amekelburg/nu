@@ -1,88 +1,50 @@
+- max_top = 3
+
 .row.section-row
   .col-sm-12.f.actions
     %h4= t '.resources.title'
-    = show_hide_link "#resources-section", true
 .row#resources-section.section
   .col-sm-12
-    %p= t '.resources.before'
-    %ul
-      %li
-        You have access to #{pluralize(@resources.accessible_experiments_count, 'experiment')} total,
-        across #{pluralize(@resources.member_of_projects_count, 'project')} that you are a member of.
-      %li
-        There are 0 of these experiments currently running:
-        -#  list of experiment names each a link
+    %table.table
+      = render "notifications"
+      = render "running_experiments"
+      = render "experiments"
+      = render "projects"
+      = render "libraries"
 
-      - ids = @resources.owned_project_ids
-      - own_project_count = ids.count
-      %li
-        You are the project leader for #{own_project_count == 1 ? 'project' : 'projects'} &hellip;
-        - unless ids.blank?
-          %ul
-            - ids.each do |pid|
-              %li= link_to pid, project_path(pid)
+    -# %ul
+    -#   %li
+    -#     You have access to #{pluralize(@resources.accessible_experiments_count, 'experiment')} total,
+    -#     across #{pluralize(@resources.member_of_projects_count, 'project')} that you are a member of.
+    -#   %li
+    -#     There are 0 of these experiments currently running:
+    -#     -#  list of experiment names each a link
 
-      - ids = @resources.joined_project_ids
-      - joined_project_count = ids.count
-      %li
-        You are a member of #{joined_project_count == 1 ? 'project' : 'projects'} &hellip;
-        - unless ids.blank?
-          %ul
-            - ids.each do |pid|
-              %li= link_to pid, project_path(pid)
+    -#   - ids = @resources.owned_project_ids
+    -#   - own_project_count = ids.count
+    -#   %li
+    -#     You are the project leader for #{own_project_count == 1 ? 'project' : 'projects'} &hellip;
+    -#     - unless ids.blank?
+    -#       %ul
+    -#         - ids.each do |pid|
+    -#           %li= link_to pid, project_path(pid)
 
-      - ex = @resources.accessible_library_experiments
-      - libs = @resources.libraries
-      %li
-        You have read access to #{pluralize(ex.count, 'experiment')} via libraries &hellip;
-        - unless libs.blank?
-          %ul
-            - libs.each do |l|
-              %li= link_to l.id, library_path(l.id)
+    -#   - ids = @resources.joined_project_ids
+    -#   - joined_project_count = ids.count
+    -#   %li
+    -#     You are a member of #{joined_project_count == 1 ? 'project' : 'projects'} &hellip;
+    -#     - unless ids.blank?
+    -#       %ul
+    -#         - ids.each do |pid|
+    -#           %li= link_to pid, project_path(pid)
 
-    %p= t '.resources.after'
+    -#   - ex = @resources.accessible_library_experiments
+    -#   - libs = @resources.libraries
+    -#   %li
+    -#     You have read access to #{pluralize(ex.count, 'experiment')} via libraries &hellip;
+    -#     - unless libs.blank?
+    -#       %ul
+    -#         - libs.each do |l|
+    -#           %li= link_to l.id, library_path(l.id)
 
-
-.row.section-row
-  .col-sm-12.f.actions
-    %h4= t '.notifications.title'
-    = show_hide_link "#notifications-section", true
-.row#notifications-section.section
-  %ul
-    - u = @resources.unread_project_requests_count
-    - if u > 0
-      %li
-        - unread = raw t('.notifications.unread_no_link', count: u)
-        = raw t '.notifications.unread_projects', unread: unread, path: new_only_notifications_path
-    %li
-      - u = @resources.unread_notifications
-      - t = @resources.total_notifications
-      - unread = raw(u == 0 ? t('.notifications.unread.zero') : t('.notifications.unread', count: u, path: new_only_notifications_path))
-      - total  = raw(t == 0 ? t('.notifications.total.zero') : t('.notifications.total', count: t, path: notifications_path))
-      = raw t '.notifications.totals', unread: unread, total: total
-    %li
-      - n = @resources.new_project_notifications_count
-      = raw(u == 0 ? t('.notifications.new_projects.zero') : t('.notifications.new_projects', count: n))
-    %li
-      - j = @resources.join_project_notifications_count
-      = raw(j == 0 ? t('.notifications.join_projects.zero') : t('.notifications.join_projects', count: j))
-
-
--# = section_row t('.activity.title'), 'activity-section'
-.row.section-row
-  .col-sm-12.f.actions
-    %h4= t '.activity.title'
-    = show_hide_link "#activity-section", false
-.row#activity-section.section.collapse
-  -# load on open, cache on close
-  -# config item for N of events (default 5)
-  -# events from the event log of all projects and project experiments (not library experiments) that the user has access to, and users in these projects.
-
-  %ul
-    %li Abigail Adams updated the description of experiment HelloWorld at T
-    %li Ambrose Beirce added a layout aspect to experiment ExperimentOne at T
-    %li Gerta Grein did a profile update at T
-
-  %p Your last profile update was at T
-  %p Your last password change was at T, via password reset
-
+    -# %p= t '.resources.after'

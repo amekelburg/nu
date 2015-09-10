@@ -20,8 +20,9 @@
       -# Notifications menu
       %li.notifications.dropdown
         = link_to "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
-          - if @notifications.try(:size) > 0
-            %span.badge= @notifications.size
+          - unread = (@notifications || []).count { |n| !n.read? }
+          - if unread > 0
+            %span.badge= unread
           = icon_tag "notifications"
         %ul.dropdown-menu
           %li= link_to t("submenu.new_notifications"), new_only_notifications_path

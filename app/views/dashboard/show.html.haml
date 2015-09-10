@@ -3,7 +3,6 @@
 - @section_root  = true
 - name = current_user_name
 .page-header
-  = raw t '.info', notifications_count: @notifications.size, label: pluralize(@notifications.size, 'notification'), notifications_link: notifications_path
   - if current_user_session.first_login?
     = raw t '.welcome.first_time', name: name, guide_link: AppConfig['guide_link']
   - else

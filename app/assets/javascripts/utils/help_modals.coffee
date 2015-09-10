@@ -1,6 +1,5 @@
 $ ->
-  $("[data-modal-id]").each (i, el) ->
-    $(el).on "click", (e) ->
-      e.preventDefault()
-      modalId = $(e.target).data('modalId')
-      $("##{modalId}").modal('toggle')
+  $("body").on "click", "[data-modal-id]", (e) ->
+    e.preventDefault()
+    modalId = $(this).data('modalId')
+    $("##{modalId}").modal('toggle')

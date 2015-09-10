@@ -1,0 +1,13 @@
+- max_top  = AppConfig['dashboard']['list_items']
+- owned    = @resources.owned_project_ids
+- projects = @resources.projects
+%tr
+  %th.col-sm-2 Projects:
+  %td.col-sm-9
+    #{@resources.member_of_projects_count} total, leader for #{owned.size}
+    %ul
+      - projects[0, max_top].each do |p|
+        %li= link_to "#{p.project_id} #{'(leader)' if p.owner == current_user_id}", project_path(p.project_id)
+      - if projects.size > max_top
+        %li= link_to "More &hellip;".html_safe, :projects
+  %td.col-sm-1= help_icon "Projects are...", more_title: "Projects", more_text: "Projects are blah blah blah"

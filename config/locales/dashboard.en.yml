@@ -2,10 +2,7 @@ en:
   dashboard:
     show:
       title: Dashboard
-      info: >
-        <p>
-          You have <a href="%{notifications_link}">%{label}</a>
-        </p>
+      info:
 
       welcome:
         first_time: >
@@ -21,35 +18,5 @@ en:
     resources:
       resources:
         title: Resources
-        before: "Your DeterLab resources:"
         after: "More information is available via the main navigation bar above."
 
-      notifications:
-        title: "Notifications"
-        unread:
-          zero:  "no unread notifications"
-          one:   "1 <a href='%{path}'>unread notification</a>"
-          other: "%{count} <a href='%{path}'>unread notifications</a>"
-        unread_no_link:
-          zero:  "no unread notifications"
-          one:   "1 unread notification"
-          other: "%{count} unread notifications"
-        total:
-          zero:  ""
-          one:   "of 1 <a href='%{path}'>total notification</a>"
-          other: "of %{count} <a href='%{path}'>total notifications</a>"
-        totals: "You have %{unread} %{total}"
-
-        new_projects:
-          zero:  "You have no new-project requests that have not yet been approved"
-          one:   "You have 1 new-project request that has not yet been approved"
-          other: "You have %{count} new-project requests that have not yet been approved"
-        join_projects:
-          zero:  "You have no join-project requests that have not yet been approved"
-          one:   "You have 1 join-project request that has not yet been approved"
-          other: "You have %{count} join-project requests that have not yet been approved"
-      
-        unread_projects: "You have %{unread} of new project request. <a href='%{path}'>Click here to view them.</a>"
-
-      activity:
-        title: Recent Activity

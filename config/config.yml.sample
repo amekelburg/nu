@@ -13,3 +13,7 @@ main_library_id: 'john:MainLibrary'
 
 # Redis memory cache namespace
 redis_namespace: deter-gdocs
+
+dashboard:
+  # Max number of list items in dashboard resources list
+  list_items: 3

@@ -7,3 +7,4 @@ $ ->
     success: (data) ->
       $(".resources").html(data)
       bindShowHideButtons(".resources")
+      $("[data-toggle=tooltip]").tooltip()

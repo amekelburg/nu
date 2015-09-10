@@ -1,0 +1,13 @@
+- max_top  = AppConfig['dashboard']['list_items']
+- libs     = @resources.libraries
+- exp      = @resources.libraries_experiments
+%tr
+  %th.col-sm-2 Libraries:
+  %td.col-sm-9
+    #{libs.size} (total experiments #{exp.size})
+    %ul
+      - libs[0, max_top].each do |l|
+        %li= link_to "#{l.id} (TBD)", library_path(l.id)
+      - if libs.size > max_top
+        %li= link_to "More &hellip;".html_safe, :libraries
+  %td.col-sm-1= help_icon "Libraries are...", more_title: "Libraries", more_text: "Libraries are blah blah blah"

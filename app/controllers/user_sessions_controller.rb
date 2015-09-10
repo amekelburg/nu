@@ -33,7 +33,7 @@ class UserSessionsController < ApplicationController
       app_session.logged_in_as(@login.username, admin)
       current_user_session.register_login
 
-      redirect_to :dashboard, notice: t(".success")
+      redirect_to :dashboard
     else
       @error = true
       @login.password = nil

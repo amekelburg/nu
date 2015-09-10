@@ -1,3 +1,28 @@
 #dashboard_show {
   .spinner { margin-top: 5px; }
+
+  #resources-section {
+    table, tr, td, th {
+      border: none;
+    }
+
+    ul {
+      padding-left: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .icon {
+      margin: 0;
+      color: #888;
+      cursor: pointer;
+
+      &:hover {
+        color: #000;
+      }
+    }
+  }
 }
+
