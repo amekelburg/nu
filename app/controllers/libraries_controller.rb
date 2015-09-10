@@ -34,6 +34,13 @@ class LibrariesController < ApplicationController
     @project_experiments = get_project_experiments
 
     gon.libraryDetailsUrl = details_library_path(lid)
+
+    render :show
+  end
+
+  # managing the library
+  def manage
+    show
   end
 
   # renders details about library experiments

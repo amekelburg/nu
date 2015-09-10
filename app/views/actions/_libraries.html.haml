@@ -5,5 +5,5 @@
     = icon_link_to 'settings', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
     %ul.dropdown-menu.dropdown-menu-right
       - managed_libraries.each do |l|
-        %li= link_to l[:library_id], library_path(l[:library_id])
+        %li= link_to l[:library_id], manage_library_path(l[:library_id])
 = icon_link_to 'help', '#help'
