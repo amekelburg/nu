@@ -37,9 +37,10 @@
 
             .title= @section_title || (@section && @section.capitalize)
 
-            - if @section
+            - if content_for? :actions
+              = yield :actions
+            - elsif @section
               = render partial: "actions/#{@section}"
-              -# rescue ''
 
         -# .navbar.navbar-inverse{ role: 'navigation' }
         -#   %ul.nav.navbar-nav

@@ -2,45 +2,44 @@
 - @section       = :projects
 - @section_title = raw t '.title', id: @project.project_id
 
+- content_for :actions do
+  = icon_link_to 'info_outline', '#profile-section', class: 'js-section-switch'
+  = icon_link_to 'settings_input_component', '#experiments-section', class: 'js-section-switch active'
+  = icon_link_to 'people', '#team-section', class: 'js-section-switch'
+
 .page-header
   = raw t '.info', owner: @project.owner
 
 .row
   .col-sm-12
 
-    -# = section_row t('.project_profile'), 'profile-section', state: @managing ? :opened : :closed
-    -# .row#profile-section.section{ class: collapse_class }
-    -#   .col-sm-12
-    -#     - if @project.can_modify?(current_user_id)
-    -#       %p.text-right= link_to t('.edit'), edit_project_profile_path(@project.project_id), class: "btn btn-xs #{action_class}"
-    -#     %table.table.table-bordered
-    -#       - @profile.each do |f|
-    -#         - k = f.name
-    -#         - next unless Project::PROFILE_FIELDS.include?(k)
-    -#         - v = f.value
-    -#         %tr
-    -#           %td.col-sm-4= t "page_project_info.project_leader.project_#{k}.label"
-    -#           %td.col-sm-8= v
+    #profile-section.hide
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".project_profile"
+      .row.section
+        .col-sm-12
+          %table.table.table-bordered
+            - @profile.each do |f|
+              - k = f.name
+              - next unless Project::PROFILE_FIELDS.include?(k)
+              - v = f.value
+              %tr
+                %td.col-sm-3= t "page_project_info.project_leader.project_#{k}.label"
+                %td.col-sm-9= v
 
-    -# = section_row t('.project_team'), 'team-section', state: @managing ? :opened : :closed
-    -# .row.section#team-section{ class: collapse_class }
-    -#   .col-sm-12
-    -#     - if @project.can_modify_access?(current_user_id)
-    -#       %p.text-right= link_to t('.edit'), project_members_path(@project.project_id), class: "btn btn-xs #{action_class}"
-    -#   .col-sm-12.body
-    -#     %span.spinner Loading. Please wait&hellip;
+    #team-section.hide
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".project-team"
+      .row.section
+        .col-sm-12.body
+          %span.spinner Loading. Please wait&hellip;
 
-    -# = section_row t('.experiments'), 'experiments-section', state: :always_open
-    .row.section-row
-      .col-sm-12.f.actions
-        %h4= t ".experiments"
-        = show_hide_link '#experiments-section', true
-    .row.section.in#experiments-section
-      .col-sm-12.body
-        %span.spinner Loading. Please wait&hellip;
-
-    -# = section_row t('.recent_activity'), 'activity-section', state: @managing ? :opened : :closed
-    -# .row.section#activity-section{ class: collapse_class }
-    -#   .col-sm-12
-    -#     - log = ActivityLog.for_project(@project.project_id)
-    -#     = render partial: 'shared/activity_log', object: log
+    #experiments-section
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".experiments"
+      .row.section
+        .col-sm-12.body
+          %span.spinner Loading. Please wait&hellip;

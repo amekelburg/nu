@@ -1,8 +1,8 @@
 %table.table.table-bordered
   - @team.each do |m|
     %tr
-      %td.col-sm-4
+      %td.col-sm-3
         #{link_to (m['name'] or "<unnamed>"), profile_path(m['uid'])} (#{m['uid']})
         #{"<br/> Project Leader".html_safe if m['leader']}
-      %td.col-sm-8
+      %td.col-sm-9
         = m['perms'].join(', ')

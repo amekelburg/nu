@@ -1,3 +1,5 @@
+$active-icon-link: #fdb813;
+
 .page-header {
   margin-top: 0;
   margin-bottom: 0;
@@ -90,6 +92,10 @@ a.icon {
     text-decoration: none;
     outline: none;
   }
+}
+
+.icon.active {
+  color: $active-icon-link !important;
 }
 
 .home-icon {
