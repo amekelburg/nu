@@ -3,7 +3,7 @@
 - is_owner           = @experiment.owner == uid
 - collapse_class     = @managing ? 'in' : 'collapse'
 - realizations_expand = @realizations.any?
-- aspects_expand     = !realizations_expand
+- aspects_expand     = params[:sa] || !realizations_expand
 - action_class       = @managing ? 'btn-success' : 'btn-default'
 - belongs_to_project = @experiment.belongs_to_project?
 - @submenu           = :my_experiments
