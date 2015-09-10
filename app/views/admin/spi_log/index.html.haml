@@ -4,11 +4,11 @@
   .col-sm-4.text-right
     %br
     - if params[:action] == 'index'
-      = link_to "Show All", :full_spi_log, class: 'btn btn-default'
+      = link_to "Show All", :admin_full_spi_log, class: 'btn btn-default'
     - else
-      = link_to "Show Last 10", :spi_log, class: 'btn btn-default'
+      = link_to "Show Last 10", :admin_spi_log, class: 'btn btn-default'
 
-    = link_to "Clear All", :spi_log, method: 'delete', data: { confirm: 'Sure to clear whole log?' }, class: 'btn btn-danger'
+    = link_to "Clear All", :admin_spi_log, method: 'delete', data: { confirm: 'Sure to clear whole log?' }, class: 'btn btn-danger'
 
 - if @records.blank?
   %p No records yet

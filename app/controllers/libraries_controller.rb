@@ -40,6 +40,7 @@ class LibrariesController < ApplicationController
 
   # managing the library
   def manage
+    deter_lab.invalidate_experiments
     show
   end
 
@@ -84,9 +85,9 @@ class LibrariesController < ApplicationController
     do_copy_experiment(@library, params[:experiment_id])
     deter_lab.invalidate_experiments
 
-    redirect_to library_path(@library.id), notice: t(".success")
+    redirect_to manage_library_path(@library.id), notice: t(".success")
   rescue DeterLab::RequestError => e
-    redirect_to library_path(@library.id), alert: t(".failure", error: e.message)
+    redirect_to manage_library_path(@library.id), alert: t(".failure", error: e.message)
   end
 
   private

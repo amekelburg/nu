@@ -13,7 +13,7 @@ class Admin::SpiLogController < Admin::BaseController
 
   def clear
     REDIS.del("spi_log")
-    redirect_to :spi_log
+    redirect_to :admin_spi_log
   end
 
 end
