@@ -5,21 +5,22 @@
 .page-header
   = raw t '.info', owner: @library.owner
 
-.row
-  .col-sm-12
-    = icon_link_to 'add', '#', class: 'js-copy'
+- if @library.can_add_experiment?(current_user_id)
+  .row
+    .col-sm-12
+      = icon_link_to 'add', '#', class: 'js-copy'
 
-    %table.table.hide.no-margin.js-copy-experiment
-      %tr
-        %td.copy
-          = raw t '.copy_experiment'
-          = form_tag copy_experiment_library_path(@library.id), class: 'form' do
-            .form-group
-              = label_tag "experiment_id", t(".experiment"), class: 'control-label'
-              = select_tag "experiment_id", options_for_select(@project_experiments.map(&:id), params[:source_id]), prompt: 'Select Experiment', class: 'form-control'
-            .form-group
-              = button_tag "Cancel", class: "btn btn-default js-cancel"
-              = submit_tag t(".copy_submit"), class: "btn btn-default"
+      %table.table.hide.no-margin.js-copy-experiment
+        %tr
+          %td.copy
+            = raw t '.copy_experiment'
+            = form_tag copy_experiment_library_path(@library.id), class: 'form' do
+              .form-group
+                = label_tag "experiment_id", t(".experiment"), class: 'control-label'
+                = select_tag "experiment_id", options_for_select(@project_experiments.map(&:id), params[:source_id]), prompt: 'Select Experiment', class: 'form-control'
+              .form-group
+                = button_tag "Cancel", class: "btn btn-default js-cancel"
+                = submit_tag t(".copy_submit"), class: "btn btn-default"
 
 .row#experiments-section
   .col-sm-12
