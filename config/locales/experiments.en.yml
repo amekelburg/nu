@@ -24,6 +24,7 @@ en:
       title: New experiment
       info: >
         <p>Please fill the form:</p>
+      submit: Create Experiment
 
     manage:
       title: "Manage experiment: %{id}"
