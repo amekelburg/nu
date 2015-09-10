@@ -19,7 +19,7 @@
           .col-sm-12.bar
             - if @section_root or ![ :experiments, :libraries, :projects, :profile ].include?(@section)
               .menu
-                = link_to icon_tag("menu"), "#", class: 'btn-lg dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
+                = icon_link_to "menu", "#", class: 'home-icon dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
                 %ul.dropdown-menu
                   - %w{ experiments libraries projects }.each do |s|
                     %li= link_to "#{icon_tag(section_icon(s))}#{t("submenu.#{s}")}".html_safe, section_root_path(s)
@@ -32,7 +32,7 @@
                     %li.no-icon= link_to t("submenu.project_admin"), '#TBD'
                     %li.no-icon= link_to t("submenu.privilege_admin"), '#TBD'
             - else
-              = link_to icon_tag(section_icon(@section)), section_root_path(@section), class: 'btn-lg'
+              = icon_link_to section_icon(@section), section_root_path(@section), class: 'home-icon'
 
 
             .title= @section_title || (@section && @section.capitalize)

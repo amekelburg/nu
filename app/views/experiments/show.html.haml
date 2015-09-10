@@ -69,7 +69,7 @@
       .col-sm-12.f.actions
         %h4= t ".realizations"
         - if belongs_to_project
-          = link_to icon_tag('play'), experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
+          = icon_link_to 'play', experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
         = show_hide_link '#realization-section', realizations_expand
         = help_icon t(".help.realizations.brief"), more_title: t(".help.realizations.more.title"), more_text: t(".help.realizations.more.text")
 
@@ -111,8 +111,7 @@
         %h4= t ".aspects"
         - if @experiment.can_modify_experiment?
           .dropdown
-            = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
-              = icon_tag "plus"
+            = icon_link_to 'add', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
             %ul.dropdown-menu
               - %w{ layout orchestration visualization }.each do |type|
                 %li= link_to t(".add_aspect", type: type.capitalize), new_experiment_aspect_path(@experiment.id, type: type)

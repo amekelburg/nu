@@ -36,24 +36,26 @@ module ApplicationHelper
 
   def icon_tag(icon, options = nil)
     options ||= {}
-    path_options = options[:path_options]
-    path = content_tag(:path, '', { d: Icons::PATHS[icon.to_sym] || Icons::PATHS[:_missing] }.merge(path_options || {}))
-    g = content_tag(:g, path)
-    svg = content_tag(:svg, g, viewBox: '0 0 24 24', preserveAspectRatio: 'xMidYMid meet')
 
-    opts = { class: [ 'icon', [ options[:class] ] ].flatten.reject(&:blank?).join(' ') }
+    opts = { class: [ 'icon', 'material-icons', [ options[:class] ] ].flatten.reject(&:blank?).join(' ') }
     if options[:tooltip]
       opts['data-toggle'] = 'tooltip'
       opts['data-html'] = true
       opts['title'] = options[:tooltip].gsub('"', '&#34;')
       opts['data-modal-id'] = options[:modal_id]
-      # opts['data-delay'] = { show: 100, hide: 2000 }.to_json
     end
-    content_tag(:div, svg, opts)
+
+    content_tag(:i, icon, opts)
   end
 
   def section_icon(section)
     case section.to_sym
+    when :experiments
+      'settings_input_component'
+    when :projects
+      'description'
+    when :libraries
+      'library_books'
     when :profile
       'person'
     else
@@ -71,10 +73,8 @@ module ApplicationHelper
   end
 
   def show_hide_link(section_selector, expanded)
-    link_to '#', data: { toggle: 'expand', expanded: expanded, target: section_selector } do
-      [ icon_tag('expand_less', class: [ "less", expanded ? nil : 'hide' ]),
-        icon_tag('expand_more', class: [ "more", expanded ? 'hide' : nil ]) ].join.html_safe
-    end
+    label = expanded ? 'expand_less' : 'expand_more'
+    link_to label, '#', class: 'icon material-icons', data: { toggle: 'expand', expanded: expanded, target: section_selector }
   end
 
   def help_icon(brief, options = nil)
@@ -123,6 +123,13 @@ module ApplicationHelper
 
   def public_page?
     %w{ user_sessions applications }.include?(params[:controller])
+  end
+
+  def icon_link_to(icon, href, options = nil)
+    options ||= {}
+    cl = options[:class] || ""
+    cl = [ cl, 'icon material-icons' ].reject(&:blank?).join(' ')
+    link_to(icon, href, options.merge(class: cl))
   end
 
 end

@@ -67,10 +67,7 @@ RealizationStore = Reflux.createStore
       <div className='row section-row'>
         <div className='col-sm-12 f actions'>
           <h4>{I18n.t('experiment_realizations.show.resource_usage')}</h4>
-          <a data-expanded='false' data-target='#resources-section' data-toggle='expand' href='#'>
-            <IconLess />
-            <IconMore />
-          </a>
+          <a data-expanded='false' data-target='#resources-section' data-toggle='expand' href='#' className='icon material-icons'>expand_more</a>
         </div>
       </div>
       {panel}

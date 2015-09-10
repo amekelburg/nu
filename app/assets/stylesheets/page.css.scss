@@ -84,3 +84,15 @@ $section-link-hover: #222;
 table.no-margin {
   margin: 0;
 }
+
+a.icon {
+  &:active, &:hover, &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+.home-icon {
+  margin-left: 24px;
+  margin-right: 24px;
+}

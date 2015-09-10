@@ -90,7 +90,7 @@ class ApplicationController < ActionController::Base
 
   def preload_data
     if logged_in?
-      @notifications = Rails.env.test? ? [] : deter_lab.get_notifications
+      @notifications = Rails.env.test? ? [] : deter_lab.get_notifications rescue []
     end
   end
 

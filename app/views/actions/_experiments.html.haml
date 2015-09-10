@@ -1,10 +1,9 @@
-= link_to icon_tag('plus'), :new_experiment
+= icon_link_to 'add', :new_experiment, class: 'add'
 - managed_experiments = SummaryLoader.user_managed_experiments(current_user_id)
 - if managed_experiments.any?
   .settings
-    = link_to "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button' do
-      = icon_tag("settings")
+    = icon_link_to 'settings', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
     %ul.dropdown-menu.dropdown-menu-right
       - managed_experiments.each do |e|
         %li= link_to e[:id], manage_experiment_path(e[:id])
-= link_to icon_tag('help'), '#help'
+= icon_link_to 'help', '#help'
