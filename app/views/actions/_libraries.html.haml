@@ -1,9 +1,10 @@
-= icon_link_to 'add', :new_library
-- managed_libraries = SummaryLoader.user_managed_libraries(current_user_id)
-- if managed_libraries.any?
-  .settings
-    = icon_link_to 'settings', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
-    %ul.dropdown-menu.dropdown-menu-right
-      - managed_libraries.each do |l|
-        %li= link_to l[:library_id], manage_library_path(l[:library_id])
+- unless @subsection == :new
+  = icon_link_to 'add', :new_library
+  - managed_libraries = SummaryLoader.user_managed_libraries(current_user_id)
+  - if managed_libraries.any?
+    .settings
+      = icon_link_to 'settings', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
+      %ul.dropdown-menu.dropdown-menu-right
+        - managed_libraries.each do |l|
+          %li= link_to l[:library_id], manage_library_path(l[:library_id])
 = icon_link_to 'help', '#help'

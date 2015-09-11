@@ -41,6 +41,7 @@ en:
       info: >
         <p>Please fill the form:</p>
       submit: Create Experiment
+      cancel: Cancel
 
     manage:
       title: "Manage experiment: %{id}"

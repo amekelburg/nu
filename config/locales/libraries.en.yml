@@ -34,7 +34,8 @@ en:
         </p>
 
       name: Name
-      submit: Create library
+      submit: Create Library
+      cancel: Cancel
 
     create:
       success: Library is created
