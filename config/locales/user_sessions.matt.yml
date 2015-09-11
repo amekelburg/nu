@@ -2,7 +2,16 @@ matt:
   user_sessions:
     new:
       title: "Welcome to DeterLab's <i>Nu Experimenter Portal</i>"
-      subheader: "DeterLab is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" 
+      subheader: "DeterLab is a web-accessible workshop of choice for cybersecurity researchers and educators."
+        <p>
+          DeterCore provides the array of tools to orchestrate, federate, and model human behavior in experiments.
+          It can integrate into partner systems to expand utility in collaboration.
+        </p>
+        <p>
+          DeterLibrary is the user-accessible archive to share, re-use, and modify built experiments to
+          get started quickly, observe and learn, and advance cyber technology.
+        </p>
+        
       links: >
         <strong>Learn More:</strong>&nbsp;&nbsp;
         <a href="http://deter-project.org" target="_blank">DeterLab for Scientists</a>&nbsp;&nbsp;-&nbsp;&nbsp;
