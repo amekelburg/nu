@@ -36,13 +36,10 @@ class ExperimentsController < ApplicationController
     end
 
     @realizations = DeterLab.view_realizations(current_user_id)
-
-    render :show
   end
 
   # opens the management page
   def manage
-    @managing = true
     show
   end
 

@@ -1,14 +1,152 @@
-- uid = @app_session.current_user_id
-- pid = @experiment.id.split(':').first
-- is_owner = @experiment.owner == uid
-- @submenu = :my_experiments
-- @section = :experiments
-- @section_title = raw t '.title', id: @experiment.id
+- uid                = @app_session.current_user_id
+- pid                = @experiment.id.split(':').first
+- is_owner           = @experiment.owner == uid
+- collapse_class     = 'in'
+- realizations_expand = @realizations.any?
+- aspects_expand     = params[:sa] || !realizations_expand
+- action_class       = 'btn-success'
+- belongs_to_project = @experiment.belongs_to_project?
+- @submenu           = :my_experiments
+- @section           = :experiments
+- @section_title     = raw t '.title', id: @experiment.id
 
 .page-header
-  = raw t '.info', owner: @experiment.owner
-
+  = raw t '.info', owner: @experiment.owner, aspects: pluralize(@experiment.aspects.count, 'aspect'), realizations: pluralize(@realizations.count, 'realization')
 
 .row
   .col-sm-12
-    TBD
+
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t "experiments.show.experiment_profile"
+        = show_hide_link '#profile-section', true
+    .row#profile-section.section
+      .col-sm-12
+        - if is_owner
+          %p.text-right= link_to t('experiments.show.edit'), edit_experiment_profile_path(@experiment.id), class: "btn btn-xs #{action_class}"
+        %table.table.table-bordered
+          - @profile.each do |f|
+            - k = f.name
+            - next unless Project::PROFILE_FIELDS.include?(k)
+            - v = f.value
+            %tr
+              %td.col-sm-4= k.capitalize
+              %td.col-sm-8= v
+
+    - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t "experiments.show.access_control"
+        = show_hide_link '#acl-section', true
+    .row#acl-section.section
+      .col-sm-12
+        - if @experiment.can_modify_experiment_access?
+          %p.text-right= link_to t('experiments.show.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"
+        %table.table.table-bordered
+          - unless acl.owner_perms.blank?
+            %tr
+              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
+              %td.col-sm-8= acl.owner_perms.join(", ")
+          - acl.other_users_acl.each do |acl|
+            %tr
+              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
+              %td.col-sm-8= acl[1].join(", ")
+
+
+        - unless acl.project_perms.blank? and acl.groups_acl.blank?
+          %table.table.table-bordered
+            - unless acl.project_perms.blank?
+              %tr
+                %td.col-sm-4 Group:&nbsp;#{pid}
+                %td.col-sm-8= acl.project_perms.join(", ")
+            - acl.groups_acl.each do |acl|
+              %tr
+                %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
+                %td.col-sm-8= acl.permissions.join(", ")
+
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t "experiments.show.realizations"
+        - if belongs_to_project
+          = icon_link_to 'play_arrow', experiment_realizations_path(@experiment.id), method: 'post', data: { toggle: 'tooltip', placement: 'left' }, title: "Run this experiment"
+        = show_hide_link '#realization-section', realizations_expand
+        = help_icon t("experiments.help.realizations.brief"), more_title: t("experiments.help.realizations.more.title"), more_text: t("experiments.help.realizations.more.text")
+
+    .row.section#realization-section{ class: realizations_expand ? nil : 'collapse' }
+      .col-sm-12
+        - if belongs_to_project
+          - if @realizations.blank?
+            %p= t "experiments.show.no_realizations"
+          - else
+            %table.table.table-striped
+              %thead
+                %tr
+                  %th Name
+                  %th Circle
+                  %th Status
+                  %th Cont / Map
+                  %th
+              - @realizations.each do |r|
+                %tr
+                  %td= link_to r.name, experiment_realization_path(@experiment.id, r.name)
+                  %td= r.circle
+                  %td= r.status
+                  %td.text-center
+                    #{r.containments.size} / #{r.mappings.size}
+                  %td.text-right.col-sm-2
+                    = link_to 'Release', release_experiment_realization_path(@experiment.id, r.name), method: 'post', data: { confirm: 'Sure to release this realization?' }, class: 'btn btn-xs btn-default'
+                    = link_to 'Remove', experiment_realization_path(@experiment.id, r.name), method: 'delete', data: { confirm: 'Sure to remove this realization?' }, class: 'btn btn-xs btn-danger'
+
+        - else
+          %p= raw t "experiments.show.library.realization_unavailable"
+          = form_tag clone_experiment_path(@experiment.id), { class: 'form-horizontal' } do
+            = render partial: 'new_experiment_fields'
+            .form-group
+              .col-sm-offset-2.col-sm-4
+                = submit_tag t("experiments.show.submit"), class: "btn btn-default"
+
+    .row.section-row
+      .col-sm-12.f.actions
+        %h4= t "experiments.show.aspects"
+        - if @experiment.can_modify_experiment?
+          .dropdown
+            = icon_link_to 'add', "#", class: 'dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
+            %ul.dropdown-menu
+              - %w{ layout orchestration visualization }.each do |type|
+                %li= link_to t("experiments.show.add_aspect", type: type.capitalize), new_experiment_aspect_path(@experiment.id, type: type)
+        = show_hide_link '#aspects-section', aspects_expand
+        = help_icon t("experiments.help.aspects.brief"), more_title: t("experiments.help.aspects.more.title"), more_text: t("experiments.help.aspects.more.text")
+
+    .row.section#aspects-section{ class: aspects_expand ? nil : 'collapse' }
+      .col-sm-12
+        - groupped_aspects = @experiment.aspects.group_by(&:type)
+        - %w{ layout orchestration visualization }.each do |type|
+          - aspects = groupped_aspects[type]
+          .row.section-subheader
+            .col-sm-12
+              %h5= type.capitalize
+          .row
+            .col-sm-12
+              - if aspects.blank?
+                %p 0 #{type.capitalize}
+              - else
+                %table.table.table-striped
+                  - aspects.each_with_index do |a, i|
+                    - next unless a.root?
+                    - aid = "#{type}-#{i}"
+                    %tr
+                      %td
+                        .row
+                          .col-sm-8
+                            = link_to a.name, '#', data: { id: aid }, class: 'more-less'
+                          .col-sm-4.text-right
+                            = link_to t("experiments.show.view"), "#", data: { id: aid }, class: 'btn btn-xs btn-info more'
+                            = link_to t("experiments.show.hide"), "#", data: { id: aid }, class: 'btn btn-xs btn-info less hide'
+                            - if @experiment.can_modify_experiment?
+                              = link_to t("experiments.show.modify"), edit_experiment_aspect_path(@experiment.id, a.name, type: a.type), class: 'btn btn-xs btn-default'
+                              - if is_owner && a.sub_type.blank?
+                                = link_to t("experiments.show.delete"), experiment_aspect_path(@experiment.id, a.name, type: a.type), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }
+                        .row.hide{ data: { more_id: aid } }
+                          .col-sm-12
+                            %pre.view= aspect_data(a)
+

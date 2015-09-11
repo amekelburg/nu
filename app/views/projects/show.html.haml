@@ -3,7 +3,7 @@
 - @section_title = raw t '.title', id: @project.project_id
 
 - content_for :actions do
-  = icon_link_to 'info_outline', '#profile-section', class: 'js-section-switch'
+  = icon_link_to 'subject', '#profile-section', class: 'js-section-switch'
   = icon_link_to 'settings_input_component', '#experiments-section', class: 'js-section-switch active'
   = icon_link_to 'people', '#team-section', class: 'js-section-switch'
 
@@ -12,7 +12,6 @@
 
 .row
   .col-sm-12
-
     #profile-section.hide
       .row.section-row
         .col-sm-12.f.actions
