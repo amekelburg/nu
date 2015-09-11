@@ -41,6 +41,7 @@ class ExperimentsController < ApplicationController
   def show
     load_experiment_details
     @realizations = DeterLab.view_realizations(current_user_id)
+    render :show
   end
 
   # opens the management page

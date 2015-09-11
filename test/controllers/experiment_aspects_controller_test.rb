@@ -63,7 +63,7 @@ class ExperimentAspectsControllerTest < ActionController::TestCase
 
   test 'should handle errors when adding aspects to experiments' do
     reason = "Cannot read layout!?:Invalid byte 2 of 3-byte UTF-8 sequence."
-    @controller.expects(:current_user_name).returns('mark')
+    @controller.expects(:current_user_name).twice.returns('mark')
     DeterLab.expects(:add_experiment_aspects).raises(DeterLab::Error.new(reason))
     post :create, experiment_id: @eid, aspect: {}
     assert_template :new
@@ -72,7 +72,7 @@ class ExperimentAspectsControllerTest < ActionController::TestCase
 
   test 'should handle specific aspect error when adding' do
     reason = 'duplicate'
-    @controller.expects(:current_user_name).returns('mark')
+    @controller.expects(:current_user_name).twice.returns('mark')
     DeterLab.expects(:add_experiment_aspects).returns({ "name" => { success: false, reason: reason } })
     post :create, experiment_id: @eid, aspect: { name: "name" }
     assert_template :new

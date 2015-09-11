@@ -43,7 +43,7 @@ class LibrariesControllerTest < ActionController::TestCase
     @controller.stubs(:load_library).returns(lib)
     @controller.expects(:do_copy_experiment)
     post :copy_experiment, id: lib.id, experiment_id: "exid"
-    assert_redirected_to library_path(lib.id)
+    assert_redirected_to manage_library_path(lib.id)
     assert_equal I18n.t("libraries.copy_experiment.success"), flash.notice
   end
 
@@ -52,7 +52,7 @@ class LibrariesControllerTest < ActionController::TestCase
     @controller.stubs(:load_library).returns(lib)
     @controller.expects(:do_copy_experiment).raises(DeterLab::RequestError.new("error message"))
     post :copy_experiment, id: lib.id, experiment_id: "exid"
-    assert_redirected_to library_path(lib.id)
+    assert_redirected_to manage_library_path(lib.id)
     assert_equal I18n.t("libraries.copy_experiment.failure", error: "error message"), flash.alert
   end
 

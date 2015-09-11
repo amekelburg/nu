@@ -11,7 +11,6 @@ class DashboardControllerTest < ActionController::TestCase
     AppSession.new(@controller.session).logged_in_as "mark"
     @controller.deter_lab.stubs(:get_managed_projects).returns([])
     @controller.deter_lab.stubs(:get_profile).returns('name' => 'Mark Smith')
-    DeterLab.expects(:get_notifications).returns([])
 
     get :show
     assert_response :success

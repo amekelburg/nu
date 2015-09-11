@@ -23,13 +23,10 @@ module Deter
     config.autoload_paths << Rails.root.join('lib')
 
     # We have to read config here as app_config initializer will read it later
-    def load_config(name)
-      config = YAML.load_file(File.join(Rails.root, 'config', name))
-      env_config = config.delete(Rails.env)
-      config.merge!(env_config) unless env_config.nil?
-      config
-    end
-    ::AppConfig = load_config('config.yml')
+    c = YAML.load_file(File.join(Rails.root, 'config', 'config.yml'))
+    env_config = c.delete(Rails.env)
+    c.merge!(env_config) unless env_config.nil?
+    ::AppConfig = c
 
     config.cache_store = :redis_store, "redis://localhost:6379/0/#{AppConfig['redis_namespace']}-cache", { expires_in: 90.minutes }
   end

@@ -14,7 +14,6 @@ class UserSessionsControllerTest < ActionController::TestCase
 
     post :create, user_login: { username: 'user_id', password: 'pass' }
     assert_redirected_to :dashboard
-    assert_equal I18n.t("user_sessions.create.success"), flash.notice
     assert @app_session.logged_in?
     assert !@app_session.admin?
   end
