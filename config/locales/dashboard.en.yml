@@ -18,5 +18,6 @@ en:
     resources:
       resources:
         title: Resources
+        before: "lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum lorem-ipsum"
         after: "More information is available via the main navigation bar above."
 

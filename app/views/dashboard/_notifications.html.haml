@@ -5,5 +5,5 @@
   - msg = [ (unread > 0 ? "#{unread} new" : nil), (pending > 0 ? "#{pending} pending" : nil) ].reject(&:blank?).join(", ")
   %tr
     %th.col-sm-2 Notifications:
-    %td.col-sm-9= msg
+    %td.col-sm-9 #{msg} #{link_to 'notifications', :notifications}
     %td.col-sm-1= help_icon "Notifications are...", more_title: "Notifications", more_text: "Notifications are blah blah blah"
