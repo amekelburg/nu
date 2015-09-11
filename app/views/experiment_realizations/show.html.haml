@@ -2,6 +2,16 @@
 - @section = :experiments
 - @section_title = raw t '.title', id: @experiment.id
 
+- content_for :home do
+  .menu
+    = icon_link_to section_icon(@section), "#", class: 'home-icon dropdown-toggle', data: { toggle: 'dropdown' }, role: 'button'
+    %ul.dropdown-menu
+      %li= link_to "#{icon_tag(section_icon(@section))}#{t("submenu.experiments")}".html_safe, :experiments
+      %li.no-icon= link_to @experiment.id, experiment_path(@experiment.id)
+
+- content_for :actions do
+  = icon_link_to 'help', '#help'
+
 .page-header
   = raw t '.info', owner: @experiment.owner
 
