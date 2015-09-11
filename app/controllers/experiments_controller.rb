@@ -6,6 +6,19 @@ class ExperimentsController < ApplicationController
     redirect_to :experiments, alert: t(".not_found")
   end
 
+  class ExperimentMember < Hashie::Dash
+    property :circle_id
+
+    # converts "user" to "user:user", while preserving "group:user"
+    def full_circle_id
+      if circle_id.present? && !circle_id.match(/^.+:.+$/)
+        "#{circle_id}:#{circle_id}"
+      else
+        circle_id
+      end
+    end
+  end
+
   # lists all user experiments
   def index
     uid = app_session.current_user_id
@@ -33,6 +46,69 @@ class ExperimentsController < ApplicationController
   # opens the management page
   def manage
     load_experiment_details
+
+    @profile_description = deter_lab.get_experiment_profile_description
+    @profile = deter_lab.get_experiment_profile(@experiment.id)
+    @new_member = ExperimentMember.new
+  end
+
+  # updates experiment profile
+  def profile_update
+    eid = params[:id]
+    res = DeterLab.change_experiment_profile(current_user_id, eid, params[:profile])
+    deter_lab.invalidate_experiments
+
+    @profile_errors = res.inject({}) do |m, r|
+      m[r[0]] = r[1][:reason] unless r[1][:success]
+      m
+    end
+
+    if @profile_errors.blank?
+      redirect_to manage_experiment_path(eid), notice: t('.success')
+    else
+      edit
+    end
+  rescue DeterLab::RequestError => e
+    redirect_to experiment_path(eid), alert: t(".failure", error: e.message).html_safe
+  end
+
+  # adds experiment member
+  def add_member
+    @experiment = deter_lab.get_experiment(params[:id])
+    member = ExperimentMember.new(member_params)
+
+    res = DeterLab.change_experiment_acl(current_user_id, @experiment.id, [
+      ExperimentACL.new(member.full_circle_id, ExperimentACL::ALL_PERMS) ])
+
+    success = res[member.full_circle_id]
+    deter_lab.invalidate_experiment(@experiment.id) if success
+
+    options = {}
+    options[success ? :notice : :alert] = t(success ? ".success" : ".failure")
+
+    redirect_to manage_experiment_path(@experiment.id), options
+  end
+
+  # removes the member record
+  def delete_member
+    @experiment = deter_lab.get_experiment(params[:id])
+    member = ExperimentMember.new(circle_id: params[:circle_id])
+
+    if member.full_circle_id == "#{@experiment.owner}:#{@experiment.owner}"
+      redirect_to manage_experiment_path(@experiment.id), alert: t('.deleting_self')
+      return
+    end
+
+    res = DeterLab.change_experiment_acl(@app_session.current_user_id, @experiment.id, [
+      ExperimentACL.new(member.full_circle_id, ExperimentACL::DELETE) ])
+
+    success = res[member.full_circle_id]
+    deter_lab.invalidate_experiment(@experiment.id) if success
+
+    options = {}
+    options[success ? :notice : :alert] = t(success ? ".success" : ".failure")
+
+    redirect_to manage_experiment_path(@experiment.id), options
   end
 
   # showing the new experiment form
@@ -127,6 +203,10 @@ class ExperimentsController < ApplicationController
       @profile_descr = deter_lab.get_experiment_profile_description
       @projects      = deter_lab.get_projects.select { |p| p[:approved] && p[:project_id].downcase != 'admin' }
     end
+  end
+
+  def member_params
+    params[:member].permit(:circle_id).symbolize_keys
   end
 
 end

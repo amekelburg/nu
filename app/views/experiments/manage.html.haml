@@ -1,3 +1,4 @@
+- @profile_errors  ||= {}
 - uid                = @app_session.current_user_id
 - pid                = @experiment.id.split(':').first
 - is_owner           = @experiment.owner == uid
@@ -7,6 +8,7 @@
 - @submenu           = :my_experiments
 - @section           = :experiments
 - @section_title     = raw t '.title', id: @experiment.id
+- @subsection        = :manage
 
 .page-header
   = raw t '.info', owner: @experiment.owner
@@ -20,16 +22,25 @@
         = show_hide_link '#profile-section', true
     .row#profile-section.section
       .col-sm-12
-        - if is_owner
-          %p.text-right= link_to t('experiments.show.edit'), edit_experiment_profile_path(@experiment.id), class: "btn btn-xs #{action_class}"
-        %table.table.table-bordered
-          - @profile.each do |f|
-            - k = f.name
-            - next unless Project::PROFILE_FIELDS.include?(k)
-            - v = f.value
-            %tr
-              %td.col-sm-4= k.capitalize
-              %td.col-sm-8= v
+        = form_tag profile_update_experiment_path(@experiment.id), method: 'put', class: 'form-horizontal' do
+          .row
+            .col-sm-12
+              %table.table.table-bordered
+                - @profile_description.each do |pd|
+                  - error = @profile_errors[pd.name]
+                  %tr{ class: error.nil? ? nil : "has-error" }
+                    %td.col-sm-3= label_tag "profile[#{pd.name}]", pd.description
+                    %td.col-sm-9
+                      - if pd.access == "READ_WRITE"
+                        = text_field_tag "profile[#{pd.name}]", @profile[pd.name].value, class: 'form-control'
+                      - else
+                        = @profile[pd.name].value
+                      - if error.present?
+                        .helpBlock= error
+
+          .row
+            .col-sm-12
+              %p= submit_tag t('.profile.save'), class: 'btn btn-default'
 
     - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
     .row.section-row
@@ -38,27 +49,42 @@
         = show_hide_link '#acl-section', true
     .row#acl-section.section
       .col-sm-12
-        - if @experiment.can_modify_experiment_access?
-          %p.text-right= link_to t('experiments.show.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"
-        %table.table.table-bordered
-          - unless acl.owner_perms.blank?
+        = form_for @new_member, as: :member, url: add_member_experiment_path(@experiment.id), html: { class: 'form-horizontal' } do |f|
+          %table.table.table-bordered
+            - unless acl.owner_perms.blank?
+              %tr
+                %td.col-sm-3 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
+                %td.col-sm-8= acl.owner_perms.join(", ")
+                %td.col-sm-1 &nbsp;
+            - acl.other_users_acl.each do |acl|
+              - user_id = acl[0]
+              %tr
+                %td.col-sm-3 User:&nbsp;#{deter_lab.get_profile(user_id)['name']}
+                %td.col-sm-8= acl[1].join(", ")
+                %td.col-sm-1.text-center
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: user_id), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
             %tr
-              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
-              %td.col-sm-8= acl.owner_perms.join(", ")
-          - acl.other_users_acl.each do |acl|
-            %tr
-              %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
-              %td.col-sm-8= acl[1].join(", ")
+              %td.col-sm-3= f.text_field :circle_id, class: "form-control", placeholder: t(".add_user.hint")
+              %td
+              %td.col-sm-1.text-center{ style: 'vertical-align: middle' }= f.submit t(".add_user.submit"), class: "btn btn-default btn-xs"
 
 
-        - unless acl.project_perms.blank? and acl.groups_acl.blank?
+        = form_for @new_member, as: :member, url: add_member_experiment_path(@experiment.id), html: { class: 'form-horizontal' } do |f|
           %table.table.table-bordered
             - unless acl.project_perms.blank?
               %tr
-                %td.col-sm-4 Group:&nbsp;#{pid}
+                %td.col-sm-3 Group:&nbsp;#{pid}
                 %td.col-sm-8= acl.project_perms.join(", ")
+                %td.col-sm-1.text-center
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: acl.project_cid), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
             - acl.groups_acl.each do |acl|
               %tr
-                %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
+                %td.col-sm-3 Group:&nbsp;#{acl.circle_id.split(':').first}
                 %td.col-sm-8= acl.permissions.join(", ")
+                %td.col-sm-1.text-center
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, acl.circle_id), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+            %tr
+              %td.col-sm-3= f.text_field :circle_id, class: "form-control", placeholder: t(".add_group.hint")
+              %td
+              %td.col-sm-1.text-center{ style: 'vertical-align: middle' }= f.submit t(".add_group.submit"), class: "btn btn-default btn-xs"
 

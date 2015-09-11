@@ -50,6 +50,29 @@ matt:
           Experiment owner: %{owner}
         </p>
 
+      profile:
+        save: Save Profile
+
+      add_user:
+        hint:     "user"
+        submit:   "Add User"
+
+      add_group:
+        hint:     "group:group"
+        submit:   "Add Group"
+
+    profile_update:
+      success: "Profile updated"
+      failure: "Failed to update profile:<br/>%{error}"
+
+    add_member:
+      success: "Notification is sent"
+      failure: "Failed to create the record"
+
+    delete_member:
+      success: "Member deleted"
+      failure: "Failed to delete the record:<br/>%{error}"
+
     run:
       success: Started the experiment successfully
       failure: "Failed to start the experiment:<br/>%{error}"

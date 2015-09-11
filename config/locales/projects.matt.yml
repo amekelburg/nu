@@ -67,6 +67,10 @@ matt:
         hint: User name
         submit: Add User
 
+    profile_update:
+      success: "Profile updated"
+      failure: "Failed to update profile:<br/>%{error}"
+
     add_member:
       success: "Notification is sent"
       failure: "Failed to create the record:<br/>%{error}"

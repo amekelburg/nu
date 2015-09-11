@@ -1,4 +1,4 @@
-- if @subsection != :new
+- if @subsection != :new and @subsection != :manage
   = icon_link_to 'add', :new_experiment, class: 'add'
   - managed_experiments = SummaryLoader.user_managed_experiments(current_user_id)
   - if managed_experiments.any?

@@ -33,13 +33,13 @@ Rails.application.routes.draw do
 
   resources :projects, only: [ :index, :new, :create, :destroy, :show ] do
     member do
-      get :profile
-      get :manage
-      put '/manage' => 'projects#profile_update', as: 'profile_update'
-      put :profile_update
-      post :add_member
-      delete :delete_member
-      get :details
+      get     :profile
+      get     :manage
+      put     '/manage' => 'projects#profile_update', as: 'profile_update'
+      put     :profile_update
+      post    :add_member
+      delete  :delete_member
+      get     :details
     end
 
     resource  :profile, controller: "project_profile", only: [ :show, :edit, :update ]
@@ -51,6 +51,10 @@ Rails.application.routes.draw do
   resources :experiments, only: [ :index, :new, :create, :destroy, :show ] do
     member do
       get     :realize
+      put     '/manage' => 'experiments#profile_update', as: 'profile_update'
+      put     :profile_update
+      post    :add_member
+      delete  :delete_member
       delete  :remove_realization
       get     :manage
       post    :clone
