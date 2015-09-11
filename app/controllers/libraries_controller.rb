@@ -32,26 +32,14 @@ class LibrariesController < ApplicationController
     end
 
     @project_experiments = get_project_experiments
-
-    gon.libraryDetailsUrl = details_library_path(lid)
+    @experiments = get_library_experiments_details(lid)
 
     render :show
   end
 
   # managing the library
   def manage
-    deter_lab.invalidate_experiments
     show
-  end
-
-  # renders details about library experiments
-  # called by JS from the library/show page
-  def details
-    lid = params[:id]
-    @experiments = get_library_experiments_details(lid)
-    render json: {
-      experiments_html: render_to_string(partial: "shared/details_experiments")
-    }
   end
 
   # shows new library form

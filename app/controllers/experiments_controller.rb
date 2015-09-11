@@ -2,6 +2,10 @@ class ExperimentsController < ApplicationController
 
   before_filter :require_login
 
+  rescue_from ActiveRecord::RecordNotFound do
+    redirect_to :experiments, alert: t(".not_found")
+  end
+
   # lists all user experiments
   def index
     uid = app_session.current_user_id
@@ -22,25 +26,13 @@ class ExperimentsController < ApplicationController
 
   # shows experiment details
   def show
-    @experiment ||= deter_lab.get_experiment(params[:id])
-    if @experiment.nil?
-      redirect_to :experiments, alert: t(".not_found")
-      return
-    end
-
-    @profile = deter_lab.get_experiment_profile(@experiment.id)
-
-    if @experiment.belongs_to_library?
-      @profile_descr = deter_lab.get_experiment_profile_description
-      @projects      = deter_lab.get_projects.select { |p| p[:approved] && p[:project_id].downcase != 'admin' }
-    end
-
+    load_experiment_details
     @realizations = DeterLab.view_realizations(current_user_id)
   end
 
   # opens the management page
   def manage
-    show
+    load_experiment_details
   end
 
   # showing the new experiment form
@@ -122,6 +114,18 @@ class ExperimentsController < ApplicationController
       if failed_aspects.any?
         raise DeterLab::RequestError, t(".failure", error: t("experiments.errors.copying_aspecs", aspects: failed_aspects.join(", ")))
       end
+    end
+  end
+
+  def load_experiment_details
+    @experiment ||= deter_lab.get_experiment(params[:id])
+    raise ActiveRecord::RecordNotFound if @experiment.nil?
+
+    @profile = deter_lab.get_experiment_profile(@experiment.id)
+
+    if @experiment.belongs_to_library?
+      @profile_descr = deter_lab.get_experiment_profile_description
+      @projects      = deter_lab.get_projects.select { |p| p[:approved] && p[:project_id].downcase != 'admin' }
     end
   end
 

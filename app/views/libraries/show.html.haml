@@ -18,7 +18,7 @@
               = form_tag copy_experiment_library_path(@library.id), class: 'form' do
                 .form-group
                   = label_tag "experiment_id", t(".experiment"), class: 'control-label'
-                  = select_tag "experiment_id", options_for_select(@project_experiments.map(&:id), params[:source_id]), prompt: 'Select Experiment', class: 'form-control'
+                  = select_tag "experiment_id", options_for_select(@project_experiments.map(&:id) - @experiments.map { |e| e[:id] }, params[:source_id]), prompt: 'Select Experiment', class: 'form-control'
                 .form-group
                   = button_tag "Cancel", class: "btn btn-default js-cancel"
                   = submit_tag t(".copy_submit"), class: "btn btn-default"
@@ -26,7 +26,4 @@
 .row#experiments-section
   .col-sm-12
     .body
-      %span.spinner Loading. Please wait&hellip;
-
-
-
+      = render partial: 'shared/details_experiments'
