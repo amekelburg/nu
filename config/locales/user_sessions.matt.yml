@@ -2,7 +2,12 @@ matt:
   user_sessions:
     new:
       title: "Welcome to DeterLab's <i>Nu Experimenter Portal</i>"
-      subheader: "DeterLab is blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah" 
+      subheader: "DeterLab is a web-accessed laboratory of choice for cybersecurity experimenters in research and
+      education that provides tools for conducting scientific-based cyber experiments by use of its subsystems and
+      hardware – DeterCore – to simulate networks at large scale and high fidelity with cyber physical and human
+      agent behavior capabilities to create real-world proving grounds for experiment testing, re-use, sharing,
+      and modification amongst the DETER user community."
+    
       links: >
         <strong>Learn More:</strong>&nbsp;&nbsp;
         <a href="http://deter-project.org" target="_blank">DeterLab for Scientists</a>&nbsp;&nbsp;-&nbsp;&nbsp;
@@ -10,10 +15,7 @@ matt:
         <a href="http://deter-project.org" target="_blank">Support for Users</a>
       info: >
         <p>
-          DeterLab: Advanced testbed facility where leading researchers and academics conduct critical cybersecurity 
-          experimentation and educational exercises. It emulates real-world complexity and scale necessary to evolve 
-          next-generation solutions to help protect against sophisticated cyber attacks and network design vulnerabilities. 
-          As devices become Internet integrated, the need for resilient design is apparent. This is where it begins.
+          (future text placeholder)
         </p>
 
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
