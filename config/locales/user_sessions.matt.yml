@@ -15,10 +15,7 @@ matt:
         <a href="http://deter-project.org" target="_blank">Support for Users</a>
       info: >
         <p>
-          DeterLab: Advanced testbed facility where leading researchers and academics conduct critical cybersecurity 
-          experimentation and educational exercises. It emulates real-world complexity and scale necessary to evolve 
-          next-generation solutions to help protect against sophisticated cyber attacks and network design vulnerabilities. 
-          As devices become Internet integrated, the need for resilient design is apparent. This is where it begins.
+          (future text placeholder)
         </p>
 
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
