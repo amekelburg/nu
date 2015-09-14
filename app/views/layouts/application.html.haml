@@ -10,7 +10,7 @@
 
   %body{ id: "#{params[:controller]}_#{params[:action]}", class: (logged_in? && !public_page? ? "loggedin" : "loggedout") }
     = render "layouts/header"
-    #main-wrapper{ class: 'error-wrapper' }
+    #main-wrapper{ class: @error_wrapping ? 'error-wrapper' : nil }
       - if @error_wrapping
         = yield
       - else
