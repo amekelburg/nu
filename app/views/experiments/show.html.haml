@@ -98,8 +98,8 @@
                     %td.text-center
                       #{r.containments.size} / #{r.mappings.size}
                     %td.text-right.col-sm-2
-                      = link_to 'Release', release_experiment_realization_path(@experiment.id, r.name), method: 'post', data: { confirm: 'Sure to release this realization?' }, class: 'btn btn-xs btn-default'
-                      = link_to 'Remove', experiment_realization_path(@experiment.id, r.name), method: 'delete', data: { confirm: 'Sure to remove this realization?' }, class: 'btn btn-xs btn-danger'
+                      = link_to 'Release', release_experiment_realization_path(@experiment.id, r.name), method: 'post', data: { bbconfirm: 'Sure to release this realization?' }, class: 'btn btn-xs btn-default'
+                      = link_to 'Remove', experiment_realization_path(@experiment.id, r.name), method: 'delete', data: { bbconfirm: 'Sure to remove this realization?' }, class: 'btn btn-xs btn-danger'
 
           - else
             %p= raw t ".library.realization_unavailable"
@@ -149,7 +149,7 @@
                               - if @experiment.can_modify_experiment?
                                 = link_to t(".modify"), edit_experiment_aspect_path(@experiment.id, a.name, type: a.type), class: 'btn btn-xs btn-default'
                                 - if is_owner && a.sub_type.blank?
-                                  = link_to t(".delete"), experiment_aspect_path(@experiment.id, a.name, type: a.type), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: "Are you sure?" }
+                                  = link_to t(".delete"), experiment_aspect_path(@experiment.id, a.name, type: a.type), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: "Are you sure?" }
                           .row.hide{ data: { more_id: aid } }
                             .col-sm-12
                               %pre.view.col-sm-12= aspect_data(a)

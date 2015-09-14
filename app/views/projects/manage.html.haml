@@ -55,7 +55,7 @@
                   - if m['uid'] == current_user_id
                     &nbsp;
                   - else
-                    = link_to t(".delete"), delete_member_project_path(@project.project_id, uid: m['uid']), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+                    = link_to t(".delete"), delete_member_project_path(@project.project_id, uid: m['uid']), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure?' }
             %tr
               %td.col-sm-3= f.text_field :uid, class: "input-sm form-control", placeholder: t(".add_user.hint")
               %td

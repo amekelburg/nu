@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require bootbox.min
 //= require jquery_ujs
 //= require knockoutjs-3.2.0
 //= require moment

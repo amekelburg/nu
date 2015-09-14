@@ -16,7 +16,7 @@
             - if m.uid == current_user_id
               &nbsp;
             - else
-              = link_to t(".delete"), project_member_path(@project.project_id, m.uid), method: :delete, class: 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
+              = link_to t(".delete"), project_member_path(@project.project_id, m.uid), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure?' }
 .row
   .col-sm-12
     %h4= t(".add_user.title")
