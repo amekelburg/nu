@@ -28,10 +28,20 @@ $section-link-hover: #222;
   margin-bottom: 5px;
 
   .f {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+
+    -webit-flex-flow: row nowrap;
     flex-flow: row nowrap;
 
     h4 {
+      -webkit-box-flex: 1;
+      -moz-box-flex: 1;
+      -webkit-flex: 1;
+      -ms-flex: 1;
       flex: 1;
     }
   }
