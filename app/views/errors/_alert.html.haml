@@ -1,0 +1,10 @@
+- @error_wrapping = true
+.alert.alert-danger
+  %h4= title
+
+  %p= raw message
+
+  %p
+    = link_to "More info", '#', class: 'js-error-more-info alert-link'
+  .details.hide
+    %pre.view= details

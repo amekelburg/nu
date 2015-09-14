@@ -12,6 +12,18 @@ class ApplicationController < ActionController::Base
     redirect_to :login
   end
 
+  # No connection to backend
+  rescue_from SocketError do |e|
+    @e = e
+    render 'errors/no_connection'
+  end
+
+  # General DETER error
+  rescue_from DeterLab::Error do |e|
+    @e = e
+    render 'errors/deter_error'
+  end
+
   # Application session wrapper
   def app_session
     @app_session ||= AppSession.new(session)

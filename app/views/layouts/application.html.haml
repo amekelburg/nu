@@ -10,12 +10,15 @@
 
   %body{ id: "#{params[:controller]}_#{params[:action]}", class: (logged_in? && !public_page? ? "loggedin" : "loggedout") }
     = render "layouts/header"
-    #main-wrapper
-      = render "layouts/messages"
-      #middle.container
-        .row
-          .col-sm-12
-            = yield
+    #main-wrapper{ class: 'error-wrapper' }
+      - if @error_wrapping
+        = yield
+      - else
+        = render "layouts/messages"
+        #middle.container
+          .row
+            .col-sm-12
+              = yield
 
     = render "layouts/footer"
 
