@@ -1,0 +1,9 @@
+en:
+  errors:
+    no_connection:
+      title:   "Error connecting to backend"
+      message: "There's currently no connection to backend.<br/>Please try again later."
+
+    deter_error:
+      title:   "Backend error"
+      message: "There was an unexpected backend error.<br/>Please try again later."

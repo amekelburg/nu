@@ -1,10 +1,14 @@
 - @error_wrapping = true
+- title     = t("errors.#{type}.title")
+- message   = t("errors.#{type}.message")
+- details ||= nil
 .alert.alert-danger
   %h4= title
 
   %p= raw message
 
-  %p
-    = link_to "More info", '#', class: 'js-error-more-info alert-link'
-  .details.hide
-    %pre.view= details
+  - if details
+    %p
+      = link_to "More info", '#', class: 'js-error-more-info alert-link'
+    .details.hide
+      %pre.view= details

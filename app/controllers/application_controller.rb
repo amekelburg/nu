@@ -14,14 +14,12 @@ class ApplicationController < ActionController::Base
 
   # No connection to backend
   rescue_from SocketError do |e|
-    @e = e
-    render 'errors/no_connection'
+    log_backend_error 'no_connection', e
   end
 
   # General DETER error
   rescue_from DeterLab::Error do |e|
-    @e = e
-    render 'errors/deter_error'
+    log_backend_error 'deter_error', e
   end
 
   # Application session wrapper
@@ -104,6 +102,15 @@ class ApplicationController < ActionController::Base
     if logged_in?
       @notifications = Rails.env.test? ? [] : deter_lab.get_notifications rescue []
     end
+  end
+
+  def log_backend_error(type, e)
+    @e = e
+
+    details = e.backtrace.keep_if { |p| p =~ %r{/app/} }.join("\n")
+    logger.error "----------\nBackend Service Error\n#{e}\n#{details}\n----------"
+
+    render "errors/#{type}"
   end
 
 end

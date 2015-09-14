@@ -1,1 +1,1 @@
-= render partial: 'errors/alert', locals: { title: "Backend error", message: "There was an unexpected backend error.<br/>Please try again later.", details: @e.message }
+= render partial: 'errors/alert', locals: { type: "deter_error", details: @e.message }
