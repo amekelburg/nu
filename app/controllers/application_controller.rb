@@ -7,11 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :change_locale
   before_action :preload_data
 
-  rescue_from DeterLab::NotLoggedIn do
-    app_session.logged_out
-    redirect_to :login
-  end
-
   # No connection to backend
   rescue_from SocketError do |e|
     log_backend_error 'no_connection', e
@@ -19,7 +14,12 @@ class ApplicationController < ActionController::Base
 
   # General DETER error
   rescue_from DeterLab::Error do |e|
-    log_backend_error 'deter_error', e
+    if e.is_a? DeterLab::NotLoggedIn
+      app_session.logged_out
+      redirect_to :login
+    else
+      log_backend_error 'deter_error', e
+    end
   end
 
   # Application session wrapper
