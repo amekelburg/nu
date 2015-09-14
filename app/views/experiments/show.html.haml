@@ -38,36 +38,34 @@
                 %td.col-sm-4= k.capitalize
                 %td.col-sm-8= v
 
-      #acl-section.hide
-        - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
-        .row.section-row
-          .col-sm-12.f.actions
-            %h4= t ".access_control"
-        .row.section
-          .col-sm-12
-            - if @experiment.can_modify_experiment_access?
-              %p.text-right= link_to t('.edit'), experiment_members_path(@experiment.id), class: "btn btn-xs #{action_class}"
+    #acl-section.hide
+      - acl = ExperimentAclPresenter.new(@experiment.acl, @experiment.owner, pid)
+      .row.section-row
+        .col-sm-12.f.actions
+          %h4= t ".access_control"
+      .row.section
+        .col-sm-12
+          %table.table.table-bordered
+            - unless acl.owner_perms.blank?
+              %tr
+                %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
+                %td.col-sm-8= acl.owner_perms.join(", ")
+            - acl.other_users_acl.each do |acl|
+              %tr
+                %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
+                %td.col-sm-8= acl[1].join(", ")
+
+
+          - unless acl.project_perms.blank? and acl.groups_acl.blank?
             %table.table.table-bordered
-              - unless acl.owner_perms.blank?
+              - unless acl.project_perms.blank?
                 %tr
-                  %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(@experiment.owner)['name']}
-                  %td.col-sm-8= acl.owner_perms.join(", ")
-              - acl.other_users_acl.each do |acl|
+                  %td.col-sm-4 Group:&nbsp;#{pid}
+                  %td.col-sm-8= acl.project_perms.join(", ")
+              - acl.groups_acl.each do |acl|
                 %tr
-                  %td.col-sm-4 User:&nbsp;#{deter_lab.get_profile(acl[0])['name']}
-                  %td.col-sm-8= acl[1].join(", ")
-
-
-            - unless acl.project_perms.blank? and acl.groups_acl.blank?
-              %table.table.table-bordered
-                - unless acl.project_perms.blank?
-                  %tr
-                    %td.col-sm-4 Group:&nbsp;#{pid}
-                    %td.col-sm-8= acl.project_perms.join(", ")
-                - acl.groups_acl.each do |acl|
-                  %tr
-                    %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
-                    %td.col-sm-8= acl.permissions.join(", ")
+                  %td.col-sm-4 Group:&nbsp;#{acl.circle_id}
+                  %td.col-sm-8= acl.permissions.join(", ")
 
     #details-section
       .row.section-row
