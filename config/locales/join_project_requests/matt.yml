@@ -7,7 +7,7 @@ matt:
       info:   Managing requests info
       
     request:
-      header: Request to Join %{r.project_id}
+      header: Request to Join %{project_id}
       details: Join request from %{sender}
       approve: Approve
       reject:  Deny
