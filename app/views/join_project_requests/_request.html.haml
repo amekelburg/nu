@@ -6,16 +6,16 @@
       = link_to open ? 'Hide' : 'Show', '#', class: 'btn btn-xs btn-default show-hide', data: { drawer: "#req-#{r.id}" }
     %div{ class: open ? nil : 'hide', id: "req-#{r.id}" }
       %p= t '.details', sender: r.formatted_sender(deter_lab)
-      - if JoinRequestsManager.approved?(r)
+      - if JoinRequestsManager.approved?(r.id)
         .alert.alert-warning
           = raw t(".already_approved")
-      - elsif JoinRequestsManager.rejected?(r)
+      - elsif JoinRequestsManager.rejected?(r.id)
         .alert.alert-warning
           = raw t(".already_rejected")
       - else
         %p
-          = link_to t(".approve"), approve_join_project_request_path(r.id), class: 'btn btn-success btn-xs', data: { bbconfirm: 'Are you sure to APPROVE this request?' }
-          = link_to t(".reject"), reject_join_project_request_path(r.id), class: 'btn btn-danger btn-xs', data: { bbconfirm: 'Are you sure to REJECT this request?' }
+          = link_to t(".approve"), approve_join_project_request_path(r.id), method: 'post', class: 'btn btn-success btn-xs', data: { bbconfirm: 'Are you sure to APPROVE this request?' }
+          = link_to t(".reject"), reject_join_project_request_path(r.id), method: 'post', class: 'btn btn-danger btn-xs', data: { bbconfirm: 'Are you sure to REJECT this request?' }
       %table.table.table-condensed.table-striped.table-borderless
         - deter_lab.get_profile(r.sender).each do |k, v|
           %tr

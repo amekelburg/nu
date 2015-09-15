@@ -35,13 +35,13 @@ class JoinProjectRequestsControllerTest < ActionController::TestCase
   end
 
   test "failed approval" do
-    DeterLab.expects(:join_project_confirm).returns(false)
+    DeterLab.expects(:join_project_confirm).raises(DeterLab::Error.new('error'))
     JoinRequestsManager.expects(:mark_as_approved!).never
 
     post :approve, id: @n.id
 
     assert_redirected_to :join_project_requests
-    assert_equal I18n.t("join_project_requests.approve.failure"), flash.alert
+    assert_equal I18n.t("join_project_requests.approve.failure", error: 'error'), flash.alert
   end
 
   test "successful rejection" do

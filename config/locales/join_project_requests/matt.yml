@@ -21,7 +21,7 @@ matt:
 
     approve:
       success: Request approved
-      failure: Failed to approve the request
+      failure: "Failed to approve the request: %{error}"
 
     reject:
       success: Request rejected

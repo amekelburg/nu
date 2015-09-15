@@ -7,16 +7,16 @@ class JoinProjectRequestsController < ApplicationController
   end
 
   def approve
-    if DeterLab.join_project_confirm(current_user_id, notification.challenge)
-      JoinRequestsManager.mark_as_approved!(notification.id)
-      redirect_to :join_project_requests, notice: t('.success')
-    else
-      redirect_to :join_project_requests, alert: t('.failure')
-    end
+    DeterLab.join_project_confirm(current_user_id, notification.challenge)
+    JoinRequestsManager.mark_as_approved!(notification.id)
+    redirect_to :join_project_requests, notice: t('.success')
+  rescue DeterLab::Error => e
+    redirect_to :join_project_requests, alert: t('.failure', error: e.message)
   end
 
   def reject
-    DeterLab.join_project_reject(current_user_id, notification.challenge)
+    # There's no SPI action for this
+    # DeterLab.join_project_reject(current_user_id, notification.challenge)
     JoinRequestsManager.mark_as_rejected!(notification.id)
     redirect_to :join_project_requests, notice: t('.success')
   end

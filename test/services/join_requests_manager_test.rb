@@ -10,16 +10,22 @@ class JoinRequestsManagerTest < ActiveSupport::TestCase
     refute JoinRequestsManager.rejected?('new')
   end
 
+  test "processed? for new request" do
+    refute JoinRequestsManager.processed?('new')
+  end
+
   test "mark_as_approved!" do
     JoinRequestsManager.mark_as_approved! 'test-req-app'
     assert JoinRequestsManager.approved?('test-req-app')
     refute JoinRequestsManager.rejected?('test-req-app')
+    assert JoinRequestsManager.processed?('test-req-app')
   end
 
   test "mark_as_rejected!" do
     JoinRequestsManager.mark_as_rejected! 'test-req-rej'
     refute JoinRequestsManager.approved?('test-req-rej')
     assert JoinRequestsManager.rejected?('test-req-rej')
+    assert JoinRequestsManager.processed?('test-req-rej')
   end
 
 end

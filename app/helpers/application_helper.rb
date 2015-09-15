@@ -120,7 +120,7 @@ module ApplicationHelper
   end
 
   def join_requests_link(notifications)
-    unread = notifications.select { |n| n.join_project_request? && !n.read? }
+    unread = notifications.select { |n| n.join_project_request? && !JoinRequestsManager.processed?(n.id) }
 
     badge = nil
     opts = {}
