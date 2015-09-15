@@ -1,21 +1,19 @@
 class JoinRequestsManager
 
-  def self.accepted?(req_id)
-    # TODO implement
-    false
+  def self.approved?(req_id)
+    REDIS.hget('project_join_request_status', req_id) == 'approved'
   end
 
   def self.rejected?(req_id)
-    # TODO implement
-    false
+    REDIS.hget('project_join_request_status', req_id) == 'rejected'
   end
 
-  def self.mark_as_accepted!(req_id)
-    # TODO implement
+  def self.mark_as_approved!(req_id)
+    REDIS.hset 'project_join_request_status', req_id, 'approved'
   end
 
   def self.mark_as_rejected!(req_id)
-    # TODO implement
+    REDIS.hset 'project_join_request_status', req_id, 'rejected'
   end
 
 end

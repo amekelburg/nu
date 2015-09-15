@@ -6,7 +6,7 @@
       = link_to open ? 'Hide' : 'Show', '#', class: 'btn btn-xs btn-default show-hide', data: { drawer: "#req-#{r.id}" }
     %div{ class: open ? nil : 'hide', id: "req-#{r.id}" }
       %p= t '.details', sender: r.formatted_sender(deter_lab)
-      - if JoinRequestsManager.accepted?(r)
+      - if JoinRequestsManager.approved?(r)
         .alert.alert-warning
           = raw t(".already_approved")
       - elsif JoinRequestsManager.rejected?(r)

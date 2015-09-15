@@ -177,5 +177,28 @@ module DeterLab
       process_error e
     end
 
+    # Confirms project joining
+    def join_project_confirm(uid, challenge_id)
+      cl = client("Projects", uid)
+      response = cl.call(:join_project_confirm, message: {
+        challenge_id: challenge_id
+      })
+
+      return response.to_hash[:join_project_confirm_response][:return]
+    rescue Savon::SOAPFault => e
+      process_jpc_error e
+    end
+
+    private
+
+    def process_jpc_error(er)
+      process_error er
+    rescue => e
+      if e.message =~ /invalid value.*for element challengeId/i
+        return false
+      else
+        raise e
+      end
+    end
   end
 end

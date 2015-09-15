@@ -198,6 +198,20 @@ class DeterLab::ProjectsTest < DeterLab::AbstractTest
     end
   end
 
+  test "join project confirm - invalid challenge" do
+    VCR.use_cassette "deterlab/projects/join-project-confirm-invalid" do
+      login 'aadams'
+      refute DeterLab.join_project_confirm(@username, 'unknown')
+    end
+  end
+
+  test "join project confirm - success" do
+    VCR.use_cassette "deterlab/projects/join-project-confirm-success" do
+      login 'aadams'
+      assert DeterLab.join_project_confirm(@username, '4300891847249616286')
+    end
+  end
+
   def create_and_approve_project(pid)
     DeterLab.create_project(@username, pid, @username, { description: "descr" })
     DeterLab.approve_project(@username, pid)

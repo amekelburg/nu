@@ -1,5 +1,7 @@
 en:
   join_project_requests:
+    not_found: Request not found
+
     index:
       title:  Requests to Join a Project
       info:   Managing requests info
@@ -11,15 +13,15 @@ en:
       reject:  Deny
 
       already_approved: >
-        The join project request has already been <strong>accepted</strong>.<br/>
+        The join project request has already been <strong>approved</strong>.<br/>
         For more information, see <a href='%{recent_activity_url}'>Recent Activity</a>.
       already_rejected: >
         The join project request has already been <strong>rejected</strong>.<br/>
         For more information, see <a href='%{recent_activity_url}'>Recent Activity</a>.
 
-    show:
-      title: Review Request
-      info: >
-        <p>
-          Review and accept or reject the request
-        </p>
+    approve:
+      success: Request approved
+      failure: Failed to approve the request
+
+    reject:
+      success: Request rejected

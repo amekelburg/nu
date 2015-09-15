@@ -38,7 +38,7 @@ module DeterLab
       code = error_code(e)
 
       Rails.logger.error e.inspect
-      Rails.logger.error "Codeeeeee: #{code}"
+      Rails.logger.error "Code: #{code}"
 
       if code == "5"
         raise NotLoggedIn
@@ -69,7 +69,7 @@ module DeterLab
 
     # extracts the error detail message
     def detail_message(e)
-      deter_fault(e).try(:[], :detail_message)
+      deter_fault(e).try(:[], :detail_message) || e.to_hash.try(:[], :fault).try(:[], :reason).try(:[], :text)
     end
 
     private

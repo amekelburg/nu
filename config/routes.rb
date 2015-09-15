@@ -88,7 +88,7 @@ Rails.application.routes.draw do
   end
 
   resources :new_project_requests, only: :index
-  resources :join_project_requests, only: [ :index, :show ] do
+  resources :join_project_requests, only: [ :index ] do
     member do
       post    :approve
       post    :reject
