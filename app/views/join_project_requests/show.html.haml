@@ -8,10 +8,13 @@
 %table.table
   %tr
     %th Id:
-    %td= params[:id]
+    %td= @req.id
   %tr
     %th Type:
-    %td= params[:type]
+    %td= @req.type
   %tr
     %th Challenge:
-    %td= params[:challenge]
+    %td= @req.challenge
+  %tr
+    %th Processed:
+    %td= JoinRequestsManager.processed?(@req.id) ? 'Yes' : 'No'

@@ -76,7 +76,7 @@
 
     `<div className='row'>
       <div className='col-sm-12'>
-        <table className='table table-striped'>
+        <table className='table table-striped notifications'>
           <tbody>
             {rows}
           </tbody>
@@ -114,11 +114,13 @@
     if this.state.collapsed
       controls= `<a href='#' onClick={this.handleToggle} className='btn btn-xs btn-default'>Show</a>`
       content = ''
+      btn     = ''
     else
       controls= `<a href='#' onClick={this.handleToggle} className='btn btn-xs btn-default'>Hide</a>`
       body = { __html: n.body }
-      content = `<div dangerouslySetInnerHTML={body} />`
-
+      content = `<p dangerouslySetInnerHTML={body} />`
+      url = "/join_project_requests?hl=#{n.id}"
+      btn = `<p><a href={url} className='btn btn-default'>Process Request</a></p>`
 
     `<tr>
       <td>
@@ -139,8 +141,8 @@
           <div className='col-sm-1'>Type:</div>
           <div className='col-sm-11'>{n.type}</div>
         </div>
-        <div className='row'>
-          <div className='col-sm-12'>{content}</div>
+        <div className='row body'>
+          <div className='col-sm-12'>{content}{btn}</div>
         </div>
       </td>
      </tr>`

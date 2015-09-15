@@ -1,5 +1,22 @@
 matt:
   join_project_requests:
+    index:
+      title:  Requests to Join a Project
+      info:   Managing requests info
+      
+    request:
+      header: Request to Join %{r.project_id}
+      details: Join request from %{sender}
+      approve: Approve
+      reject:  Deny
+
+      already_approved: >
+        The join project request has already been <strong>accepted</strong>.<br/>
+        For more information, see <a href='%{recent_activity_url}'>Recent Activity</a>.
+      already_rejected: >
+        The join project request has already been <strong>rejected</strong>.<br/>
+        For more information, see <a href='%{recent_activity_url}'>Recent Activity</a>.
+
     show:
       title: Review Request
       info: >

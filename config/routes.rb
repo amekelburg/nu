@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   end
 
   resources :project_joins, only: [ :new, :create ]
+
   resources :circles,     only: [ :index, :new, :create, :destroy ]
   resources :experiments, only: [ :index, :new, :create, :destroy, :show ] do
     member do
@@ -87,7 +88,12 @@ Rails.application.routes.draw do
   end
 
   resources :new_project_requests, only: :index
-  resources :join_project_requests, only: :show
+  resources :join_project_requests, only: [ :index, :show ] do
+    member do
+      post    :approve
+      post    :reject
+    end
+  end
 
 
   namespace :admin do

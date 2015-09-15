@@ -13,22 +13,31 @@ $base_color: #fdb813;
   &.projects { background: mix($base_color, #666, 10%); }
 
   .bar {
+    position: relative;
     padding-left: 0;
     padding-right: 0;
     font-size: 14px;
     line-height: 1.428571429;
     height: 48px;
+
+    display: -webkit-box;
+    display: -moz-box;
     display: -ms-flexbox;
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
 
-    -ms-align-items: center;
     -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
     align-items: center;
-    position: relative;
 
     & > a, & a.dropdown-toggle {
+      &[disabled], &[disabled]:hover {
+        color: #ccc;
+        cursor: default;
+      }
+
       color: #fff;
 
       &:hover {
@@ -53,7 +62,14 @@ $base_color: #fdb813;
     font-size: 20px;
     font-weight: 400;
     line-height: 28px;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
     flex: 1;
+    -webkit-flex-basis: 0.000000001px;
+    -moz-flex-basis: 0.000000001px;
+    -ms-flex-basis: 0.000000001px;
     flex-basis: 0.000000001px;
     pointer-events: none;
   }

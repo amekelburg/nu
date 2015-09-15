@@ -28,10 +28,10 @@
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+}
 
-  .notifications .badge {
-    position: fixed;
-    margin-left: 18px;
-    z-index: 2;
-  }
+a .badge {
+  position: fixed;
+  margin-left: 18px;
+  z-index: 2;
 }

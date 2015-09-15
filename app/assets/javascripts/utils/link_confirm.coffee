@@ -7,9 +7,17 @@ $ ->
     
       msg = $(this).data('bbconfirm')
 
-      bootbox.confirm msg, (confirmed) ->
-        if confirmed
-          link.data('confirmed', true)
-          link[0].click()
-
+      bootbox.dialog
+        message: msg
+        buttons:
+          success:
+            label: 'Yes'
+            className: 'btn-default btn-sm'
+            callback: ->
+              link.data 'confirmed', true
+              link[0].click()
+          main:
+            label: 'No'
+            className: 'btn-primary btn-sm'
+        
       return false

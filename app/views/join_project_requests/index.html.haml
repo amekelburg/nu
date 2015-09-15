@@ -1,0 +1,20 @@
+- @section = :project_joins
+- @section_title = raw t '.title'
+- requests = @notifications.select { |n| n.join_project_request? }
+
+-# .page-header
+-#   = raw t '.info'
+
+- highlighted = requests.find { |r| r.id == params[:hl] }
+.row
+  .col-sm-12
+    %table.table.join-requests.table-striped
+      - if requests.blank?
+        %tr
+          %td= t '.nothing'
+      - else
+        - if highlighted
+          = render partial: "request", locals: { r: highlighted, open: true }
+        - requests.each do |r|
+          - next if r == highlighted
+          = render partial: "request", locals: { r: r }

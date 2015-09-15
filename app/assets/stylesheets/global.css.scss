@@ -42,3 +42,9 @@ span.spinner {
 table.table-with-code {
   table-layout: fixed;
 }
+
+table.table.table-borderless {
+  &, tr, th, td {
+    border: 0;
+  }
+}

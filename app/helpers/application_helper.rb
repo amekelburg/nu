@@ -119,4 +119,22 @@ module ApplicationHelper
     link_to(icon, href, options.merge(class: cl))
   end
 
+  def join_requests_link(notifications)
+    unread = notifications.select { |n| n.join_project_request? && !n.read? }
+
+    badge = nil
+    opts = {}
+    if unread.count == 0
+      opts['class'] = 'noclick'
+      opts['disabled'] = true
+      opts['data-toggle'] = 'tooltip'
+      opts['title'] = 'There are no pending requests to join your project(s).'
+    else
+      badge = content_tag(:div, unread.count, class: 'badge')
+    end
+
+    icon = icon_tag 'storage'
+
+    link_to [ badge, icon ].reject(&:blank?).join.html_safe, :join_project_requests, opts
+  end
 end

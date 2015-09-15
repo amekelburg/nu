@@ -47,7 +47,7 @@ class Notification < Struct.new(:id, :body, :tags, :sent)
 
   def formatted_body(deter_lab = nil)
     if @type == TYPE_JOIN_PROJECT
-      "#{formatted_sender(deter_lab)} has made a request to join the project #{@project_id} that you manage. To accept or reject join requests, <a href='/join_project_requests/#{self.id}?type=join&challenge=#{@challenge}'>click here</a>."
+      "#{formatted_sender(deter_lab)} has made a request to join the project #{@project_id} that you manage."
     elsif @type == TYPE_NEW_PROJECT
       "#{formatted_sender(deter_lab)} has made a request to create a new project #{@project_id}. To accept or reject new projects requests, <a href='/new_project_requests'>click here</a>."
     else
