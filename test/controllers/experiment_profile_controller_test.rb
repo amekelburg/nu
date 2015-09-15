@@ -2,11 +2,8 @@ require 'test_helper'
 
 class ExperimentProfileControllerTest < ActionController::TestCase
 
-  setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test 'should show the form' do
+    SummaryLoader.stubs(:user_managed_experiments).returns([])
     @controller.deter_lab.expects(:get_experiment_profile_description).returns([])
     @controller.deter_lab.expects(:get_experiment_profile).returns([])
     get :edit, experiment_id: 'Project:Experiment'

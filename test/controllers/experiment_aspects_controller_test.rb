@@ -12,6 +12,7 @@ class ExperimentAspectsControllerTest < ActionController::TestCase
     ]
     @controller.deter_lab.stubs(:get_experiment).returns(Experiment.new(@eid, 'mark', [], @aspects, []))
     SummaryLoader.stubs(:member_profile).returns({ "name" => "Mark" })
+    SummaryLoader.stubs(:user_managed_experiments).returns([])
   end
 
   test 'deleting aspects successfully' do

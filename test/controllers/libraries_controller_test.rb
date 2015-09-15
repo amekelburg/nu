@@ -32,6 +32,8 @@ class LibrariesControllerTest < ActionController::TestCase
     lib = Library.new("Lib", "mark", nil, [], [])
     @controller.stubs(:load_library).returns(lib)
     @controller.stubs(:get_project_experiments).returns([])
+    @controller.stubs(:get_library_experiments_details).returns([])
+    SummaryLoader.stubs(:user_managed_libraries).returns([])
     get :show, id: lib.id
     assert_template :show
     assert_equal    lib, assigns(:library)

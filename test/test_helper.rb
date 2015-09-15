@@ -19,6 +19,17 @@ require 'mocha/mini_test'
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+end
 
-  # Add more helper methods to be used by all tests here...
+class ActionController::TestCase
+  setup :login_user
+
+  def login_user
+    AppSession.new(@controller.session).logged_in_as "mark"
+    @controller.stubs(:current_user_name).returns("Mark")
+  end
+
+  def logout
+    AppSession.new(@controller.session).logged_out
+  end
 end

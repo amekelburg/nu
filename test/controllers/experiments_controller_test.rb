@@ -7,7 +7,8 @@ class ExperimentsControllerTest < ActionController::TestCase
   end
 
   test "index" do
-    DeterLab.expects(:view_experiments).returns([])
+    SummaryLoader.expects(:user_managed_experiments).returns([])
+    SummaryLoader.expects(:user_experiments).returns([])
     get :index
     assert_not_nil assigns(:experiments)
     assert_template :index

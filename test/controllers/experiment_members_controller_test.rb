@@ -11,6 +11,9 @@ class ExperimentMembersControllerTest < ActionController::TestCase
   end
 
   test 'should show members list' do
+    DeterLab.expects(:get_user_profile).returns(Profile.new)
+    DeterLab.expects(:view_experiments).returns([ Experiment.new(@eid, 'mark', [], [], []) ])
+    DeterLab.expects(:get_experiment_profile).returns(Profile.new)
     get :index, experiment_id: @eid
     assert_template :index
     assert_not_nil assigns[:experiment]
