@@ -3,7 +3,6 @@ require 'test_helper'
 class LibrariesControllerTest < ActionController::TestCase
 
   setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
     @controller.deter_lab.stubs(:get_library_profile_description).returns([])
   end
 

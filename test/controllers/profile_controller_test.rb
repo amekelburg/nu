@@ -2,10 +2,6 @@ require 'test_helper'
 
 class ProfileControllerTest < ActionController::TestCase
 
-  setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test "request is redirected to login when session is lost" do
     @controller.deter_lab.expects(:get_profile).raises(DeterLab::NotLoggedIn)
     get :show_my_profile

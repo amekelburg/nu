@@ -3,8 +3,6 @@ require 'test_helper'
 class ProjectMembersControllerTest < ActionController::TestCase
 
   setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-
     @pid = 'Project'
     @controller.deter_lab.expects(:get_project).returns(Project.new(@pid, "mark", true, []))
   end

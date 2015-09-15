@@ -3,8 +3,6 @@ require 'test_helper'
 class ExperimentMembersControllerTest < ActionController::TestCase
 
   setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-
     @eid = 'Project:Experiment'
     @controller.deter_lab.expects(:get_experiment).returns(Experiment.new(@eid, 'mark', [], [], []))
     @controller.stubs(:current_user_name).returns("mark")

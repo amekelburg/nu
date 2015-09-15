@@ -2,10 +2,6 @@ require 'test_helper'
 
 class PasswordControllerTest < ActionController::TestCase
 
-  def setup
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test "showing change password form" do
     get :edit
     assert_template :edit

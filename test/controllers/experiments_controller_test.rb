@@ -2,10 +2,6 @@ require 'test_helper'
 
 class ExperimentsControllerTest < ActionController::TestCase
 
-  setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test "index" do
     SummaryLoader.expects(:user_managed_experiments).returns([])
     SummaryLoader.expects(:user_experiments).returns([])

@@ -3,8 +3,6 @@ require 'test_helper'
 class ExperimentAspectsControllerTest < ActionController::TestCase
 
   setup do
-    @controller.app_session.logged_in_as "mark"
-
     @eid = 'Project:Experiment'
     @aspects = [
       ExperimentAspect.new(@ied, "layout000", "layout", nil, "layout", "ref"),

@@ -2,10 +2,6 @@ require 'test_helper'
 
 class ProjectJoinsControllerTest < ActionController::TestCase
 
-  setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test 'new' do
     get :new
     assert_template :new

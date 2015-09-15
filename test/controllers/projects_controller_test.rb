@@ -2,10 +2,6 @@ require 'test_helper'
 
 class ProjectsControllerTest < ActionController::TestCase
 
-  setup do
-    AppSession.new(@controller.session).logged_in_as "mark"
-  end
-
   test "index" do
     DeterLab.expects(:view_projects).returns([])
     get :index

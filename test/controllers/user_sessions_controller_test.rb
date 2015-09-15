@@ -30,7 +30,6 @@ class UserSessionsControllerTest < ActionController::TestCase
     DeterLab.stubs(:logout).returns(true)
 
     @app_session = AppSession.new(@controller.session)
-    @app_session.logged_in_as "user", false
 
     delete :destroy
     assert_equal I18n.t("user_sessions.destroy.success"), flash.notice
@@ -43,7 +42,6 @@ class UserSessionsControllerTest < ActionController::TestCase
     DeterLab.expects(:logout).raises(DeterLab::NotLoggedIn)
 
     @app_session = AppSession.new(@controller.session)
-    @app_session.logged_in_as "user", false
 
     delete :destroy
     assert_redirected_to :login
