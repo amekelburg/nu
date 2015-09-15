@@ -2,7 +2,7 @@ matt:
   user_sessions:
     new:
       title: "Welcome to DeterLab's <i>Nu Experimenter Portal</i>"
-      subheader: "DeterLab is a web-accessed laboratory of choice for cybersecurity experimenters in research and
+      subheader: "DeterLab ISI is a web-accessed laboratory of choice for cybersecurity experimenters in research and
       education that provides tools for conducting scientific-based cyber experiments by use of its subsystems and
       hardware – DeterCore – to simulate networks at large scale and high fidelity with cyber physical and human
       agent behavior capabilities to create real-world proving grounds for experiment testing, re-use, sharing,
@@ -15,7 +15,15 @@ matt:
         <a href="http://deter-project.org" target="_blank">Support for Users</a>
       info: >
         <p>
-          (future text placeholder)
+          Originating in 2003 and funded by the Department of Homeland Security, Department of Defense, and the
+          National Science Foundation, the DETER Project was formed to create experimental methodologies to enable
+          innovations in cybersecurity research. The need for infrastructure to implement these methodologies gave 
+          rise to DeterLab in 2004 – a state-of-the-art testbed – to experiment and test defense solutions for network
+          technologies. For over a decade, DETER has supported thousands of researchers in academia, industry, and
+          government. DeterLab's mission is to be THE lab and lab instance of choice, running on DeterCore, for cyber
+          experimenters to use in advancing their research into realized cyber solution technologies to protect
+          Internet-accessed information and Internet-connected smart devices that we rely upon for wellbeing
+          and prosperity.
         </p>
 
       password_reset: "If you've received your password reset email, you can complete the reset <a href='%{url}'>here</a>."
