@@ -62,7 +62,7 @@
                 %td.col-sm-3 User:&nbsp;#{deter_lab.get_profile(user_id)['name']}
                 %td.col-sm-8= acl[1].join(", ")
                 %td.col-sm-1.text-center
-                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: user_id), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure?' }
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: user_id), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure to DELETE this member?' }
             %tr
               %td.col-sm-3= f.text_field :circle_id, class: "form-control", placeholder: t(".add_user.hint")
               %td
@@ -76,13 +76,13 @@
                 %td.col-sm-3 Group:&nbsp;#{pid}
                 %td.col-sm-8= acl.project_perms.join(", ")
                 %td.col-sm-1.text-center
-                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: acl.project_cid), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure?' }
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, circle_id: acl.project_cid), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure to DELETE this member?' }
             - acl.groups_acl.each do |acl|
               %tr
                 %td.col-sm-3 Group:&nbsp;#{acl.circle_id.split(':').first}
                 %td.col-sm-8= acl.permissions.join(", ")
                 %td.col-sm-1.text-center
-                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, acl.circle_id), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure?' }
+                  = link_to t(".delete"), delete_member_experiment_path(@experiment.id, acl.circle_id), method: :delete, class: 'btn btn-xs btn-danger', data: { bbconfirm: 'Are you sure to DELETE this member?' }
             %tr
               %td.col-sm-3= f.text_field :circle_id, class: "form-control", placeholder: t(".add_group.hint")
               %td
