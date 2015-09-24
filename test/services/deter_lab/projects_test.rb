@@ -43,7 +43,7 @@ class DeterLab::ProjectsTest < DeterLab::AbstractTest
 
       assert_equal [
         Project.new("SPIdev", "faber", true,
-          [ ProjectMember.new("bfdh", [ "CREATE_EXPERIMENT", "CREATE_LIBRARY", "REMOVE_USER", "CREATE_CIRCLE", "ADD_USER" ]),
+          [ ProjectMember.new("bfdh",     [ "CREATE_EXPERIMENT", "CREATE_LIBRARY", "REMOVE_USER", "CREATE_CIRCLE", "ADD_USER" ]),
             ProjectMember.new("spiuidev", [ "CREATE_EXPERIMENT", "CREATE_LIBRARY", "REMOVE_USER", "CREATE_CIRCLE", "ADD_USER" ]),
             ProjectMember.new("jsebes",   [ "CREATE_EXPERIMENT", "CREATE_LIBRARY", "REMOVE_USER", "CREATE_CIRCLE", "ADD_USER" ]),
             ProjectMember.new("faber",    [ "CREATE_EXPERIMENT", "CREATE_LIBRARY", "REMOVE_USER", "CREATE_CIRCLE", "ADD_USER" ])
@@ -53,11 +53,14 @@ class DeterLab::ProjectsTest < DeterLab::AbstractTest
   end
 
   test "listing all projects as admin" do
-    VCR.use_cassette "deterlab/projects/view-all-projects", record: :all do
-      login 'admin_user'
-      projects = DeterLab.view_projects(@username)
-      fail "can't get the list of all projects as admin"
-      assert_equal [], projects
+    VCR.use_cassette "deterlab/projects/view-all-projects" do
+      login 'john'
+      projects = DeterLab.view_projects(@username, nil)
+      project_users = projects.map do |p|
+        [ p.owner, p.members.map(&:uid) ].flatten.uniq
+      end
+
+      assert (project_users.map { |pu| pu.include?('john') }).include?(false), "There should be projects John isn't an owner and a member of"
     end
   end
 
