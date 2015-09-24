@@ -1,5 +1,9 @@
 matt:
-  new_project_requests:
+  pending_projects:
+    project:
+      header: "Name: %{project_id}"
+      leader: "Project Leader: %{leader}"
+
     index:
       title: New Project Requests
       info: >

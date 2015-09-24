@@ -1,0 +1,21 @@
+%tr
+  %td
+    .f.fai-center
+      %h4.f1= t '.header', project_id: p.project_id
+      = link_to 'Show', '#', class: 'btn btn-xs btn-default show-hide', data: { drawer: "#req-#{p.project_id}" }
+    .f.fai-center
+      - owner = deter_lab.get_profile(p.owner)
+      %h5.f1= raw t '.leader', leader: "<a href='#{profile_path(p.owner)}'>#{owner["name"]}</a> (#{p.owner})"
+    %div{ class: 'hide', id: "req-#{p.project_id}" }
+      %p
+        = link_to t(".approve"), approve_pending_project_path(p.project_id), method: 'post', class: 'btn btn-success btn-xs', data: { bbconfirm: 'Are you sure to APPROVE this request?' }
+        = link_to t(".reject"), reject_pending_project_path(p.project_id), method: 'post', class: 'btn btn-danger btn-xs', data: { bbconfirm: 'Are you sure to REJECT this request?' }
+      %table.table.table-condensed.table-striped.table-borderless
+        - profile = deter_lab.get_project_profile(p.project_id)
+        - profile.each do |f|
+          - k = f.name
+          - next unless Project::PROFILE_FIELDS.include?(k)
+          - v = f.value
+          %tr
+            %td.col-sm-3= t "page_project_info.project_leader.project_#{k}.label"
+            %td.col-sm-9= v

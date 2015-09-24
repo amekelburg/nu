@@ -1,0 +1,14 @@
+- @submenu = :project_requests
+- @section = :projects
+- @section_title = raw t '.title'
+- pending_count = @unapproved.count
+
+.page-header
+  = raw t '.info', cnt: pluralize(pending_count, 'project request')
+
+- if @unapproved.any?
+  .row
+    .col-sm-12
+      %table.table.pending_projects.table-striped
+        - @unapproved.each do |p|
+          = render partial: "project", locals: { p: p }

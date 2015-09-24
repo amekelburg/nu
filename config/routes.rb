@@ -87,7 +87,12 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :new_project_requests, only: :index
+  resources :pending_projects, only: :index do
+    member do
+      post    :approve
+      post    :reject
+    end
+  end
   resources :join_project_requests, only: [ :index ] do
     member do
       post    :approve
