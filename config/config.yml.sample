@@ -17,3 +17,10 @@ redis_namespace: deter-gdocs
 dashboard:
   # Max number of list items in dashboard resources list
   list_items: 3
+
+project_approval_log:
+  # Number of items to show in recent activity log
+  last_max: 10
+
+  # Number of items to keep in recent activity log
+  days_max: 90

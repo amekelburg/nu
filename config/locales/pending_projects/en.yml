@@ -3,6 +3,8 @@ en:
     project:
       header: "Name: %{project_id}"
       leader: "Project Leader: %{leader}"
+      approve: Approve
+      reject: Reject
 
     index:
       title: New Project Requests Awaiting Approval
@@ -10,3 +12,9 @@ en:
         <p>
           There are %{cnt} that have not yet been approved.
         </p>
+
+      recent_activity: Recent Activity
+
+    approve:
+      success: Project has been approved
+      failure: Failed to approve the project

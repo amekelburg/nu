@@ -3,6 +3,8 @@ matt:
     project:
       header: "Name: %{project_id}"
       leader: "Project Leader: %{leader}"
+      approve: Approve
+      reject: Reject
 
     index:
       title: New Project Requests
@@ -10,3 +12,9 @@ matt:
         <p>
           Review and accept or reject the request
         </p>
+
+      recent_activity: Recent Activity
+
+    approve:
+      success: Project has been approved
+      failure: Failed to approve the project

@@ -1,0 +1,8 @@
+- hide ||= false
+%tr{ class: hide ? 'hide ra-all' : nil }
+  %td
+    %p
+      - verb = r[:action] == 'approve' ? 'approved' : 'rejected'
+      - rprofile = deter_lab.get_profile(r[:reviewer])
+      #{link_to rprofile['name'], profile_path(r[:reviewer])} (#{r[:reviewer]}) #{verb} #{link_to r[:project_id], project_path(r[:project_id])} on #{r[:on].strftime("%B %d, %Y")}
+

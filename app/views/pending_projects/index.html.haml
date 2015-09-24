@@ -12,3 +12,19 @@
       %table.table.pending_projects.table-striped
         - @unapproved.each do |p|
           = render partial: "project", locals: { p: p }
+
+.row
+  .col-sm-12
+    - last_max = AppConfig['project_approval_log']['last_max'].to_i
+    .f.fai-center
+      %h4.f1= t '.recent_activity'
+      - if @activity_records.count > last_max
+        = link_to 'Show', '#', class: 'btn btn-xs btn-default show-hide', data: { drawer: ".ra-all" }
+
+    %table.table.table-striped.recent-activity
+      - if @activity_records.blank?
+        %tr
+          %td= t ".no_records"
+      - else
+        - @activity_records.each_with_index do |r, i|
+          = render partial: 'record_row', locals: { r: r, hide: i >= last_max }
