@@ -45,7 +45,7 @@ class JoinProjectRequestsControllerTest < ActionController::TestCase
   end
 
   test "successful rejection" do
-    DeterLab.expects(:join_project_reject).with('mark', @n.challenge)
+    # DeterLab.expects(:join_project_reject).with('mark', @n.challenge)
     JoinRequestsManager.expects(:mark_as_rejected!).with(@n.id)
 
     post :reject, id: @n.id

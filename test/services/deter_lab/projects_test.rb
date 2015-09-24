@@ -204,7 +204,9 @@ class DeterLab::ProjectsTest < DeterLab::AbstractTest
   test "join project confirm - invalid challenge" do
     VCR.use_cassette "deterlab/projects/join-project-confirm-invalid" do
       login 'aadams'
-      refute DeterLab.join_project_confirm(@username, 'unknown')
+      assert_raises(DeterLab::Error) {
+        DeterLab.join_project_confirm(@username, 'unknown')
+      }
     end
   end
 
