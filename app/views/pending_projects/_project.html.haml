@@ -19,3 +19,7 @@
           %tr
             %td.col-sm-3= t "page_project_info.project_leader.project_#{k}.label"
             %td.col-sm-9= v
+
+      %h5 Comments
+      = react_component 'ProjectReviewComments', project_id: p.project_id, commenter: current_user_id, comments: ProjectReviewComments.comments(p.project_id)
+

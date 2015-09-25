@@ -15,6 +15,9 @@ matt:
 
       recent_activity: Recent Activity
 
+      comments: Comments
+      no_comments: No comments yet
+
     approve:
       success: Project has been approved
       failure: Failed to approve the project
