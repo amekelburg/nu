@@ -4,6 +4,7 @@ class PendingProjectsControllerTest < ActionController::TestCase
 
   test '#index' do
     DeterLab.expects(:view_projects).returns([])
+    ProjectApprovalLog.expects(:records).returns([])
     get :index
     assert_template :index
   end
@@ -25,14 +26,14 @@ class PendingProjectsControllerTest < ActionController::TestCase
   end
 
   test '#reject error' do
-    DeterLab.expects(:remove_project).raises(DeterLab::RequestError)
+    @controller.expects(:safe_reject).raises(DeterLab::RequestError)
     post :reject, id: 'missing'
     assert_redirected_to :pending_projects
     assert_equal I18n.t('pending_projects.reject.failure'), flash.alert
   end
 
   test '#reject success' do
-    DeterLab.expects(:remove_project).with('mark', 'pending_project')
+    @controller.expects(:safe_reject)
     ProjectApprovalLog.expects(:record_rejection).with('mark', 'pending_project')
     @controller.deter_lab.expects(:invalidate_projects)
     post :reject, id: 'pending_project'

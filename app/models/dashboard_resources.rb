@@ -17,10 +17,6 @@ class DashboardResources
     @d.get_experiments.select { |e| e.id =~ /^[a-z]/ }
   end
 
-  def accessible_experiments_count
-    project_experiments.count
-  end
-
   def member_of_projects_count
     @d.get_projects.count
   end
@@ -59,14 +55,6 @@ class DashboardResources
     @d.get_projects.select { |p| p.owner == @uid }.map(&:project_id)
   end
 
-  def joined_project_ids
-    @d.get_projects.select { |p| p.owner != @uid }.map(&:project_id)
-  end
-
-  def accessible_library_experiments
-    @d.get_experiments.select { |e| e.id !~ /^[A-Z]/ }
-  end
-
   def libraries
     @d.view_libraries
   end
@@ -85,18 +73,6 @@ class DashboardResources
 
   def total_notifications
     notifications.size
-  end
-
-  def unread_project_requests_count
-    notifications.count { |n| n.new_project_request? && !n.read? }
-  end
-
-  def new_project_notifications_count
-    @d.get_projects.count { |p| !p[:approved] }
-  end
-
-  def join_project_notifications_count
-    ProjectJoins.list_projects(@uid).size
   end
 
 end

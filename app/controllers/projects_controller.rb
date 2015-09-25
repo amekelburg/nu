@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
       end
     end
 
-    @unapproved_new = projects.select { |p| !p[:approved] && p[:leader][:uid] == uid }
+    @unapproved_new = projects.select { |p| !p[:approved] && !RejectedProjects.include?(p[:project_id]) && p[:leader][:uid] == uid }
     @unapproved_joins = ProjectJoins.list_projects(uid)
 
     gon.getProfileUrl = profile_project_path(':id')
