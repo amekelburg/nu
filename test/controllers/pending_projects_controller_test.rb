@@ -41,4 +41,21 @@ class PendingProjectsControllerTest < ActionController::TestCase
     assert_equal I18n.t('pending_projects.reject.success'), flash.notice
   end
 
+  test "#add_comment success" do
+    pid = 'pid'
+    comment = 'hello'
+    @controller.expects(:safe_project).returns(:project)
+    ProjectReviewComments.expects(:add).with(pid, 'mark', comment)
+    post :add_comment, id: pid, comment: comment, format: 'json'
+    assert_equal({ success: true }.to_json, @response.body)
+  end
+
+  test "#add_comment no access to project" do
+    pid = 'pid'
+    @controller.expects(:safe_project).returns(nil)
+    ProjectReviewComments.expects(:add).never
+    post :add_comment, id: pid, comment: '', format: 'json'
+    assert_equal({ success: false }.to_json, @response.body)
+  end
+
 end

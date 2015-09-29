@@ -1,0 +1,14 @@
+.pp-comments td {
+  &.saving {
+    color: #888;
+  }
+
+  .material-icons {
+    vertical-align: middle;
+    text-decoration: none;
+
+    &:hover {
+      color: #444;
+    }
+  }
+}

@@ -91,6 +91,7 @@ Rails.application.routes.draw do
     member do
       post    :approve
       post    :reject
+      post    :add_comment
     end
   end
   resources :join_project_requests, only: [ :index ] do

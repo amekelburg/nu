@@ -32,12 +32,27 @@ class PendingProjectsController < ApplicationController
     redirect_to :pending_projects, alert: t('.failure')
   end
 
+  # adds the comment to a project
+  def add_comment
+    project = safe_project
+    if project
+      ProjectReviewComments.add(params[:id], current_user_id, params[:comment])
+      render json: { success: true }
+    else
+      render json: { success: false }
+    end
+  end
+
   private
 
-  def safe_reject
+  def safe_project
     projects = DeterLab.view_projects(current_user_id, nil)
-    project  = projects.find { |p| p.project_id == params[:id] }
-    if !project.approved
+    return projects.find { |p| p.project_id == params[:id] }
+  end
+
+  def safe_reject
+    project = safe_project
+    if project && !project.approved
       RejectedProjects.add(params[:id])
     else
       raise DeterLab::RequestError.new('Project not found')

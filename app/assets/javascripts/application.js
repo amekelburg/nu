@@ -15,6 +15,7 @@
 //= require bootbox.min
 //= require jquery_ujs
 //= require knockoutjs-3.2.0
+//= require underscore-min
 //= require moment
 //= require i18n
 //= require react
