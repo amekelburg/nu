@@ -16,8 +16,6 @@ install Ruby ruby2.1.3 ruby2.1.3-dev
 update-alternatives --set ruby /usr/bin/ruby2.1.3 >/dev/null 2>&1
 update-alternatives --set gem /usr/bin/gem2.1.3 >/dev/null 2>&1
 
-echo installing Bundler
-gem install bundler -N >/dev/null 2>&1
 
 install Git git
 #install SQLite sqlite3 libsqlite3-dev
@@ -48,6 +46,15 @@ install 'ExecJS runtime' nodejs
 # Needed for docs generation.
 update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 
-cd '/vagrant' && bundle install
+# RVM
+echo Install RVM
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+\curl -sSL https://get.rvm.io | bash
+source /etc/profile.d/rvm.sh
+rvm install 2.1.3
+
+
+echo installing Bundler
+cd '/vagrant' && gem install bundler && bundle install
 
 echo 'done'

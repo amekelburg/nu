@@ -4,17 +4,13 @@ DETER
 Requirements
 ------------
 
-* Ruby version 2.1.3
-* Redis 2.6.16 or newer
+* Vagrant ~1.7.4
+* Virtualbox 5
 
 Configuration
 -------------
 
-* Review configuration in config.yml
-* Update database.yml
-* Initialize database
-
-        $ bin/rake db:setup
+* Create and review configuration in config.yml
 
 Testing
 -------
@@ -24,6 +20,12 @@ Testing
 Running
 -------
 
+    $ vagrant up
+    
+      Lots of thins will happen here....
+      
+    $ vagrant ssh
+    $ cd /vagrant
     $ foreman start
 
 Deploying
